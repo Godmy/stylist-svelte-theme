@@ -3,6 +3,7 @@
   import { ObjectManagerThemeSettings } from '$stylist/theme/class/object-manager/theme-settings';
   import type { ThemeSettingsRecipe } from '$stylist/theme/interface/recipe/theme-settings';
   import { createThemeSettingsState } from '$stylist/theme/function/state/theme-settings';
+  import { formatLabel } from '$stylist/theme/function/script/format-label';
   import { ThemeModeToggle } from '$stylist/theme/svelte/atom';
   import { ThemeSwitcher } from '$stylist/theme/svelte/molecule';
   import { ThemeSurface } from '$stylist/layout/svelte/molecule/layout/theme-surface';
@@ -19,7 +20,7 @@
   const themeContext = ManagerThemeContext.getOptional();
   const resolvedContract = $derived(ObjectManagerThemeSettings.createContract(contract));
   const state = createThemeSettingsState(() => resolvedContract);
-  
+
   // Используем функции из контекста темы для сохранения настроек
   function handleModeChange(nextTheme: 'light' | 'dark' | 'default') {
     state.handleThemeModeChange(nextTheme);
@@ -28,7 +29,7 @@
   function handleSchemeChange(nextTheme: 'minimal' | 'ocean' | 'forest' | 'sunset') {
     state.handleThemeSchemeChange(nextTheme);
   }
-  
+
   const classNameStr = $derived(className == null ? undefined : String(className));
   const formClass = $derived(StyleManagerThemeSettings.preferences('', classNameStr));
   const surfaceClass = StyleManagerThemeSettings.surface();
@@ -59,15 +60,6 @@
   const modeDescription = $derived(
     resolvedContract.modeSection.description || state.localThemeMode
   );
-
-  function formatLabel(value: string): string {
-    if (!value) return '';
-    return value
-      .split(/[-_\s]+/)
-      .filter(Boolean)
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-      .join(' ');
-  }
 
   const currentModeLabel = $derived(formatLabel(themeContext?.themeMode ?? state.localThemeMode));
   const currentSchemeLabel = $derived(formatLabel(state.localThemeScheme));
