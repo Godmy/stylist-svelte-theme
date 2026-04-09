@@ -49,7 +49,8 @@ export class StyleManagerThemeSwitcher {
 		return `
 			.c-theme-switcher {
 				display: grid;
-				gap: var(--spacing-3);
+				gap: 0.75rem;
+				width: 100%;
 			}
 
 			.c-theme-switcher__title {
@@ -61,7 +62,7 @@ export class StyleManagerThemeSwitcher {
 
 			.c-theme-switcher__list {
 				display: grid;
-				gap: var(--spacing-2);
+				gap: 0.6rem;
 				grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 			}
 
@@ -74,24 +75,47 @@ export class StyleManagerThemeSwitcher {
 				gap: var(--spacing-1);
 				align-items: center;
 				grid-template-columns: 0.75rem 1fr;
-				border: 1px solid var(--line, var(--color-border-primary));
-				background: var(--surface, var(--color-background-primary));
+				border: 1px solid color-mix(in srgb, var(--line, var(--color-border-primary)) 76%, transparent);
+				background:
+					linear-gradient(
+						180deg,
+						color-mix(in srgb, var(--surface, var(--color-background-primary)) 97%, white 3%) 0%,
+						color-mix(in srgb, var(--surface, var(--color-background-primary)) 93%, var(--bg, var(--color-background-secondary)) 7%) 100%
+					);
 				color: var(--text, var(--color-text-primary));
-				border-radius: var(--border-radius-xl);
-				padding: var(--spacing-2) var(--spacing-3);
+				border-radius: 1rem;
+				padding: 0.72rem 0.82rem;
 				cursor: pointer;
 				text-align: left;
+				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+				transition:
+					border-color var(--duration-120) var(--animation-ease),
+					background-color var(--duration-120) var(--animation-ease),
+					transform var(--duration-120) var(--animation-ease);
 			}
 
 			.c-theme-switcher__list--compact .c-theme-switcher__item {
 				grid-template-columns: 0.65rem 1fr;
-				padding: var(--spacing-2) var(--spacing-2);
+				padding: 0.7rem 0.78rem;
 				min-height: var(--spacing-8);
+			}
+
+			.c-theme-switcher__item:hover {
+				transform: translateY(-1px);
+				border-color: color-mix(in srgb, var(--accent, var(--color-primary-600)) 32%, var(--line, var(--color-border-primary)) 68%);
 			}
 
 			.c-theme-switcher__item--active {
 				border-color: var(--accent, var(--color-primary-600));
-				box-shadow: var(--shadow-custom45);
+				background:
+					linear-gradient(
+						180deg,
+						color-mix(in srgb, var(--surface, var(--color-background-primary)) 84%, var(--accent, var(--color-primary-600)) 16%) 0%,
+						color-mix(in srgb, var(--surface, var(--color-background-primary)) 90%, var(--accent, var(--color-primary-600)) 10%) 100%
+					);
+				box-shadow:
+					0 10px 26px rgba(15, 23, 42, 0.08),
+					inset 0 1px 0 rgba(255, 255, 255, 0.5);
 			}
 
 			.c-theme-switcher__chip {

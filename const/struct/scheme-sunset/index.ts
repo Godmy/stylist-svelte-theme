@@ -3,9 +3,9 @@ import { COLORS_SCALES_SLATE } from '$stylist/color/const/record/colors-scales/s
 import { TOKEN_COLOR } from '$stylist/color/const/map/color';
 import { THEME_MODE_DARK } from '$stylist/theme/const/struct/theme-mode-dark';
 import { THEME_MODE_LIGHT } from '$stylist/theme/const/struct/theme-mode-light';
-import type { StructThemeScheme } from '$stylist/theme/type/struct/theme-scheme';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 
-export const SCHEME_SUNSET: StructThemeScheme = {
+export const SCHEME_SUNSET: ThemeSchemeDefinition = {
 	id: 'sunset',
 	label: 'Sunset',
 	description: 'Warm orange palette',
@@ -55,9 +55,12 @@ export const SCHEME_SUNSET: StructThemeScheme = {
 				level3: 'rgba(216, 106, 47, 0.15)',
 				level4: 'rgba(216, 106, 47, 0.2)',
 				level5: 'rgba(216, 106, 47, 0.25)'
-			},
+			}
+		},
+		domain: {
+			...THEME_MODE_LIGHT.domain,
 			scene: {
-				...THEME_MODE_LIGHT.colors.scene,
+				...THEME_MODE_LIGHT.domain!.scene!,
 				star: COLORS_SCALES_AMBER[500],
 				icon: COLORS_SCALES_AMBER[600],
 				cluster: COLORS_SCALES_AMBER[400],
@@ -82,9 +85,12 @@ export const SCHEME_SUNSET: StructThemeScheme = {
 			text: {
 				...THEME_MODE_DARK.colors.text,
 				link: COLORS_SCALES_AMBER[400]
-			},
+			}
+		},
+		domain: {
+			...THEME_MODE_DARK.domain,
 			scene: {
-				...THEME_MODE_DARK.colors.scene,
+				...THEME_MODE_DARK.domain!.scene!,
 				star: COLORS_SCALES_AMBER[400],
 				icon: COLORS_SCALES_AMBER[300],
 				cluster: COLORS_SCALES_AMBER[500],

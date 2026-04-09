@@ -1,7 +1,7 @@
 import { StyleManagerThemeContext } from '$stylist/theme/class/style-manager/theme-context';
 import type { ThemeContextRecipe } from '$stylist/theme/interface/recipe/theme-context';
 
-export function createThemeContextState(props: ThemeContextRecipe) {
+function createThemeContextState(props: ThemeContextRecipe) {
 	const rootClass = $derived(StyleManagerThemeContext.root(props.class));
 	const restProps = $derived.by(() => {
 		const { class: _class, children: _children, ...rest } = props;

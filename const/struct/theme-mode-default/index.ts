@@ -4,24 +4,12 @@ import { COLORS_SCALES_NEUTRAL } from '$stylist/color/const/record/colors-scales
 import { COLORS_SCALES_RED } from '$stylist/color/const/record/colors-scales/red';
 import { COLORS_SCALES_SLATE } from '$stylist/color/const/record/colors-scales/slate';
 import { COLORS_SCALES_TEAL } from '$stylist/color/const/record/colors-scales/teal';
-import { RECORD_ELEVATION } from '$stylist/layout/const/record/elevation';
 import { TOKEN_COLOR } from '$stylist/color/const/map/color';
-import { GRADIENT_DIRECTIONAL } from '$stylist/layout/const/map/gradient-linear';
-import { GRADIENT_RADIAL } from '$stylist/layout/const/map/gradient-radial';
-import { GRADIENT_CUSTOM } from '$stylist/layout/const/map/gradient-custom';
-import { SCENE_CONTENT } from '$stylist/architecture/const/struct/scene/content';
-import { TOKEN_ANIMATION } from '$stylist/interaction/const/map/animation';
-import { TOKEN_DURATION } from '$stylist/interaction/const/map/duration';
-import { TOKEN_TRANSITION } from '$stylist/interaction/const/record/transition';
-import { TOKEN_EASING } from '$stylist/architecture/const/map/easing';
-import { TOKEN_OPACITY } from '$stylist/architecture/const/map/opacity';
-import { TOKEN_Z_INDEX } from '$stylist/layout/const/map/z-index';
-import { THEME_SIZE } from '$stylist/theme/const/enum/theme-size';
-import type { Theme } from '$stylist/theme/type/struct/theme/theme';
+import type { Theme } from '$stylist/theme/type/struct/theme';
 import { THEME_TYPOGRAPHY } from '$stylist/typography/const/struct/theme-typography';
 
 export const THEME_MODE_DEFAULT: Theme = {
-	scheme: 'light',
+	mode: 'default',
 	colors: {
 		primary: COLORS_SCALES_BLUE,
 		secondary: COLORS_SCALES_SLATE,
@@ -99,7 +87,10 @@ export const THEME_MODE_DEFAULT: Theme = {
 		outlineStrong: COLORS_SCALES_SLATE[500],
 		shadow: 'rgba(0, 0, 0, 0.1)',
 		scrim: 'rgba(0, 0, 0, 0.5)',
-		backdrop: 'rgba(0, 0, 0, 0.6)',
+		backdrop: 'rgba(0, 0, 0, 0.6)'
+	},
+	typography: THEME_TYPOGRAPHY,
+	domain: {
 		scene: {
 			far: COLORS_SCALES_SLATE[50],
 			mid: COLORS_SCALES_SLATE[100],
@@ -136,43 +127,5 @@ export const THEME_MODE_DEFAULT: Theme = {
 				selected: '#673AB7'
 			}
 		}
-	},
-	typography: THEME_TYPOGRAPHY,
-	elevation: {
-		none: RECORD_ELEVATION.none,
-		level1: RECORD_ELEVATION.sm,
-		level2: RECORD_ELEVATION.base,
-		level3: RECORD_ELEVATION.md,
-		level4: RECORD_ELEVATION.lg,
-		level5: RECORD_ELEVATION.xl,
-		focus: RECORD_ELEVATION.custom14,
-		focusStrong: RECORD_ELEVATION.custom15,
-		accent: RECORD_ELEVATION.custom23,
-		accentStrong: RECORD_ELEVATION.custom31,
-		overlay: RECORD_ELEVATION.custom22,
-		modal: RECORD_ELEVATION.custom33,
-		star: RECORD_ELEVATION.none,
-		icon: RECORD_ELEVATION.custom26,
-		pill: RECORD_ELEVATION.custom35,
-		card: RECORD_ELEVATION.custom21,
-		cardHover: RECORD_ELEVATION.custom24,
-		detail: RECORD_ELEVATION.custom25,
-		focusNode: RECORD_ELEVATION.custom14,
-		fullscreen: RECORD_ELEVATION.none
-	},
-	size: THEME_SIZE,
-	opacity: TOKEN_OPACITY,
-	zIndex: TOKEN_Z_INDEX,
-	motion: {
-		duration: TOKEN_DURATION,
-		easing: TOKEN_EASING,
-		transitions: TOKEN_TRANSITION,
-		animations: TOKEN_ANIMATION
-	},
-	gradients: {
-		types: GRADIENT_CUSTOM,
-		directional: GRADIENT_DIRECTIONAL,
-		radial: GRADIENT_RADIAL
-	},
-	scene: SCENE_CONTENT
+	}
 };

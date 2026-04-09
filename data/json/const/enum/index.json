@@ -1,0 +1,71 @@
+{
+  "domainName": "theme",
+  "sourceDirectory": "D:\\2026\\code\\template\\stylist-svelte\\src\\lib\\theme\\const\\enum",
+  "outputFile": "D:\\2026\\code\\template\\stylist-svelte\\src\\lib\\theme\\data\\json\\const\\enum\\index.json",
+  "tokens": [
+    {
+      "tokenName": "TOKEN_THEME_ICON",
+      "values": [
+        "blur",
+        "gradient-background",
+        "opacity",
+        "radius",
+        "shadows",
+        "shapes",
+        "style"
+      ],
+      "absolutePath": "D:\\2026\\code\\template\\stylist-svelte\\src\\lib\\theme\\const\\enum\\icon\\index.ts",
+      "relativePath": "icon\\index.ts"
+    },
+    {
+      "tokenName": "TOKEN_THEME_MODE",
+      "values": [
+        "default",
+        "light",
+        "dark"
+      ],
+      "absolutePath": "D:\\2026\\code\\template\\stylist-svelte\\src\\lib\\theme\\const\\enum\\theme-mode\\index.ts",
+      "relativePath": "theme-mode\\index.ts"
+    },
+    {
+      "tokenName": "TOKEN_THEME_SCHEME",
+      "values": [
+        "minimal",
+        "ocean",
+        "forest",
+        "sunset"
+      ],
+      "absolutePath": "D:\\2026\\code\\template\\stylist-svelte\\src\\lib\\theme\\const\\enum\\theme-scheme\\index.ts",
+      "relativePath": "theme-scheme\\index.ts"
+    },
+    {
+      "tokenName": "TOKEN_THEME_TONE",
+      "values": [
+        "default",
+        "neutral",
+        "primary",
+        "secondary",
+        "tertiary",
+        "success",
+        "info",
+        "warning",
+        "danger",
+        "error"
+      ],
+      "absolutePath": "D:\\2026\\code\\template\\stylist-svelte\\src\\lib\\theme\\const\\enum\\theme-tone\\index.ts",
+      "relativePath": "theme-tone\\index.ts"
+    },
+    {
+      "tokenName": "TOKEN_THEME_VARIANT",
+      "values": [
+        "filled",
+        "outlined",
+        "ghost",
+        "soft",
+        "minimal"
+      ],
+      "absolutePath": "D:\\2026\\code\\template\\stylist-svelte\\src\\lib\\theme\\const\\enum\\theme-variant\\index.ts",
+      "relativePath": "theme-variant\\index.ts"
+    }
+  ]
+}

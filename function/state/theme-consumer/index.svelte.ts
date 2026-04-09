@@ -1,7 +1,7 @@
-import { ThemeContextManager } from '$stylist/theme/class/object-manager/theme-context-manager';
+import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 
-export function createThemeConsumerState() {
-	const themeContext = ThemeContextManager.getOptional();
+function createThemeConsumerState() {
+	const themeContext = ManagerThemeContext.getOptional();
 
 	return {
 		get themeContext() {

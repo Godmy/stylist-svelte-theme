@@ -1,13 +1,15 @@
 import type { ThemeModeToggleRecipe } from '$stylist/theme/interface/recipe/theme-mode-toggle';
 import { ObjectManagerThemeModeToggle } from '$stylist/theme/class/object-manager/theme-mode-toggle';
-import { applyThemeMode } from '$stylist/theme/function/script/css/apply-theme-mode';
-import { ThemeStorageManager } from '$stylist/theme/class/object-manager/theme-storage-manager';
+import { applyThemeMode } from '$stylist/theme/function/script/dom/apply-theme-mode';
+import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
+import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
-export function createThemeModeToggleState(
+function createThemeModeToggleState(
 	props: ThemeModeToggleRecipe,
-	getDefaultScheme: () => TokenThemeScheme | undefined
+	getDefaultScheme: () => TokenThemeScheme | undefined,
+	setThemeMode?: (theme: TokenThemeMode) => void
 ) {
 	let theme = $state(
 		ObjectManagerThemeModeToggle.resolveTheme(props.currentTheme, props.darkMode)
@@ -51,10 +53,13 @@ export function createThemeModeToggleState(
 			return;
 		}
 
-		const effectiveTheme = applyTheme(theme);
+		const effectiveTheme = setThemeMode ? resolveThemeMode(theme) : applyTheme(theme);
+		setThemeMode?.(theme);
 		appliedTheme = theme;
 		props.onToggle?.({ darkMode: effectiveTheme === 'dark' });
-		ThemeStorageManager.persistMode(theme, ObjectManagerThemeModeToggle.storageKey);
+		if (!setThemeMode) {
+			ManagerThemeStorage.persistMode(theme, ObjectManagerThemeModeToggle.storageKey);
+		}
 	});
 
 	return {

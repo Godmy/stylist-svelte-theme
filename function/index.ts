@@ -1,3 +1,3 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { applySchemeToDOM, applyThemeMode, applyThemeModeAndScheme, applyThemeToDOM, clearSystemThemeCache, getSystemThemeMode, initSystemThemeListener, resolveThemeMode, supportsThemeMode, toggleThemeMode } from './script';
+export { applyThemeMode, applyThemeModeAndScheme, applyThemeToDOM, resolveTargetElement, resolveThemeMode, resolveThemeScheme, supportsThemeMode, toggleThemeMode } from './script';
 export { createThemeConsumerState, createThemeContextState, createThemeModeToggleState, createThemeProviderState, createThemeSettingsState, createThemeSwitcherState } from './state';

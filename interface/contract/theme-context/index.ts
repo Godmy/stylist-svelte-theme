@@ -1,8 +1,8 @@
-import type { Theme } from '$stylist/theme/type/struct/theme/theme';
+import type { Theme } from '$stylist/theme/type/struct/theme';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
-export interface ThemeContextValue {
+export interface ThemeContext {
 	theme: Theme;
 	themeMode: TokenThemeMode;
 	themeScheme: TokenThemeScheme;
@@ -10,5 +10,3 @@ export interface ThemeContextValue {
 	setScheme?: (scheme: TokenThemeScheme) => void;
 	getEffectiveTheme?: () => 'light' | 'dark';
 }
-
-export type ThemeContext = ThemeContextValue;

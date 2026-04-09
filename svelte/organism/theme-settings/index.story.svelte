@@ -1,6 +1,6 @@
-<script lang="ts">
+﻿<script lang="ts">
   import { Story } from '$stylist/development/svelte/playground';
-  import type { InterfaceControllerSettings } from '$stylist/development/type/struct/interface-controller-settings/interface-controller-settings';
+  import type { InterfaceControllerSettings } from '$stylist/development/type/struct/interface-controller-settings';
   import { StyleManagerThemeSettings } from '$stylist/theme/class/style-manager/theme-settings';
   import { ObjectManagerThemeSettings } from '$stylist/theme/class/object-manager/theme-settings';
   import AppearanceSettingsComponent from './index.svelte';

@@ -1,10 +1,11 @@
 import { THEME_SCHEMES } from '$stylist/theme/const/struct/theme-schemes';
-import type { ThemeSettingsContract, ThemeSettingsContractInput } from '$stylist/theme/interface/contract/theme-settings';
+import type { ThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
+import type { ThemeSettingsInput } from '$stylist/theme/type/contract/theme-settings-input';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
 export class ObjectManagerThemeSettings {
-	static createContract(input: ThemeSettingsContractInput = {}): ThemeSettingsContract {
+	static createContract(input: ThemeSettingsInput = {}): ThemeSettingsViewModel {
 		return {
 			themeMode: input.themeMode ?? 'default',
 			themeScheme: input.themeScheme ?? 'minimal',
@@ -12,20 +13,13 @@ export class ObjectManagerThemeSettings {
 			modeSection: {
 				show: input.modeSection?.show ?? true,
 				title: input.modeSection?.title ?? 'Mode',
-				description: input.modeSection?.description ?? '',
-				toggleProps: input.modeSection?.toggleProps ?? {}
+				description: input.modeSection?.description ?? ''
 			},
 			schemeSection: {
 				show: input.schemeSection?.show ?? true,
 				title: input.schemeSection?.title ?? 'UI palette',
 				description:
-					input.schemeSection?.description ?? 'Minimal, Ocean, Forest, Sunset',
-				switcherProps: {
-					compact: true,
-					showHeader: false,
-					showLabels: false,
-					...(input.schemeSection?.switcherProps ?? {})
-				}
+					input.schemeSection?.description ?? 'Minimal, Ocean, Forest, Sunset'
 			},
 			onThemeModeChange: input.onThemeModeChange,
 			onThemeSchemeChange: input.onThemeSchemeChange
@@ -33,9 +27,9 @@ export class ObjectManagerThemeSettings {
 	}
 
 	static withThemeMode(
-		contract: ThemeSettingsContract,
+		contract: ThemeSettingsViewModel,
 		themeMode: TokenThemeMode
-	): ThemeSettingsContract {
+	): ThemeSettingsViewModel {
 		return {
 			...contract,
 			themeMode
@@ -43,9 +37,9 @@ export class ObjectManagerThemeSettings {
 	}
 
 	static withThemeScheme(
-		contract: ThemeSettingsContract,
+		contract: ThemeSettingsViewModel,
 		themeScheme: TokenThemeScheme
-	): ThemeSettingsContract {
+	): ThemeSettingsViewModel {
 		return {
 			...contract,
 			themeScheme

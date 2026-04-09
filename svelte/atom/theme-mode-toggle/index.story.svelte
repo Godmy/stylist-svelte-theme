@@ -1,6 +1,6 @@
-<script lang="ts">
+﻿<script lang="ts">
 	import { Story } from '$stylist/development/svelte/playground';
-	import type { InterfaceControllerSettings } from '$stylist/development/type/struct/interface-controller-settings/interface-controller-settings';
+	import type { InterfaceControllerSettings } from '$stylist/development/type/struct/interface-controller-settings';
 	import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 	import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 	import ThemeModeToggle from './index.svelte';

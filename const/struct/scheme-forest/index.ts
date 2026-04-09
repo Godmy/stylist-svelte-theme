@@ -4,9 +4,9 @@ import { COLORS_SCALES_TEAL } from '$stylist/color/const/record/colors-scales/te
 import { TOKEN_COLOR } from '$stylist/color/const/map/color';
 import { THEME_MODE_DARK } from '$stylist/theme/const/struct/theme-mode-dark';
 import { THEME_MODE_LIGHT } from '$stylist/theme/const/struct/theme-mode-light';
-import type { StructThemeScheme } from '$stylist/theme/type/struct/theme-scheme';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 
-export const SCHEME_FOREST: StructThemeScheme = {
+export const SCHEME_FOREST: ThemeSchemeDefinition = {
 	id: 'forest',
 	label: 'Forest',
 	description: 'Natural green palette',
@@ -60,9 +60,12 @@ export const SCHEME_FOREST: StructThemeScheme = {
 				level3: 'rgba(34, 117, 75, 0.15)',
 				level4: 'rgba(34, 117, 75, 0.2)',
 				level5: 'rgba(34, 117, 75, 0.25)'
-			},
+			}
+		},
+		domain: {
+			...THEME_MODE_LIGHT.domain,
 			scene: {
-				...THEME_MODE_LIGHT.colors.scene,
+				...THEME_MODE_LIGHT.domain!.scene!,
 				star: COLORS_SCALES_GREEN[500],
 				icon: COLORS_SCALES_GREEN[600],
 				cluster: COLORS_SCALES_GREEN[400],
@@ -91,9 +94,12 @@ export const SCHEME_FOREST: StructThemeScheme = {
 			text: {
 				...THEME_MODE_DARK.colors.text,
 				link: COLORS_SCALES_GREEN[400]
-			},
+			}
+		},
+		domain: {
+			...THEME_MODE_DARK.domain,
 			scene: {
-				...THEME_MODE_DARK.colors.scene,
+				...THEME_MODE_DARK.domain!.scene!,
 				star: COLORS_SCALES_GREEN[400],
 				icon: COLORS_SCALES_GREEN[300],
 				cluster: COLORS_SCALES_GREEN[500],

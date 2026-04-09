@@ -1,11 +1,4 @@
 import type { HTMLAttributes } from 'svelte/elements';
-import type { TokenThemeTone } from '$stylist/theme/type/enum/theme-tone';
-import type { TokenThemeVariant } from '$stylist/theme/type/enum/theme-variant';
+import type { ProtoTheme } from '$stylist/theme/interface/proto/thema';
 
-export type ThemeAttributes<T extends EventTarget = HTMLElement> = HTMLAttributes<T> & {
-	'data-theme'?: string;
-	'data-variant'?: TokenThemeVariant;
-	'data-tone'?: TokenThemeTone;
-	'data-state'?: string;
-	'data-gradient'?: string;
-};
+export type ThemeAttributes<T extends EventTarget = HTMLElement> = HTMLAttributes<T> & ProtoTheme;

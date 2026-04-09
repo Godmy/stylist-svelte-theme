@@ -3,9 +3,9 @@ import { COLORS_SCALES_SLATE } from '$stylist/color/const/record/colors-scales/s
 import { TOKEN_COLOR } from '$stylist/color/const/map/color';
 import { THEME_MODE_DARK } from '$stylist/theme/const/struct/theme-mode-dark';
 import { THEME_MODE_LIGHT } from '$stylist/theme/const/struct/theme-mode-light';
-import type { StructThemeScheme } from '$stylist/theme/type/struct/theme-scheme';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 
-export const SCHEME_OCEAN: StructThemeScheme = {
+export const SCHEME_OCEAN: ThemeSchemeDefinition = {
 	id: 'ocean',
 	label: 'Ocean',
 	description: 'Cold blue palette',

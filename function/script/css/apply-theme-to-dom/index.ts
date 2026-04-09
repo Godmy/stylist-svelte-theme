@@ -1,15 +1,6 @@
-import type { Theme } from '$stylist/theme/type/struct/theme/theme';
-import { ThemeCSSManager } from '$stylist/theme/class/object-manager/theme-css-manager';
-
-function resolveTargetElement(element?: HTMLElement): HTMLElement | null {
-	if (element) {
-		return element;
-	}
-	if (typeof document === 'undefined') {
-		return null;
-	}
-	return document.documentElement;
-}
+import type { Theme } from '$stylist/theme/type/struct/theme';
+import { ManagerThemeCSS } from '$stylist/theme/class/manager/theme-css';
+import { resolveTargetElement } from '$stylist/theme/function/script/resolve-target-element';
 
 export function applyThemeToDOM(theme: Theme, element?: HTMLElement): void {
 	const target = resolveTargetElement(element);
@@ -17,7 +8,7 @@ export function applyThemeToDOM(theme: Theme, element?: HTMLElement): void {
 		return;
 	}
 
-	const vars = ThemeCSSManager.convertToCSSVars(theme);
-	ThemeCSSManager.setVars(vars, target);
-	target.setAttribute('data-theme', theme.scheme);
+	const vars = ManagerThemeCSS.convertToCSSVars(theme);
+	ManagerThemeCSS.setVars(vars, target);
+	target.setAttribute('data-theme', theme.mode);
 }

@@ -1,2 +1,4 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { applySchemeToDOM, applyThemeMode, applyThemeModeAndScheme, applyThemeToDOM, clearSystemThemeCache, getSystemThemeMode, initSystemThemeListener, resolveThemeMode, supportsThemeMode, toggleThemeMode } from './css';
+export { applyThemeToDOM, resolveThemeMode, supportsThemeMode } from './css';
+export { applyThemeMode, applyThemeModeAndScheme, resolveThemeScheme, toggleThemeMode } from './dom';
+export { resolveTargetElement } from './resolve-target-element';

@@ -1,6 +1,6 @@
 import type { RecordArchitectureMerge } from '$stylist/architecture/type/record/architecture-merge';
 import type { InteractionHTMLAttributes } from '$stylist/interaction/type/struct/interaction';
-import type { StructThemeScheme } from '$stylist/theme/type/struct/theme-scheme';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
@@ -13,6 +13,6 @@ export interface ThemeSwitcherRecipe extends RecordArchitectureMerge<[
 	compact?: boolean;
 	showHeader?: boolean;
 	showLabels?: boolean;
-	themes?: StructThemeScheme[];
+	themes?: ThemeSchemeDefinition[];
 	onSchemeChange?: (theme: TokenThemeScheme) => void;
 }

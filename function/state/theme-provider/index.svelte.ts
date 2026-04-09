@@ -1,21 +1,25 @@
 import type { ThemeProviderRecipe } from '$stylist/theme/interface/recipe/theme-provider';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
-import { applyThemeModeAndScheme } from '$stylist/theme/function/script/css/apply-theme-mode-and-scheme';
-import { ThemeResolver } from '$stylist/theme/class/object-manager/theme-resolver';
+import { applyThemeModeAndScheme } from '$stylist/theme/function/script/dom/apply-theme-mode-and-scheme';
+import { ManagerThemeResolver } from '$stylist/theme/class/manager/theme-resolver';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
-import { ThemeContextManager } from '$stylist/theme/class/object-manager/theme-context-manager';
-import { ThemeProviderStyleManager } from '$stylist/theme/class/style-manager/theme-provider';
-import { initSystemThemeListener } from '$stylist/theme/function/script/css/get-system-theme-mode';
-import { ThemeStorageManager } from '$stylist/theme/class/object-manager/theme-storage-manager';
+import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
+import { StyleManagerThemeProvider } from '$stylist/theme/class/style-manager/theme-provider';
+import { ManagerTheme } from '$stylist/theme/class/manager/theme';
+import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
 
-export function createThemeProviderState(props: ThemeProviderRecipe) {
-	let currentMode = $state<TokenThemeMode>(props.initialMode ?? 'default');
-	let currentScheme = $state<TokenThemeScheme>(props.initialScheme ?? 'minimal');
+function createThemeProviderState(props: ThemeProviderRecipe) {
+	let currentMode = $state<TokenThemeMode>(
+		props.initialMode ?? ManagerThemeStorage.getStoredMode()
+	);
+	let currentScheme = $state<TokenThemeScheme>(
+		props.initialScheme ?? ManagerThemeStorage.getStoredScheme()
+	);
 
 	// Инициализируем слушатель системной темы при монтировании
 	$effect(() => {
-		const cleanup = initSystemThemeListener((isDark) => {
+		const cleanup = ManagerTheme.initSystemThemeListener((isDark) => {
 			// Авто-обновляем тему, если текущий режим 'default'
 			if (currentMode === 'default') {
 				applyThemeModeAndScheme(currentMode, currentScheme);
@@ -25,8 +29,8 @@ export function createThemeProviderState(props: ThemeProviderRecipe) {
 		return cleanup;
 	});
 
-	ThemeContextManager.set(
-		() => ThemeResolver.resolve(currentScheme, resolveThemeMode(currentMode)),
+	ManagerThemeContext.set(
+		() => ManagerThemeResolver.resolve(currentScheme, resolveThemeMode(currentMode)),
 		() => currentMode,
 		() => currentScheme,
 		setMode,
@@ -34,16 +38,18 @@ export function createThemeProviderState(props: ThemeProviderRecipe) {
 	);
 
 	function setMode(mode: TokenThemeMode): void {
+		if (currentMode === mode) return;
 		currentMode = mode;
-		ThemeStorageManager.persistSettings({
+		ManagerThemeStorage.persistSettings({
 			themeMode: mode,
 			themeScheme: currentScheme
 		});
 	}
 
 	function setScheme(scheme: TokenThemeScheme): void {
+		if (currentScheme === scheme) return;
 		currentScheme = scheme;
-		ThemeStorageManager.persistSettings({
+		ManagerThemeStorage.persistSettings({
 			themeMode: currentMode,
 			themeScheme: scheme
 		});
@@ -53,7 +59,7 @@ export function createThemeProviderState(props: ThemeProviderRecipe) {
 		applyThemeModeAndScheme(currentMode, currentScheme);
 	});
 
-	const containerClass = $derived(ThemeProviderStyleManager.getContainerClasses(props.class));
+	const containerClass = $derived(StyleManagerThemeProvider.getContainerClasses(props.class));
 
 	return {
 		get currentMode() {

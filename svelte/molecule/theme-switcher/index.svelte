@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { ThemeSwitcherRecipe } from '$stylist/theme/interface/recipe/theme-switcher';
-  import { Icon as BaseIcon } from '$stylist';
+  import BaseIcon from '$stylist/media/svelte/atom/icon/index.svelte';
   import { StyleManagerThemeSwitcher } from '$stylist/theme/class/style-manager/theme-switcher';
+  import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
   import { createThemeSwitcherState } from '$stylist/theme/function/state/theme-switcher';
 
   let {
@@ -15,17 +16,22 @@
     onSchemeChange,
     ...restProps
   }: ThemeSwitcherRecipe = $props();
-  const state = createThemeSwitcherState({
-    currentScheme,
-    themeMode,
-    class: hostClass,
-    compact,
-    showHeader,
-    showLabels,
-    themes,
-    onSchemeChange,
-    ...restProps
-  });
+  const themeContext = ManagerThemeContext.getOptional();
+  const state = createThemeSwitcherState(
+    {
+      currentScheme,
+      themeMode,
+      class: hostClass,
+      compact,
+      showHeader,
+      showLabels,
+      themes,
+      onSchemeChange,
+      ...restProps
+    },
+    () => themeContext?.themeMode ?? themeMode,
+    themeContext?.setScheme
+  );
 </script>
 
 <svelte:head>

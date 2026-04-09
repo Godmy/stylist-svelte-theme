@@ -1,3 +1,4 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { ObjectManagerThemeModeToggle, ObjectManagerThemeSettings, ObjectManagerThemeSwitcher, ThemeCSSManager, ThemeContextManager, ThemeResolver, ThemeStorageManager } from './object-manager';
-export { StyleManagerThemeConsumer, StyleManagerThemeContext, StyleManagerThemeModeToggle, StyleManagerThemeSettings, StyleManagerThemeSwitcher, ThemeProviderStyleManager } from './style-manager';
+export { ManagerTheme, ManagerThemeCSS, ManagerThemeContext, ManagerThemeResolver, ManagerThemeStorage } from './manager';
+export { ObjectManagerThemeModeToggle, ObjectManagerThemeSettings, ObjectManagerThemeSwitcher } from './object-manager';
+export { StyleManagerThemeConsumer, StyleManagerThemeContext, StyleManagerThemeModeToggle, StyleManagerThemeProvider, StyleManagerThemeSettings, StyleManagerThemeSwitcher } from './style-manager';

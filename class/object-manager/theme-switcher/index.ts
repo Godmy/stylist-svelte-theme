@@ -1,22 +1,22 @@
-import { TOKEN_THEME_STORAGE_SCHEME } from '$stylist/theme/const/struct/theme-storage';
+import { TOKEN_THEME_SCHEME_STORAGE } from '$stylist/theme/const/map/theme-scheme';
 import { THEME_SCHEMES } from '$stylist/theme/const/struct/theme-schemes';
-import type { StructThemeScheme } from '$stylist/theme/type/struct/theme-scheme';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
 export class ObjectManagerThemeSwitcher {
-	static readonly storageKey = TOKEN_THEME_STORAGE_SCHEME;
+	static readonly storageKey = TOKEN_THEME_SCHEME_STORAGE;
 
-	static resolveThemes(themes?: StructThemeScheme[]): StructThemeScheme[] {
+	static resolveThemes(themes?: ThemeSchemeDefinition[]): ThemeSchemeDefinition[] {
 		return themes && themes.length > 0 ? themes : THEME_SCHEMES;
 	}
 
-	static findTheme(themes: StructThemeScheme[], themeId: TokenThemeScheme): StructThemeScheme | undefined {
+	static findTheme(themes: ThemeSchemeDefinition[], themeId: TokenThemeScheme): ThemeSchemeDefinition | undefined {
 		return themes.find((item) => item.id === themeId);
 	}
 
 	static resolveCurrentScheme(
 		currentScheme: TokenThemeScheme,
-		themes?: StructThemeScheme[]
+		themes?: ThemeSchemeDefinition[]
 	): TokenThemeScheme {
 		const resolvedThemes = ObjectManagerThemeSwitcher.resolveThemes(themes);
 		return (

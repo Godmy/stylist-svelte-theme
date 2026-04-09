@@ -1,3 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export type { TokenThemeIcon, TokenThemeMode, TokenThemeScheme, TokenThemeSize, TokenThemeTone, TokenThemeVariant } from './enum';
-export type { ColorScale, StoredThemeSettings, StructThemeScheme, Theme, ThemeAttributes, ThemeStorageContract } from './struct';
+export type { ThemeSchemeDefinition, ThemeSettingsInput, ThemeStorageContract } from './contract';
+export type { TokenThemeIcon, TokenThemeMode, TokenThemeScheme, TokenThemeTone, TokenThemeVariant } from './enum';
+export type { RecordColorScale } from './record';
+export type { StoredThemeSettings, Theme, ThemeAttributes, ThemeColorBackground, ThemeColorBorder, ThemeColorSurfaceTint, ThemeColorText, ThemeColors, ThemeDomainColors } from './struct';

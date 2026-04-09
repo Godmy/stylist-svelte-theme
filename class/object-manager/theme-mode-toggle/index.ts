@@ -1,9 +1,9 @@
-import { TOKEN_THEME_STORAGE_MODE } from '$stylist/theme/const/struct/theme-storage';
+import { TOKEN_THEME_MODE_STORAGE } from '$stylist/theme/const/map/theme-mode';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 
 export class ObjectManagerThemeModeToggle {
 	static readonly modes: TokenThemeMode[] = ['default', 'light', 'dark'];
-	static readonly storageKey = TOKEN_THEME_STORAGE_MODE;
+	static readonly storageKey = TOKEN_THEME_MODE_STORAGE;
 
 	static resolveTheme(currentScheme?: TokenThemeMode, darkMode?: boolean): TokenThemeMode {
 		if (currentScheme) return currentScheme;

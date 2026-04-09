@@ -1,411 +1,182 @@
-# Theme — Система управления темами
+# Theme
 
-Модуль `theme` — полноценная система управления темами для Svelte-приложений. Покрывает весь цикл жизни темы: от определения токенов и хранения настроек до применения стилей в DOM и рендеринга UI-компонентов. Все слои взаимодействуют через строго типизированные контракты.
+`theme` - домен для описания, выбора, хранения и применения темы в `stylist-svelte`.
 
----
+Сейчас тема строится по двум независимым осям:
 
-## Концепция
+| Ось | Тип | Значения |
+| --- | --- | --- |
+| Режим | `TokenThemeMode` | `default`, `light`, `dark` |
+| Схема | `TokenThemeScheme` | `minimal`, `ocean`, `forest`, `sunset` |
 
-Тема описывается двумя независимыми осями:
+`default` относится только к `mode`. Это не отдельная цветовая схема, а режим, который разрешается в `light` или `dark` через системную тему браузера.
 
-| Ось | Значения | Смысл |
-|-----|----------|-------|
-| **Режим** (`TokenThemeMode`) | `default` · `light` · `dark` | Светлость — следует за системой или задаётся явно |
-| **Схема** (`TokenThemeScheme`) | `minimal` · `ocean` · `forest` · `sunset` | Цветовая палитра — задаёт акцентные оттенки |
+## Структура
 
-Комбинация режима и схемы однозначно определяет объект `Theme`, который затем применяется к `<html>` через CSS-переменные.
-
-Режим `default` — адаптивный: он автоматически следует системной предпочтительной теме (`prefers-color-scheme`) и обновляется при её изменении без перезагрузки страницы.
-
----
-
-## Структура модуля
-
-```
+```text
 theme/
-├── type/           — TypeScript-типы (Theme, ColorScale, токены)
-├── const/          — Константы (enum-токены, record-маппинги, struct-значения)
-├── interface/      — Контракты компонентов (contract + recipe)
-├── class/          — Классы-менеджеры (object-manager + style-manager)
-├── function/       — Функции (script/css — DOM, state — Svelte runes)
-└── svelte/         — UI-компоненты (atom → molecule → organism)
+|- const/       - токены, готовые theme-объекты, storage-константы
+|- type/        - enum, record и struct-типы темы
+|- interface/   - recipe и contract типы для компонентов
+|- class/       - object-manager и style-manager
+|- function/
+|  |- script/
+|  |  |- css/   - применение готового Theme к DOM и разрешение режима
+|  |  |- dom/   - переключение mode/scheme на целевом элементе
+|  |  |- resolve-target-element/ - общий resolver целевого DOM-элемента
+|  |- state/    - Svelte-specific `.svelte.ts` фабрики состояния
+|- svelte/      - provider, toggle, switcher, settings и consumer
 ```
 
-Зависимости направлены строго вниз: `svelte` → `function` → `class` → `const/type`. Обратных зависимостей нет.
+Внутри `theme` действует правило: один не-barrel `*.ts` файл - один экспорт.
 
----
+## Основные сущности
 
-## Слой 1 — Типы (`type/`)
+### `Theme`
 
-### `Theme` — корневой тип данных
+Корневой тип темы находится в [theme/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/type/struct/theme/index.ts).
 
-```
-Theme {
-  scheme: 'light' | 'dark'
-  colors: {
-    primary, secondary, tertiary     — ColorScale (Record<number, string>)
-    neutral, success, info, warning  — ColorScale
-    error, danger                    — ColorScale
-    background, text, border         — Record<string, string>
-    outline, shadow, scrim, backdrop — string
-    onPrimary, onSecondary, ...      — semantic on-colors
-    graph, scene                     — специфика графов и сцен
-  }
-  typography: StructThemeTypography
-  motion: {
-    duration, easing, transitions, animations
-  }
-  gradients?:  { types, directional, radial }
-  elevation?:  Record<string, unknown>
-  opacity?:    Record<string, string>
-  zIndex?:     Record<string, string>
-  spacing?:    Record<string, string>
-  borderRadius?, boxShadow?, size?, scene?
-}
-```
-
-`ColorScale` — шкала оттенков одного цвета (`{ 50: '#f0f9ff', 100: '#e0f2fe', ..., 900: '#0c4a6e' }`). Это позволяет использовать один и тот же токен на разных уровнях яркости.
-
-### Enum-типы
+Ключевые поля:
 
 ```ts
-TokenThemeMode   = 'default' | 'light' | 'dark'
-TokenThemeScheme = 'minimal' | 'ocean' | 'forest' | 'sunset'
-TokenThemeSize   = литеральный union размеров
-TokenThemeTone   = литеральный union тональностей
-TokenThemeVariant = литеральный union вариантов
+type Theme = {
+	mode: TokenThemeMode;
+	colors: ThemeColors;
+	typography: StructThemeTypography;
+	domain?: ThemeDomainColors;
+};
 ```
 
----
+Важно:
+- `mode` и `scheme` не смешиваются.
+- `Theme` хранит уже конкретный theme-object.
+- Выбор `scheme` происходит снаружи, а разрешение конкретной темы делает `ManagerThemeResolver`.
+- Layout-токены (`spacing`, `borderRadius`, `zIndex`, `boxShadow`) живут в `layout`, а не в `theme`.
 
-## Слой 2 — Константы (`const/`)
+### Константы
 
-### Enum-массивы
+Основные enum-константы:
+- [theme-mode/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/enum/theme-mode/index.ts)
+- [theme-scheme/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/enum/theme-scheme/index.ts)
 
-```ts
-TOKEN_THEME_MODE   = ['default', 'light', 'dark']
-TOKEN_THEME_SCHEME = ['minimal', 'ocean', 'forest', 'sunset']
-```
+Готовые схемы:
+- [scheme-minimal/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/scheme-minimal/index.ts)
+- [scheme-ocean/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/scheme-ocean/index.ts)
+- [scheme-forest/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/scheme-forest/index.ts)
+- [scheme-sunset/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/scheme-sunset/index.ts)
 
-Используются для валидации: `TOKEN_THEME_MODE.includes(value)`.
+Режимы темы:
+- [theme-mode-default/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/theme-mode-default/index.ts)
+- [theme-mode-light/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/theme-mode-light/index.ts)
+- [theme-mode-dark/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/theme-mode-dark/index.ts)
 
-### Struct-значения — готовые объекты тем
+Storage-константы:
+- [theme-storage-contract/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/theme-storage-contract/index.ts)
+- [theme-storage/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/const/struct/theme-storage/index.ts)
 
-Для каждой комбинации режима и схемы существует конкретный объект `Theme`:
+## Разрешение и применение темы
 
-```
-THEME_MODE_DEFAULT  — базовый режим (полная таблица токенов)
-THEME_MODE_LIGHT    — светлый режим (инвертированный фон)
-THEME_MODE_DARK     — тёмный режим (тёмные поверхности)
+### `ManagerThemeResolver`
 
-SCHEME_MINIMAL  — нейтральная палитра (slate/blue)
-SCHEME_OCEAN    — морская палитра (cyan/teal)
-SCHEME_FOREST   — лесная палитра (green/emerald)
-SCHEME_SUNSET   — закатная палитра (orange/rose)
-```
+[theme-resolver/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/class/object-manager/theme-resolver/index.ts)
 
-### Record-маппинги
+Отвечает за:
+- `resolve(scheme, mode)` -> получить конкретный `Theme`
+- `applyByMode(mode, scheme, element?)` -> разрешить режим и применить тему к DOM
+- `supportsMode(value)` и `supportsScheme(value)` -> валидация входных значений
 
-```ts
-RECORD_THEME_SCHEME: Record<TokenThemeScheme, { light: Theme; dark: Theme }>
-RECORD_THEME_MODE:   Record<TokenThemeMode, string>   // → CSS-класс
-```
+### DOM/script функции
 
-`RECORD_THEME_SCHEME` — центральная точка разрешения: по схеме и режиму возвращает готовый объект `Theme`.
+CSS-слой:
+- [apply-theme-to-dom/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/script/css/apply-theme-to-dom/index.ts)
+- [resolve-theme-mode/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/script/css/resolve-theme-mode/index.ts)
+- [supports-theme-mode/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/script/css/supports-theme-mode/index.ts)
 
-### Storage-контракт
+DOM-слой:
+- [apply-theme-mode/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/script/dom/apply-theme-mode/index.ts)
+- [apply-theme-mode-and-scheme/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/script/dom/apply-theme-mode-and-scheme/index.ts)
+- [toggle-theme-mode/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/script/dom/toggle-theme-mode/index.ts)
 
-```ts
-THEME_STORAGE_CONTRACT = {
-  modeStorageKey:       'theme-mode',
-  schemeStorageKey:     'theme-scheme',
-  defaultThemeMode:     'default',
-  defaultThemeScheme:   'minimal'
-}
-```
+Client/runtime:
+- [get-system-theme-mode/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/script/client/get-system-theme-mode/index.ts)
 
----
+Общий helper:
+- [resolve-target-element/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/script/resolve-target-element/index.ts)
 
-## Слой 3 — Классы (`class/`)
+`applyThemeModeAndScheme` - основная точка применения. Она:
+1. Разрешает `mode` через `resolveThemeMode`.
+2. Получает `Theme` через `ManagerThemeResolver.resolve`.
+3. Применяет CSS variables через `applyThemeToDOM`.
+4. Ставит `data-theme` и `data-scheme` на target element.
 
-### `object-manager/` — низкоуровневые менеджеры
+`applyThemeMode` больше не живёт отдельно от схемы по смыслу: если на элементе уже есть валидный `data-scheme`, он переиспользует его и делегирует в `applyThemeModeAndScheme`.
 
-| Класс | Ответственность |
-|-------|----------------|
-| `ThemeResolver` | Разрешает `Theme` по схеме и режиму через `RECORD_THEME_SCHEME` |
-| `ThemeStorageManager` | Читает и записывает настройки в `localStorage` |
-| `ThemeContextManager` | Хранит Svelte-context: геттеры, сеттеры текущего режима и схемы |
-| `ThemeCSSManager` | Применяет CSS-классы к DOM-элементу |
-| `ThemeModeToggle` (object) | Логика переключения `light ↔ dark` |
-| `ThemeSettings` (object) | Агрегирует настройки для панели управления |
-| `ThemeSwitcher` (object) | Управляет выбором схемы |
+Deprecated helper `applySchemeToDOM` удалён.
 
-**Пример работы `ThemeResolver`:**
+## Svelte state и переключение темы
 
-```ts
-// Разрешить тему по схеме и режиму
-const theme = ThemeResolver.resolve('ocean', 'dark');
-// → объект Theme из RECORD_THEME_SCHEME['ocean']['dark']
+Provider-state:
+- [theme-provider/index.svelte.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/state/theme-provider/index.svelte.ts)
 
-// Применить к DOM
-ThemeResolver.applyByMode('default', 'forest', document.documentElement);
-```
+Toggle-state:
+- [theme-mode-toggle/index.svelte.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/state/theme-mode-toggle/index.svelte.ts)
 
-**`ThemeStorageManager`** поддерживает нормализацию legacy-значений:
+Switcher-state:
+- [theme-switcher/index.svelte.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/function/state/theme-switcher/index.svelte.ts)
 
-```ts
-normalizeMode('lighter') → 'light'
-normalizeMode('system')  → 'default'
-normalizeMode(null)      → 'default'  // fallback
-```
+Контекст:
+- [theme-context-manager/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/class/object-manager/theme-context-manager/index.ts)
 
-### `style-manager/` — высокоуровневые менеджеры
+Storage:
+- [theme-storage-manager/index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/class/object-manager/theme-storage-manager/index.ts)
 
-Оборачивают `object-manager` в удобный API для конкретных компонентов:
+Актуальный flow:
 
-```
-StyleManagerThemeProvider   → CSS-классы контейнера провайдера
-StyleManagerThemeConsumer   → CSS-классы потребителя
-StyleManagerThemeContext    → CSS-классы контекстного отображения
-StyleManagerThemeModeToggle → CSS-классы кнопки переключения
-StyleManagerThemeSwitcher   → CSS-классы селектора схемы
-StyleManagerThemeSettings   → CSS-классы панели настроек
-```
+1. `ThemeProvider` читает `initialMode` и `initialScheme`, а при их отсутствии берёт значения из storage.
+2. `ThemeProvider` публикует `getTheme/getMode/getScheme/setMode/setScheme` в Svelte context через `ManagerThemeContext`.
+3. Любое изменение `mode` или `scheme` приводит к `applyThemeModeAndScheme(currentMode, currentScheme)`.
+4. Если `mode === 'default'`, listener из `client/get-system-theme-mode` отслеживает системную тему и повторно применяет текущую схему с новым resolved mode.
+5. `ThemeModeToggle` и `ThemeSwitcher` сначала используют context/provider callbacks, а если контекста нет, работают через прямое DOM-применение и storage.
 
----
+## Svelte компоненты
 
-## Слой 4 — Функции (`function/`)
+Atom:
+- [theme-provider/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/atom/theme-provider/index.svelte)
+- [theme-consumer/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/atom/theme-consumer/index.svelte)
+- [theme-mode-toggle/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/atom/theme-mode-toggle/index.svelte)
 
-### `script/css/` — чистые функции для DOM
-
-Все функции не имеют побочных эффектов за пределами переданных аргументов (или `document.documentElement` по умолчанию).
-
-| Функция | Описание |
-|---------|----------|
-| `applyThemeToDOM(theme, el?)` | Разворачивает `Theme` в CSS-переменные на элементе |
-| `applyThemeMode(mode, el?)` | Устанавливает атрибут `data-theme` |
-| `applySchemeToDOM(scheme, el?)` | Устанавливает атрибут `data-scheme` |
-| `applyThemeModeAndScheme(mode, scheme, el?)` | Применяет оба атрибута и CSS-переменные |
-| `resolveThemeMode(mode)` | `'default'` → `'light'` или `'dark'` по системной теме |
-| `toggleThemeMode(current)` | `'light'` ↔ `'dark'`, `'default'` → `'light'` |
-| `getSystemThemeMode()` | Читает `prefers-color-scheme` из медиа-запроса |
-| `initSystemThemeListener(cb)` | Подписывается на изменения системной темы, возвращает cleanup |
-| `supportsThemeMode(value)` | Type guard: `value is TokenThemeMode` |
-
-### `state/` — Svelte rune фабрики
-
-Каждый компонент имеет парный файл `.svelte.ts` с фабрикой состояния:
-
-```
-createThemeProviderState(props)     → { currentMode, currentScheme, containerClass, setMode, setScheme }
-createThemeContextState(props)      → снимок контекста для дочерних компонентов
-createThemeModeToggleState(props)   → логика кнопки переключения
-createThemeSwitcherState(props)     → логика селектора схемы
-createThemeSettingsState(props)     → агрегированное состояние панели
-createThemeConsumerState(props)     → доступ к текущей теме из контекста
-```
-
-**Жизненный цикл `createThemeProviderState`:**
-
-```
-1. Инициализация: currentMode = props.initialMode ?? 'default'
-                  currentScheme = props.initialScheme ?? 'minimal'
-
-2. $effect: initSystemThemeListener → авто-обновление при mode === 'default'
-
-3. ThemeContextManager.set(...)  → публикует геттеры/сеттеры в Svelte context
-
-4. $effect: applyThemeModeAndScheme(mode, scheme) → применяет к DOM при каждом изменении
-
-5. setMode/setScheme → обновляют $state + ThemeStorageManager.persistSettings(...)
-```
-
----
-
-## Слой 5 — Интерфейсы (`interface/`)
-
-### `contract/` — типы входных данных
-
-```ts
-ThemeSettingsContract {
-  themeMode: TokenThemeMode
-  themeScheme: TokenThemeScheme
-  themes: readonly StructThemeScheme[]
-  modeSection: { show, title, description, toggleProps }
-  schemeSection: { show, title, description, switcherProps }
-  onThemeModeChange?: (mode) => void
-  onThemeSchemeChange?: (scheme) => void
-}
-```
-
-### `recipe/` — пропсы Svelte-компонентов
-
-```ts
-ThemeProviderRecipe   { initialMode?, initialScheme?, class?, children }
-ThemeConsumerRecipe   { children }
-ThemeContextRecipe    { class?, children? }
-ThemeModeToggleRecipe { class?, label?, icon?, ... }
-ThemeSwitcherRecipe   { class?, themes?, ... }
-ThemeSettingsRecipe   { class?, ...ThemeSettingsContractInput }
-```
-
----
-
-## Слой 6 — Svelte-компоненты (`svelte/`)
-
-Организованы по атомарному дизайну.
-
-### Atom — базовые элементы
-
-**`ThemeProvider`** — корневой провайдер, обязателен как обёртка приложения:
-
-```svelte
-<ThemeProvider initialMode="default" initialScheme="ocean">
-  <!-- всё приложение -->
-</ThemeProvider>
-```
-
-Монтирует контекст через `ThemeContextManager`, применяет CSS-переменные и слушает системную тему.
-
-**`ThemeConsumer`** — читает контекст и предоставляет детям:
-
-```svelte
-<ThemeConsumer>
-  {#snippet children(theme)}
-    <div style="color: {theme.colors.primary[600]}">...</div>
-  {/snippet}
-</ThemeConsumer>
-```
-
-**`ThemeModeToggle`** — кнопка переключения `light ↔ dark`.
-
-### Molecule — составные элементы
-
-**`ThemeSwitcher`** — выпадающий список или кнопки выбора цветовой схемы (minimal / ocean / forest / sunset).
-
-**`ThemeContext`** — отображает информацию о текущей теме (для отладки и демо).
-
-### Organism — полные блоки функциональности
-
-**`ThemeSettings`** — полная панель настроек темы: раздел выбора режима + раздел выбора схемы с возможностью скрыть любой из разделов через `modeSection.show` / `schemeSection.show`.
-
----
-
-## Потоки данных
-
-### Инициализация темы
-
-```
-props.initialMode / props.initialScheme
-         ↓
-  createThemeProviderState
-         ↓
-  ThemeContextManager.set(getters, setters)  ← Svelte context
-         ↓
-  applyThemeModeAndScheme(mode, scheme)
-         ↓
-  ThemeResolver.resolve(scheme, resolvedMode)
-         ↓
-  applyThemeToDOM(theme, document.documentElement)
-         ↓
-  CSS-переменные на <html>  →  браузер рендерит
-```
-
-### Смена темы пользователем
-
-```
-UI: ThemeModeToggle / ThemeSwitcher
-         ↓
-  StyleManager → ObjectManager.setMode(mode)
-         ↓
-  state.setMode(mode)  [$state обновляется]
-         ↓
-  ThemeStorageManager.persistSettings(...)  [localStorage]
-         ↓
-  $effect срабатывает → applyThemeModeAndScheme(...)
-         ↓
-  DOM обновляется без перезагрузки
-```
-
-### Системная тема
-
-```
-OS: prefers-color-scheme меняется
-         ↓
-  initSystemThemeListener → callback
-         ↓
-  если currentMode === 'default':
-    applyThemeModeAndScheme('default', currentScheme)
-         ↓
-  resolveThemeMode('default') читает getSystemThemeMode()
-         ↓
-  применяется light или dark в зависимости от ОС
-```
-
----
-
-## Публичный API модуля
-
-Всё доступно через единый barrel `theme/index.ts`:
-
-```ts
-// Компоненты
-import { ThemeProvider, ThemeConsumer, ThemeModeToggle,
-         ThemeSwitcher, ThemeSettings, ThemeContext } from '$stylist/theme';
-
-// Состояние (для кастомных компонентов)
-import { createThemeProviderState, createThemeSwitcherState } from '$stylist/theme';
-
-// DOM-утилиты
-import { applyThemeToDOM, getSystemThemeMode, toggleThemeMode } from '$stylist/theme';
-
-// Классы (для расширения)
-import { ThemeResolver, ThemeStorageManager, ThemeContextManager } from '$stylist/theme';
-
-// Константы
-import { TOKEN_THEME_MODE, TOKEN_THEME_SCHEME, THEME_MODE_DEFAULT,
-         RECORD_THEME_SCHEME, SCHEME_OCEAN } from '$stylist/theme';
-
-// Типы
-import type { Theme, TokenThemeMode, TokenThemeScheme,
-              ThemeProviderRecipe, ThemeSettingsContract } from '$stylist/theme';
-```
-
----
-
-## Расширение и кастомизация
-
-### Добавить новую схему
-
-1. Создать `const/struct/scheme-custom/index.ts` → объект `{ light: Theme, dark: Theme }`
-2. Добавить `'custom'` в `const/enum/theme-scheme/index.ts`
-3. Добавить запись в `const/record/theme-scheme/index.ts` → `RECORD_THEME_SCHEME`
-4. Обновить barrel `const/struct/index.ts` и `type/enum/theme-scheme/index.ts`
-
-### Кастомный провайдер
-
-```ts
-import { createThemeProviderState } from '$stylist/theme';
-
-// Используй фабрику напрямую в своём .svelte.ts
-const state = createThemeProviderState({ initialMode: 'dark', initialScheme: 'forest' });
-```
-
-### Доступ к теме без компонента
-
-```ts
-import { ThemeContextManager } from '$stylist/theme';
-
-const theme = ThemeContextManager.getTheme();   // текущий объект Theme
-const mode  = ThemeContextManager.getMode();    // 'light' | 'dark' | 'default'
-```
-
----
-
-## Соглашения модуля
-
-- Все barrel-файлы помечены `/** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */`
-- Svelte-состояние живёт в `.svelte.ts`-файлах, чистая логика — в `.ts`
-- Классы `object-manager` — статические (`static`-методы), без инстанцирования
-- Все DOM-функции защищены от SSR: проверяют `typeof localStorage !== 'undefined'`
-- Нормализация legacy-значений (`'lighter'` → `'light'`, `'system'` → `'default'`) обеспечивает обратную совместимость при смене ключей хранилища
+Molecule:
+- [theme-switcher/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/molecule/theme-switcher/index.svelte)
+- [theme-context/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/molecule/theme-context/index.svelte)
+
+Organism:
+- [theme-settings/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/organism/theme-settings/index.svelte)
+
+Назначение:
+- `ThemeProvider` - корневой источник состояния темы.
+- `ThemeConsumer` - чтение текущего `Theme` из context.
+- `ThemeModeToggle` - смена `mode`.
+- `ThemeSwitcher` - смена `scheme`.
+- `ThemeSettings` - агрегированный UI для обоих переключателей.
+
+## Публичный API
+
+Публичный вход - [index.ts](/D:/2026/code/template/stylist-svelte/src/lib/theme/index.ts).
+
+Типичные группы экспорта:
+- Svelte-компоненты
+- `.svelte.ts` state-фабрики
+- script/dom/client helpers
+- object/style managers
+- enum/record/struct константы
+- enum/record/struct типы
+
+После изменения структуры `theme` нельзя редактировать barrel `index.ts` вручную. Нужно пересобирать их через `stylist/indexation/cli.py`.
+
+## Что важно не ломать
+
+- Не использовать `scheme` для значений `light/dark/default`.
+- Не возвращать анонимные `string` и `unknown`, если в домене уже есть конкретный тип.
+- Не дублировать логику выбора target element: использовать `resolveTargetElement`.
+- Не возвращаться к deprecated helper `applySchemeToDOM`.
+- Не нарушать правило один `*.ts` файл - один экспорт, кроме barrel-файлов.

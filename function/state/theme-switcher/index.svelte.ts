@@ -1,9 +1,15 @@
 import type { ThemeSwitcherRecipe } from '$stylist/theme/interface/recipe/theme-switcher';
 import { ObjectManagerThemeSwitcher } from '$stylist/theme/class/object-manager/theme-switcher';
-import { ThemeResolver } from '$stylist/theme/class/object-manager/theme-resolver';
-import { ThemeStorageManager } from '$stylist/theme/class/object-manager/theme-storage-manager';
+import { applyThemeModeAndScheme } from '$stylist/theme/function/script/dom/apply-theme-mode-and-scheme';
+import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
+import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
+import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
-export function createThemeSwitcherState(props: ThemeSwitcherRecipe) {
+function createThemeSwitcherState(
+	props: ThemeSwitcherRecipe,
+	getThemeMode: () => TokenThemeMode,
+	setThemeScheme?: (scheme: TokenThemeScheme) => void
+) {
 	const resolvedThemes = $derived(ObjectManagerThemeSwitcher.resolveThemes(props.themes));
 
 	let scheme = $state(
@@ -20,8 +26,17 @@ export function createThemeSwitcherState(props: ThemeSwitcherRecipe) {
 
 	function applyScheme(newScheme: typeof scheme) {
 		if (!ObjectManagerThemeSwitcher.findTheme(resolvedThemes, newScheme)) return;
-		ThemeResolver.applyStoredScheme(newScheme);
-		ThemeStorageManager.persistScheme(newScheme, ObjectManagerThemeSwitcher.storageKey);
+		if (setThemeScheme) {
+			setThemeScheme(newScheme);
+			return;
+		}
+
+		const themeMode = getThemeMode();
+		applyThemeModeAndScheme(themeMode, newScheme);
+		ManagerThemeStorage.persistSettings({
+			themeMode,
+			themeScheme: newScheme
+		});
 	}
 
 	function setScheme(newScheme: typeof scheme) {
