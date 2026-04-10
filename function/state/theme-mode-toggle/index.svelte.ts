@@ -45,7 +45,7 @@ function createThemeModeToggleState(
 
 	function cycleTheme() {
 		if (props.disabled) return;
-		setTheme(ObjectManagerThemeModeToggle.getNextTheme(theme));
+		setTheme(ObjectManagerThemeModeToggle.getNextTheme(theme, resolveThemeMode(theme)));
 	}
 
 	$effect(() => {

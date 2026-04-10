@@ -5,6 +5,8 @@ import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage'
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
+import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
+
 function createThemeSwitcherState(
 	props: ThemeSwitcherRecipe,
 	getThemeMode: () => TokenThemeMode,
@@ -22,6 +24,23 @@ function createThemeSwitcherState(
 			props.currentScheme ?? 'minimal',
 			resolvedThemes
 		);
+	});
+
+	const effectiveThemeMode = $derived(resolveThemeMode(getThemeMode()));
+
+	const restProps = $derived.by(() => {
+		const {
+			currentScheme: _currentScheme,
+			themeMode: _themeMode,
+			class: _class,
+			compact: _compact,
+			showHeader: _showHeader,
+			showLabels: _showLabels,
+			themes: _themes,
+			onSchemeChange: _onSchemeChange,
+			...rest
+		} = props;
+		return rest;
 	});
 
 	function applyScheme(newScheme: typeof scheme) {
@@ -60,6 +79,24 @@ function createThemeSwitcherState(
 		},
 		get scheme() {
 			return scheme;
+		},
+		get hostClass() {
+			return props.class ?? '';
+		},
+		get showHeader() {
+			return props.showHeader ?? true;
+		},
+		get compact() {
+			return props.compact ?? false;
+		},
+		get showLabels() {
+			return props.showLabels ?? false;
+		},
+		get effectiveThemeMode() {
+			return effectiveThemeMode;
+		},
+		get restProps() {
+			return restProps;
 		},
 		setScheme
 	};

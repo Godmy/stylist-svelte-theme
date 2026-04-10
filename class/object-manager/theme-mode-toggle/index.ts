@@ -12,10 +12,15 @@ export class ObjectManagerThemeModeToggle {
 		return 'default';
 	}
 
-	static getNextTheme(theme: TokenThemeMode): TokenThemeMode {
-		const currentIndex = ObjectManagerThemeModeToggle.modes.indexOf(theme);
-		const nextIndex = (currentIndex + 1) % ObjectManagerThemeModeToggle.modes.length;
-		return ObjectManagerThemeModeToggle.modes[nextIndex];
+	static getNextTheme(
+		theme: TokenThemeMode,
+		effectiveTheme: 'light' | 'dark' = 'light'
+	): TokenThemeMode {
+		if (theme === 'default') {
+			return effectiveTheme === 'dark' ? 'light' : 'dark';
+		}
+
+		return theme === 'dark' ? 'light' : 'dark';
 	}
 
 	static getIconName(theme: TokenThemeMode): TokenThemeIcon | 'sparkles' {

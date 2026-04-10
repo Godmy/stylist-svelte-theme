@@ -45,6 +45,33 @@ export class StyleManagerThemeSwitcher {
 		return 'c-theme-switcher__description';
 	}
 
+	static preview(): string {
+		return 'c-theme-switcher__preview';
+	}
+
+	static previewSurface(): string {
+		return 'c-theme-switcher__preview-surface';
+	}
+
+	static swatchRow(): string {
+		return 'c-theme-switcher__swatch-row';
+	}
+
+	static swatch(): string {
+		return 'c-theme-switcher__swatch';
+	}
+
+	static meta(): string {
+		return 'c-theme-switcher__meta';
+	}
+
+	static badge(active?: boolean): string {
+		return StyleManagerThemeSwitcher.joinClasses(
+			'c-theme-switcher__badge',
+			active && 'c-theme-switcher__badge--active'
+		);
+	}
+
 	static getStyleSheet(): string {
 		return `
 			.c-theme-switcher {
@@ -62,8 +89,8 @@ export class StyleManagerThemeSwitcher {
 
 			.c-theme-switcher__list {
 				display: grid;
-				gap: 0.6rem;
-				grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+				gap: 0.85rem;
+				grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 			}
 
 			.c-theme-switcher__list--compact {
@@ -72,37 +99,41 @@ export class StyleManagerThemeSwitcher {
 
 			.c-theme-switcher__item {
 				display: grid;
-				gap: var(--spacing-1);
-				align-items: center;
-				grid-template-columns: 0.75rem 1fr;
+				gap: 0.75rem;
+				align-items: start;
+				grid-template-columns: 1fr auto;
 				border: 1px solid color-mix(in srgb, var(--line, var(--color-border-primary)) 76%, transparent);
 				background:
 					linear-gradient(
 						180deg,
-						color-mix(in srgb, var(--surface, var(--color-background-primary)) 97%, white 3%) 0%,
-						color-mix(in srgb, var(--surface, var(--color-background-primary)) 93%, var(--bg, var(--color-background-secondary)) 7%) 100%
+						color-mix(in srgb, var(--surface, var(--color-background-primary)) 98%, white 2%) 0%,
+						color-mix(in srgb, var(--surface, var(--color-background-primary)) 92%, var(--bg, var(--color-background-secondary)) 8%) 100%
 					);
 				color: var(--text, var(--color-text-primary));
-				border-radius: 1rem;
-				padding: 0.72rem 0.82rem;
+				border-radius: 1.15rem;
+				padding: 0.9rem;
 				cursor: pointer;
 				text-align: left;
 				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
 				transition:
 					border-color var(--duration-120) var(--animation-ease),
 					background-color var(--duration-120) var(--animation-ease),
-					transform var(--duration-120) var(--animation-ease);
+					transform var(--duration-120) var(--animation-ease),
+					box-shadow var(--duration-120) var(--animation-ease);
 			}
 
 			.c-theme-switcher__list--compact .c-theme-switcher__item {
-				grid-template-columns: 0.65rem 1fr;
-				padding: 0.7rem 0.78rem;
-				min-height: var(--spacing-8);
+				grid-template-columns: 1fr auto;
+				padding: 0.72rem 0.8rem;
+				min-height: 4.1rem;
 			}
 
 			.c-theme-switcher__item:hover {
 				transform: translateY(-1px);
 				border-color: color-mix(in srgb, var(--accent, var(--color-primary-600)) 32%, var(--line, var(--color-border-primary)) 68%);
+				box-shadow:
+					0 14px 30px rgba(15, 23, 42, 0.08),
+					inset 0 1px 0 rgba(255, 255, 255, 0.55);
 			}
 
 			.c-theme-switcher__item--active {
@@ -118,11 +149,59 @@ export class StyleManagerThemeSwitcher {
 					inset 0 1px 0 rgba(255, 255, 255, 0.5);
 			}
 
-			.c-theme-switcher__chip {
-				width: var(--spacing-3);
-				height: var(--spacing-3);
-				border-radius: var(--border-radius-full);
-				border: 1px solid color-mix(in srgb, var(--color-text-primary) 18%, transparent);
+			.c-theme-switcher__preview {
+				grid-column: 1 / -1;
+				display: grid;
+				gap: 0.55rem;
+			}
+
+			.c-theme-switcher__preview-surface {
+				height: 4.2rem;
+				border-radius: 0.9rem;
+				border: 1px solid color-mix(in srgb, var(--line, var(--color-border-primary)) 70%, transparent);
+				box-shadow:
+					inset 0 1px 0 rgba(255, 255, 255, 0.3),
+					0 8px 20px rgba(15, 23, 42, 0.06);
+			}
+
+			.c-theme-switcher__swatch-row {
+				display: flex;
+				gap: 0.45rem;
+			}
+
+			.c-theme-switcher__swatch {
+				width: 0.78rem;
+				height: 0.78rem;
+				border-radius: 999px;
+				border: 1px solid rgba(15, 23, 42, 0.12);
+			}
+
+			.c-theme-switcher__meta {
+				display: grid;
+				gap: 0.18rem;
+				align-content: start;
+				min-width: 0;
+			}
+
+			.c-theme-switcher__chip,
+			.c-theme-switcher__badge {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 1.5rem;
+				padding: 0.22rem 0.55rem;
+				border-radius: 999px;
+				border: 1px solid color-mix(in srgb, var(--line, var(--color-border-primary)) 72%, transparent);
+				background: color-mix(in srgb, var(--surface, var(--color-background-primary)) 88%, white 12%);
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				color: var(--muted, var(--color-text-secondary));
+			}
+
+			.c-theme-switcher__badge--active {
+				border-color: color-mix(in srgb, var(--accent, var(--color-primary-600)) 60%, transparent);
+				color: var(--accent, var(--color-primary-700));
 			}
 
 			.c-theme-switcher__name {
@@ -131,10 +210,14 @@ export class StyleManagerThemeSwitcher {
 			}
 
 			.c-theme-switcher__description {
-				grid-column: 2;
 				color: var(--muted, var(--color-text-secondary));
-				font-size: var(--font-size-3);
-				line-height: var(--line-height-tight);
+				font-size: 0.82rem;
+				line-height: 1.45;
+			}
+
+			.c-theme-switcher__list--compact .c-theme-switcher__preview,
+			.c-theme-switcher__list--compact .c-theme-switcher__description {
+				display: none;
 			}
 		`;
 	}

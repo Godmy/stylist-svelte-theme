@@ -175,9 +175,9 @@ export class StyleManagerThemeSettings {
 			}
 
 			.c-theme-settings__control {
-				display: flex;
-				align-items: center;
-				justify-content: flex-end;
+				display: grid;
+				align-items: stretch;
+				justify-content: stretch;
 				justify-self: stretch;
 				min-width: 0;
 			}
@@ -191,15 +191,16 @@ export class StyleManagerThemeSettings {
 			}
 
 			.c-theme-settings__item--column .c-theme-switcher__list {
-				grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 			}
 
 			.c-theme-settings__item--column .c-theme-switcher__item {
-				min-height: 3.35rem;
+				min-height: 9rem;
 			}
 
 			.c-theme-settings__item .c-theme-mode-toggle {
-				min-width: 3.25rem;
+				min-width: 3.6rem;
+				min-height: 3.6rem;
 				justify-content: center;
 			}
 

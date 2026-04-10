@@ -2,8 +2,11 @@
 	import Icon from '$stylist/media/svelte/atom/icon/index.svelte';
 	import { StyleManagerThemeModeToggle } from '$stylist/theme/class/style-manager/theme-mode-toggle';
 	import { createThemeModeToggleState } from '$stylist/theme/function/state/theme-mode-toggle';
+	import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 	import type { ThemeModeToggleRecipe } from '$stylist/theme/interface/recipe/theme-mode-toggle';
+	import darkModeSvg from '$stylist/theme/data/svg/dark-mode.svg?raw';
+	import lightModeSvg from '$stylist/theme/data/svg/light-mode.svg?raw';
 
 	let props: ThemeModeToggleRecipe = $props();
 	const themeContext = ManagerThemeContext.getOptional();
@@ -33,6 +36,10 @@
 		})()
 	);
 
+	const iconSvg = $derived(
+		resolveThemeMode(state.theme) === 'dark' ? darkModeSvg : lightModeSvg
+	);
+
 </script>
 
 <svelte:head>
@@ -47,5 +54,5 @@
 	disabled={props.disabled}
 	{...restProps}
 >
-	<Icon name={state.iconName} size={16} />
+	<Icon svg={iconSvg} size={16} />
 </button>

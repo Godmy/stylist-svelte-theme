@@ -4,6 +4,7 @@
   import type { ThemeSettingsRecipe } from '$stylist/theme/interface/recipe/theme-settings';
   import { createThemeSettingsState } from '$stylist/theme/function/state/theme-settings';
   import { formatLabel } from '$stylist/theme/function/script/format-label';
+  import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
   import { ThemeModeToggle } from '$stylist/theme/svelte/atom';
   import { ThemeSwitcher } from '$stylist/theme/svelte/molecule';
   import { ThemeSurface } from '$stylist/layout/svelte/molecule/layout/theme-surface';
@@ -51,9 +52,9 @@
     defaultScheme: state.localThemeScheme
   });
   const switcherProps = $derived({
-    compact: true,
+    compact: false,
     showHeader: false,
-    showLabels: false,
+    showLabels: true,
     ...switcherRecipeProps
   });
   const switcherThemes = $derived([...resolvedContract.themes]);
@@ -63,6 +64,7 @@
 
   const currentModeLabel = $derived(formatLabel(themeContext?.themeMode ?? state.localThemeMode));
   const currentSchemeLabel = $derived(formatLabel(state.localThemeScheme));
+  const effectiveThemeMode = $derived(resolveThemeMode(themeContext?.themeMode ?? state.localThemeMode));
 
 </script>
 
@@ -127,7 +129,7 @@
             showLabels={switcherProps.showLabels}
             currentScheme={state.localThemeScheme}
             themes={switcherThemes}
-            themeMode={state.localThemeMode}
+            themeMode={effectiveThemeMode}
             onSchemeChange={handleSchemeChange}
           />
         </div>
