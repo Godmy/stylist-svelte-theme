@@ -1,4 +1,5 @@
 import { TOKEN_THEME_MODE_STORAGE } from '$stylist/theme/const/map/theme-mode';
+import type { TokenThemeIcon } from '$stylist/theme/type/enum/icon';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 
 export class ObjectManagerThemeModeToggle {
@@ -17,10 +18,10 @@ export class ObjectManagerThemeModeToggle {
 		return ObjectManagerThemeModeToggle.modes[nextIndex];
 	}
 
-	static getIconName(theme: TokenThemeMode): string {
+	static getIconName(theme: TokenThemeMode): TokenThemeIcon | 'sparkles' {
 		if (theme === 'default') return 'sparkles';
-		if (theme === 'light') return 'sun';
-		return 'moon';
+		if (theme === 'light') return 'light-mode';
+		return 'dark-mode';
 	}
 
 	static getLabel(theme: TokenThemeMode): string {
