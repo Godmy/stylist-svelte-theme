@@ -1,5 +1,5 @@
-import { TOKEN_THEME_SCHEME_STORAGE } from '$stylist/theme/const/map/theme-scheme';
-import { THEME_SCHEMES } from '$stylist/theme/const/struct/theme-schemes';
+import { TOKEN_THEME_SCHEME_STORAGE } from '$stylist/theme/const/value/theme-scheme-storage';
+import { THEME_SCHEMES } from '$stylist/theme/const/record/theme-schemes';
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 

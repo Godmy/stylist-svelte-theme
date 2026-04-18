@@ -1,8 +1,8 @@
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
+﻿import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 
-export interface ThemeSettingsViewModel {
+export interface ContractThemeSettingsViewModel {
 	themeMode: TokenThemeMode;
 	themeScheme: TokenThemeScheme;
 	themes: readonly ThemeSchemeDefinition[];

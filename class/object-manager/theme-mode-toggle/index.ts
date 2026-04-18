@@ -1,4 +1,4 @@
-import { TOKEN_THEME_MODE_STORAGE } from '$stylist/theme/const/map/theme-mode';
+import { TOKEN_THEME_MODE_STORAGE } from '$stylist/theme/const/value/theme-mode-storage';
 import type { TokenThemeIcon } from '$stylist/theme/type/enum/icon';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 

@@ -1,3 +1,3 @@
-import type { ThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
+﻿import type { ContractThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
 
-export type ThemeSettingsInput = Partial<ThemeSettingsViewModel>;
+export type ThemeSettingsInput = Partial<ContractThemeSettingsViewModel>;

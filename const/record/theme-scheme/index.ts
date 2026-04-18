@@ -1,4 +1,4 @@
-import { THEME_SCHEMES } from '$stylist/theme/const/struct/theme-schemes';
+import { THEME_SCHEMES } from '$stylist/theme/const/record/theme-schemes';
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 

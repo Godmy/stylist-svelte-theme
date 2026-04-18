@@ -1,11 +1,11 @@
-import { THEME_SCHEMES } from '$stylist/theme/const/struct/theme-schemes';
-import type { ThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
+import { THEME_SCHEMES } from '$stylist/theme/const/record/theme-schemes';
+import type { ContractThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
 import type { ThemeSettingsInput } from '$stylist/theme/type/contract/theme-settings-input';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
 export class ObjectManagerThemeSettings {
-	static createContract(input: ThemeSettingsInput = {}): ThemeSettingsViewModel {
+	static createContract(input: ThemeSettingsInput = {}): ContractThemeSettingsViewModel {
 		return {
 			themeMode: input.themeMode ?? 'default',
 			themeScheme: input.themeScheme ?? 'minimal',
@@ -27,9 +27,9 @@ export class ObjectManagerThemeSettings {
 	}
 
 	static withThemeMode(
-		contract: ThemeSettingsViewModel,
+		contract: ContractThemeSettingsViewModel,
 		themeMode: TokenThemeMode
-	): ThemeSettingsViewModel {
+	): ContractThemeSettingsViewModel {
 		return {
 			...contract,
 			themeMode
@@ -37,9 +37,9 @@ export class ObjectManagerThemeSettings {
 	}
 
 	static withThemeScheme(
-		contract: ThemeSettingsViewModel,
+		contract: ContractThemeSettingsViewModel,
 		themeScheme: TokenThemeScheme
-	): ThemeSettingsViewModel {
+	): ContractThemeSettingsViewModel {
 		return {
 			...contract,
 			themeScheme

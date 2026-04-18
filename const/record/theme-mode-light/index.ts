@@ -7,7 +7,7 @@ import { COLORS_SCALES_RED } from '$stylist/color/const/record/colors-scales/red
 import { COLORS_SCALES_SLATE } from '$stylist/color/const/record/colors-scales/slate';
 import { TOKEN_COLOR } from '$stylist/color/const/map/color';
 import type { Theme } from '$stylist/theme/type/struct/theme';
-import { THEME_TYPOGRAPHY } from '$stylist/typography/const/struct/theme-typography';
+import { THEME_TYPOGRAPHY } from '$stylist/typography/const/record/theme-typography';
 
 export const THEME_MODE_LIGHT: Theme = {
 	mode: 'light',

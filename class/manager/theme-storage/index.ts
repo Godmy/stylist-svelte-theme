@@ -1,6 +1,6 @@
 import { TOKEN_THEME_MODE } from '$stylist/theme/const/enum/theme-mode';
 import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/enum/theme-scheme';
-import { THEME_STORAGE_CONTRACT } from '$stylist/theme/const/struct/theme-storage-contract';
+import { THEME_STORAGE_CONTRACT } from '$stylist/theme/const/record/theme-storage-contract';
 import type { ThemeStorageContract } from '$stylist/theme/type/contract/theme-storage';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';

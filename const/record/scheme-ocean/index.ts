@@ -1,8 +1,8 @@
 import { COLORS_SCALES_BLUE } from '$stylist/color/const/record/colors-scales/blue';
 import { COLORS_SCALES_SLATE } from '$stylist/color/const/record/colors-scales/slate';
 import { TOKEN_COLOR } from '$stylist/color/const/map/color';
-import { THEME_MODE_DARK } from '$stylist/theme/const/struct/theme-mode-dark';
-import { THEME_MODE_LIGHT } from '$stylist/theme/const/struct/theme-mode-light';
+import { THEME_MODE_DARK } from '$stylist/theme/const/record/theme-mode-dark';
+import { THEME_MODE_LIGHT } from '$stylist/theme/const/record/theme-mode-light';
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
 
 export const SCHEME_OCEAN: ThemeSchemeDefinition = {

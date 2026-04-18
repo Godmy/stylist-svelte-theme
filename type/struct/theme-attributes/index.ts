@@ -1,4 +1,4 @@
 import type { HTMLAttributes } from 'svelte/elements';
-import type { ProtoTheme } from '$stylist/theme/interface/proto/thema';
+import type { ThemeData } from '$stylist/theme/type/struct/theme-data';
 
-export type ThemeAttributes<T extends EventTarget = HTMLElement> = HTMLAttributes<T> & ProtoTheme;
+export type ThemeAttributes<T extends EventTarget = HTMLElement> = HTMLAttributes<T> & ThemeData;

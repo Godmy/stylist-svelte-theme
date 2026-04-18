@@ -1,13 +1,14 @@
-import type { Snippet } from 'svelte';
+﻿import type { Snippet } from 'svelte';
 import type { HTMLAttributes } from 'svelte/elements';
-import type { RecordArchitectureMerge } from '$stylist/architecture/type/record/architecture-merge';
-import type { ThemeContext } from '$stylist/theme/interface/contract/theme-context';
-import type { ProtoTheme } from '$stylist/theme/interface/proto/thema';
+import type { StructIntersectAll } from '$stylist/architecture/type/struct/intersect-all';
+import type { ContractThemeContext } from '$stylist/theme/interface/contract/theme-context';
+import type { SlotTheme } from '$stylist/theme/interface/slot/theme';
 
-export interface ThemeContextRecipe extends RecordArchitectureMerge<[
-	ProtoTheme,
+export interface ThemeContextRecipe extends StructIntersectAll<[
+	SlotTheme,
 	Omit<HTMLAttributes<HTMLDivElement>, 'children'>
 ]> {
 	class?: string;
-	children: Snippet<[ThemeContext | null]>;
+	children: Snippet<[ContractThemeContext | null]>;
 }
+

@@ -7,4 +7,5 @@ export type { ThemeColorBorder } from './theme-color-border';
 export type { ThemeColorSurfaceTint } from './theme-color-surface-tint';
 export type { ThemeColorText } from './theme-color-text';
 export type { ThemeColors } from './theme-colors';
+export type { ThemeData } from './theme-data';
 export type { ThemeDomainColors } from './theme-domain-colors';

@@ -1,8 +1,8 @@
-import type { ThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
+﻿import type { ContractThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
-function createThemeSettingsState(getContract: () => ThemeSettingsViewModel) {
+function createThemeSettingsState(getContract: () => ContractThemeSettingsViewModel) {
 	let localThemeMode = $state<TokenThemeMode>(getContract().themeMode);
 	let localThemeScheme = $state<TokenThemeScheme>(getContract().themeScheme);
 
