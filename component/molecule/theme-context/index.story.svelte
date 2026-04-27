@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Story } from '$stylist/development/svelte/playground';
+	import { Story } from '$stylist/playground/component';
 	import ThemeContext from './index.svelte';
 	import { ThemeProvider } from '$stylist';
 </script>

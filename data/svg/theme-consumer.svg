@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <title>theme-consumer</title>
+  <path d="M4 18V6l8-3 8 3v12l-8 3-8-3z"/>
+  <path d="M4 6l8 3 8-3"/>
+  <path d="M12 9v12"/>
+</svg>

@@ -1,6 +1,6 @@
-﻿<script lang="ts">
-	import { Story } from '$stylist/development/svelte/playground';
-	import type { InterfaceControllerSettings } from '$stylist/development/type/struct/interface-controller-settings';
+<script lang="ts">
+	import { Story } from '$stylist/playground/component';
+	import type { InterfaceControllerSettings } from '$stylist/playground/type/struct/interface-controller-settings';
 	import ThemeSwitcher from './index.svelte';
 
 	let selectedTheme = $state<'minimal' | 'ocean' | 'forest' | 'sunset'>('minimal');

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '$stylist/media/svelte/atom/icon/index.svelte';
+	import Icon from '$stylist/media/component/atom/icon/index.svelte';
 	import { StyleManagerThemeModeToggle } from '$stylist/theme/class/style-manager/theme-mode-toggle';
 	import { createThemeModeToggleState } from '$stylist/theme/function/state/theme-mode-toggle';
 	import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';

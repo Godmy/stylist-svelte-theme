@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ThemeConsumer } from '$stylist/theme/svelte/atom/theme-consumer';
+	import { ThemeConsumer } from '$stylist/theme/component/atom/theme-consumer';
 	import type { ThemeContextRecipe } from '$stylist/theme/interface/recipe/theme-context';
 	import { createThemeContextState } from '$stylist/theme/function/state/theme-context';
 

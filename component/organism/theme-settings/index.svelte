@@ -5,9 +5,9 @@
   import { createThemeSettingsState } from '$stylist/theme/function/state/theme-settings';
   import { formatLabel } from '$stylist/theme/function/script/format-label';
   import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
-  import { ThemeModeToggle } from '$stylist/theme/svelte/atom';
-  import { ThemeSwitcher } from '$stylist/theme/svelte/molecule';
-  import { ThemeSurface } from '$stylist/layout/svelte/molecule/layout/theme-surface';
+  import { ThemeModeToggle } from '$stylist/theme/component/atom';
+  import { ThemeSwitcher } from '$stylist/theme/component/molecule';
+  import { ThemeSurface } from '$stylist/layout/component/molecule/layout/theme-surface';
   import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 
   let {

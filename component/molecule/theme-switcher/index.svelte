@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ThemeSwitcherRecipe } from '$stylist/theme/interface/recipe/theme-switcher';
-	import BaseIcon from '$stylist/media/svelte/atom/icon/index.svelte';
+	import BaseIcon from '$stylist/media/component/atom/icon/index.svelte';
 	import { StyleManagerThemeSwitcher } from '$stylist/theme/class/style-manager/theme-switcher';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 	import { createThemeSwitcherState } from '$stylist/theme/function/state/theme-switcher';

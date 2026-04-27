@@ -141,16 +141,16 @@ Storage:
 ## Svelte компоненты
 
 Atom:
-- [theme-provider/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/atom/theme-provider/index.svelte)
-- [theme-consumer/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/atom/theme-consumer/index.svelte)
-- [theme-mode-toggle/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/atom/theme-mode-toggle/index.svelte)
+- [theme-provider/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/component/atom/theme-provider/index.svelte)
+- [theme-consumer/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/component/atom/theme-consumer/index.svelte)
+- [theme-mode-toggle/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/component/atom/theme-mode-toggle/index.svelte)
 
 Molecule:
-- [theme-switcher/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/molecule/theme-switcher/index.svelte)
-- [theme-context/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/molecule/theme-context/index.svelte)
+- [theme-switcher/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/component/molecule/theme-switcher/index.svelte)
+- [theme-context/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/component/molecule/theme-context/index.svelte)
 
 Organism:
-- [theme-settings/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/svelte/organism/theme-settings/index.svelte)
+- [theme-settings/index.svelte](/D:/2026/code/template/stylist-svelte/src/lib/theme/component/organism/theme-settings/index.svelte)
 
 Назначение:
 - `ThemeProvider` - корневой источник состояния темы.

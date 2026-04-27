@@ -18,5 +18,5 @@
 </script>
 
 <div class={state.containerClass} {...restProps}>
-	{@render props.children()}
+	{#if props.children}{@render props.children()}{/if}
 </div>
