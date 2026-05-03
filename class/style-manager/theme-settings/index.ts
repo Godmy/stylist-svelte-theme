@@ -70,27 +70,23 @@ export class StyleManagerThemeSettings {
 		return `
 			.c-theme-settings {
 				display: grid;
+				gap: 1rem;
 			}
 
 			.c-theme-settings__surface {
 				display: grid;
-				gap: clamp(0.9rem, 1.6vw, 1.15rem);
+				gap: clamp(1rem, 1.8vw, 1.25rem);
 				border-color: color-mix(in srgb, var(--line, var(--color-border-primary)) 78%, transparent);
-				background:
-					linear-gradient(
-						180deg,
-						color-mix(in srgb, var(--surface, var(--color-background-primary)) 93%, var(--accent, var(--color-primary-600)) 7%) 0%,
-						color-mix(in srgb, var(--surface, var(--color-background-primary)) 98%, transparent) 100%
-					);
+				background: var(--surface, var(--color-background-primary));
 				box-shadow:
-					0 18px 46px rgba(15, 23, 42, 0.08),
-					inset 0 1px 0 rgba(255, 255, 255, 0.55);
+					0 1px 3px rgba(15, 23, 42, 0.08),
+					0 12px 32px rgba(15, 23, 42, 0.05);
 			}
 
 			.c-theme-settings__surface-heading {
 				display: grid;
 				gap: 0.55rem;
-				padding-bottom: 0.2rem;
+				padding-bottom: 0.35rem;
 			}
 
 			.c-theme-settings__surface-eyebrow,
@@ -104,8 +100,8 @@ export class StyleManagerThemeSettings {
 
 			.c-theme-settings__surface-title,
 			.c-theme-settings__title {
-				font-size: var(--font-size-3);
-				font-weight: var(--font-weight-semibold);
+				font-size: var(--font-size-3, 1.125rem);
+				font-weight: var(--font-weight-semibold, 600);
 				color: var(--text, var(--color-text-primary));
 				letter-spacing: -0.01em;
 			}
@@ -139,7 +135,7 @@ export class StyleManagerThemeSettings {
 				font-size: 0.8rem;
 				line-height: 1;
 				color: var(--text, var(--color-text-primary));
-				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+				box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
 			}
 
 			.c-theme-settings__surface-badge strong {
@@ -148,19 +144,14 @@ export class StyleManagerThemeSettings {
 
 			.c-theme-settings__item {
 				display: grid;
-				gap: 0.95rem;
+				gap: 1rem;
 				grid-template-columns: minmax(180px, 0.8fr) minmax(220px, 1fr);
 				align-items: center;
 				border: 1px solid color-mix(in srgb, var(--line, var(--color-border-primary)) 74%, transparent);
-				border-radius: 1.15rem;
-				background:
-					linear-gradient(
-						180deg,
-						color-mix(in srgb, var(--surface, var(--color-background-primary)) 97%, white 3%) 0%,
-						color-mix(in srgb, var(--surface, var(--color-background-primary)) 90%, var(--bg, var(--color-background-secondary)) 10%) 100%
-					);
-				padding: 1rem 1.05rem;
-				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+				border-radius: 1rem;
+				background: color-mix(in srgb, var(--surface, var(--color-background-primary)) 96%, var(--bg, var(--color-background-secondary)) 4%);
+				padding: 1.1rem 1.15rem;
+				box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 			}
 
 			.c-theme-settings__item--column {
@@ -170,20 +161,25 @@ export class StyleManagerThemeSettings {
 
 			.c-theme-settings__meta {
 				display: grid;
-				gap: 0.4rem;
+				gap: 0.45rem;
 				align-content: start;
 			}
 
 			.c-theme-settings__control {
 				display: grid;
+				gap: 0.75rem;
 				align-items: stretch;
 				justify-content: stretch;
 				justify-self: stretch;
 				min-width: 0;
+				padding: 0;
+				border-radius: 0;
+				background: transparent;
 			}
 
 			.c-theme-settings__item--column .c-theme-settings__control {
 				justify-content: stretch;
+				padding: 0;
 			}
 
 			.c-theme-settings__item--column .c-theme-switcher {
@@ -191,11 +187,11 @@ export class StyleManagerThemeSettings {
 			}
 
 			.c-theme-settings__item--column .c-theme-switcher__list {
-				grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 			}
 
 			.c-theme-settings__item--column .c-theme-switcher__item {
-				min-height: 9rem;
+				min-height: 11.75rem;
 			}
 
 			.c-theme-settings__item .c-theme-mode-toggle {

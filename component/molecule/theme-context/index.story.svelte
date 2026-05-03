@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Story } from '$stylist/playground/component';
 	import ThemeContext from './index.svelte';
-	import { ThemeProvider } from '$stylist';
+	import { ThemeProvider } from '$stylist/theme';
 </script>
 
 <Story component={ThemeContext} title="ThemeContext" description="Composable molecule for reading theme context via snippets.">
