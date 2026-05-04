@@ -72,11 +72,7 @@
   <ThemeSurface class={surfaceClass}>
     {#snippet header(themeContext)}
       <div class={surfaceHeadingClass}>
-        <div class={surfaceEyebrowClass}>Appearance Studio</div>
-        <div class={surfaceTitleClass}>Appearance Settings</div>
-        <div class={surfaceHelpClass}>
-          Tune rendering mode and palette together so the interface feels consistent across surfaces.
-        </div>
+        <div class={surfaceEyebrowClass}>Appearance Settings</div>
         <div class={surfaceSummaryClass}>
           <div class={surfaceBadgeClass}>
             <span>Mode</span>
