@@ -8,7 +8,25 @@ import { TOKEN_COLOR } from '$stylist/color/const/map/color';
 import type { Theme } from '$stylist/theme/type/struct/theme';
 import { THEME_TYPOGRAPHY } from '$stylist/typography/const/record/theme-typography';
 
-export const THEME_MODE_DARK: Theme = {
+export const THEME_MODE_DARK: Theme & {
+	domain?: {
+		scene?: {
+			far: string;
+			mid: string;
+			focus: string;
+			grid: string;
+			star: string;
+			icon: string;
+			cluster: string;
+			selection: string;
+			focusGlow: string;
+		};
+		graph?: {
+			portDataType?: Record<string, string>;
+			portState?: Record<string, string>;
+		};
+	};
+} = {
 	mode: 'dark',
 	colors: {
 		primary: COLORS_SCALES_BLUE,

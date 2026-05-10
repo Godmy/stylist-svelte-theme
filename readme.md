@@ -43,7 +43,6 @@ type Theme = {
 	mode: TokenThemeMode;
 	colors: ThemeColors;
 	typography: StructThemeTypography;
-	domain?: ThemeDomainColors;
 };
 ```
 
