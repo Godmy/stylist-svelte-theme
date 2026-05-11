@@ -6,10 +6,7 @@ import { LAYOUT_THEME } from '$stylist/layout/const/record/layout-theme';
 import type { Theme } from '$stylist/theme/type/struct/theme';
 
 export class ManagerThemeCSS {
-	static applyVars(
-		theme: Theme,
-		element: HTMLElement = document.documentElement
-	): void {
+	static applyVars(theme: Theme, element: HTMLElement = document.documentElement): void {
 		const vars = this.convertToCSSVars(theme);
 		this.setVars(vars, element);
 	}
@@ -24,20 +21,14 @@ export class ManagerThemeCSS {
 		}
 	}
 
-	static removeVars(
-		theme: Theme,
-		element: HTMLElement = document.documentElement
-	): void {
+	static removeVars(theme: Theme, element: HTMLElement = document.documentElement): void {
 		const keys = this.getThemeCSSVarKeys(theme);
 		for (const key of keys) {
 			element.style.removeProperty(key);
 		}
 	}
 
-	static getVar(
-		name: string,
-		element: HTMLElement = document.documentElement
-	): string {
+	static getVar(name: string, element: HTMLElement = document.documentElement): string {
 		return getComputedStyle(element).getPropertyValue(name).trim();
 	}
 
@@ -104,7 +95,9 @@ export class ManagerThemeCSS {
 	}
 
 	static getEntries<T extends object>(obj: T): Array<[string, string]> {
-		return Object.entries(obj).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
+		return Object.entries(obj).filter(
+			(entry): entry is [string, string] => typeof entry[1] === 'string'
+		);
 	}
 
 	static mergeDeclarations(

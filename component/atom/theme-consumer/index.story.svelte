@@ -5,8 +5,18 @@
 	import ThemeProvider from '../theme-provider/index.svelte';
 
 	const controls: InterfaceControllerSettings[] = [
-		{ name: 'initialMode', type: 'select', defaultValue: 'dark', options: ['default', 'light', 'dark'] },
-		{ name: 'initialScheme', type: 'select', defaultValue: 'minimal', options: ['minimal', 'ocean', 'forest', 'sunset'] }
+		{
+			name: 'initialMode',
+			type: 'select',
+			defaultValue: 'dark',
+			options: ['default', 'light', 'dark']
+		},
+		{
+			name: 'initialScheme',
+			type: 'select',
+			defaultValue: 'minimal',
+			options: ['minimal', 'ocean', 'forest', 'sunset']
+		}
 	];
 </script>
 
@@ -27,7 +37,7 @@
 					<ThemeConsumer>
 						{#snippet children(themeContext)}
 							<div class="grid gap-3">
-								<p class="text-sm uppercase tracking-[0.16em] text-slate-500">Theme context</p>
+								<p class="text-sm tracking-[0.16em] text-slate-500 uppercase">Theme context</p>
 								<div class="grid gap-2 rounded-2xl bg-slate-50 p-4">
 									<p class="text-sm text-slate-500">mode</p>
 									<strong class="text-slate-900">{themeContext?.themeMode ?? 'missing'}</strong>

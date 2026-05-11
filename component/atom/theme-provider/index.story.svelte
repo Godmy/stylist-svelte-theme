@@ -5,8 +5,18 @@
 	import ThemeConsumer from '../theme-consumer/index.svelte';
 
 	const controls: InterfaceControllerSettings[] = [
-		{ name: 'initialMode', type: 'select', defaultValue: 'light', options: ['default', 'light', 'dark'] },
-		{ name: 'initialScheme', type: 'select', defaultValue: 'minimal', options: ['minimal', 'ocean', 'forest', 'sunset'] }
+		{
+			name: 'initialMode',
+			type: 'select',
+			defaultValue: 'light',
+			options: ['default', 'light', 'dark']
+		},
+		{
+			name: 'initialScheme',
+			type: 'select',
+			defaultValue: 'minimal',
+			options: ['minimal', 'ocean', 'forest', 'sunset']
+		}
 	];
 </script>
 
@@ -27,7 +37,9 @@
 					<div class="grid gap-4">
 						<div class="rounded-2xl border border-slate-200 bg-white p-4">
 							<p class="text-sm text-slate-500">Provider shell</p>
-							<h3 class="text-lg font-semibold text-slate-900">Nested components inherit the active theme context.</h3>
+							<h3 class="text-lg font-semibold text-slate-900">
+								Nested components inherit the active theme context.
+							</h3>
 						</div>
 						<ThemeConsumer>
 							{#snippet children(themeContext)}

@@ -4,9 +4,8 @@ import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-s
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
-export interface ThemeSwitcherRecipe extends StructIntersectAll<[
-	Omit<InteractionHTMLAttributes<HTMLDivElement>, 'class'>
-]> {
+export interface ThemeSwitcherRecipe
+	extends StructIntersectAll<[Omit<InteractionHTMLAttributes<HTMLDivElement>, 'class'>]> {
 	currentScheme?: TokenThemeScheme;
 	themeMode?: TokenThemeMode;
 	class?: string;
@@ -16,4 +15,3 @@ export interface ThemeSwitcherRecipe extends StructIntersectAll<[
 	themes?: ThemeSchemeDefinition[];
 	onSchemeChange?: (theme: TokenThemeScheme) => void;
 }
-

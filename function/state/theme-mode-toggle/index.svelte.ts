@@ -11,9 +11,7 @@ function createThemeModeToggleState(
 	getDefaultScheme: () => TokenThemeScheme | undefined,
 	setThemeMode?: (theme: TokenThemeMode) => void
 ) {
-	let theme = $state(
-		ObjectManagerThemeModeToggle.resolveTheme(props.currentTheme, props.darkMode)
-	);
+	let theme = $state(ObjectManagerThemeModeToggle.resolveTheme(props.currentTheme, props.darkMode));
 	let appliedTheme = $state<typeof theme | null>(null);
 	let defaultScheme = $state<TokenThemeScheme | undefined>(getDefaultScheme());
 

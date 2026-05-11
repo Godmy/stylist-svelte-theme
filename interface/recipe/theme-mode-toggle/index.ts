@@ -4,10 +4,13 @@ import type { InteractionHTMLAttributes } from '$stylist/interaction/type/struct
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
-export interface ThemeModeToggleRecipe extends StructIntersectAll<[
-	RecipeToggleBaseProps,
-	Omit<InteractionHTMLAttributes<HTMLButtonElement>, 'class' | 'size' | 'disabled' | 'checked'>
-]> {
+export interface ThemeModeToggleRecipe
+	extends StructIntersectAll<
+		[
+			RecipeToggleBaseProps,
+			Omit<InteractionHTMLAttributes<HTMLButtonElement>, 'class' | 'size' | 'disabled' | 'checked'>
+		]
+	> {
 	checked?: boolean;
 	darkMode?: boolean;
 	currentTheme?: TokenThemeMode;

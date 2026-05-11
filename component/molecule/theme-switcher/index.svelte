@@ -4,9 +4,7 @@
 	import { StyleManagerThemeSwitcher } from '$stylist/theme/class/style-manager/theme-switcher';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 	import { createThemeSwitcherState } from '$stylist/theme/function/state/theme-switcher';
-	import {
-		getPreviewTheme
-	} from '$stylist/theme/function/script/theme-switcher';
+	import { getPreviewTheme } from '$stylist/theme/function/script/theme-switcher';
 	import { getSurfaceStyle } from '$stylist/theme/function/script/get-surface-style';
 	import { getSwatchStyle } from '$stylist/theme/function/script/get-swatch-style';
 
@@ -142,7 +140,11 @@
 
 	.c-theme-switcher__item:hover {
 		transform: translateY(-1px);
-		border-color: color-mix(in srgb, var(--accent, var(--color-primary-600)) 32%, var(--line, var(--color-border-primary)) 68%);
+		border-color: color-mix(
+			in srgb,
+			var(--accent, var(--color-primary-600)) 32%,
+			var(--line, var(--color-border-primary)) 68%
+		);
 		box-shadow:
 			0 2px 6px rgba(15, 23, 42, 0.1),
 			0 12px 28px rgba(15, 23, 42, 0.08);
@@ -150,7 +152,11 @@
 
 	.c-theme-switcher__item--active {
 		border-color: var(--accent, var(--color-primary-600));
-		background: color-mix(in srgb, var(--surface, var(--color-background-primary)) 92%, var(--accent, var(--color-primary-600)) 8%);
+		background: color-mix(
+			in srgb,
+			var(--surface, var(--color-background-primary)) 92%,
+			var(--accent, var(--color-primary-600)) 8%
+		);
 		box-shadow:
 			0 0 0 1px color-mix(in srgb, var(--accent, var(--color-primary-600)) 18%, transparent),
 			0 10px 24px rgba(15, 23, 42, 0.08);
@@ -192,7 +198,11 @@
 		padding: 0.18rem 0.5rem;
 		border-radius: 999px;
 		border: 1px solid color-mix(in srgb, var(--line, var(--color-border-primary)) 72%, transparent);
-		background: color-mix(in srgb, var(--surface, var(--color-background-primary)) 92%, var(--bg, var(--color-background-secondary)) 8%);
+		background: color-mix(
+			in srgb,
+			var(--surface, var(--color-background-primary)) 92%,
+			var(--bg, var(--color-background-secondary)) 8%
+		);
 		font-size: 0.68rem;
 		font-weight: 600;
 		letter-spacing: 0.04em;
@@ -201,7 +211,11 @@
 
 	.c-theme-switcher__badge--active {
 		border-color: color-mix(in srgb, var(--accent, var(--color-primary-600)) 48%, transparent);
-		background: color-mix(in srgb, var(--accent, var(--color-primary-600)) 14%, var(--surface, var(--color-background-primary)) 86%);
+		background: color-mix(
+			in srgb,
+			var(--accent, var(--color-primary-600)) 14%,
+			var(--surface, var(--color-background-primary)) 86%
+		);
 		color: var(--accent, var(--color-primary-700));
 	}
 

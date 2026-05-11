@@ -32,10 +32,7 @@ export class ManagerThemeResolver {
 	/**
 	 * Применяет сохранённую схему темы
 	 */
-	static applyStoredScheme(
-		scheme?: TokenThemeScheme,
-		element?: HTMLElement
-	): void {
+	static applyStoredScheme(scheme?: TokenThemeScheme, element?: HTMLElement): void {
 		const themeScheme = scheme || 'minimal';
 		if (element || typeof document !== 'undefined') {
 			const target = element || document.documentElement;

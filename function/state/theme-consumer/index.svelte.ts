@@ -11,4 +11,3 @@ function createThemeConsumerState() {
 }
 
 export default createThemeConsumerState;
-

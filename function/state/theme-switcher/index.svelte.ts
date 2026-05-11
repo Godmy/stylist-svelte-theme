@@ -103,4 +103,3 @@ function createThemeSwitcherState(
 }
 
 export default createThemeSwitcherState;
-

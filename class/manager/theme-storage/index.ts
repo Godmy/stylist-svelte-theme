@@ -10,9 +10,7 @@ export class ManagerThemeStorage {
 	/**
 	 * Получает сохранённый режим темы из localStorage
 	 */
-	static getStoredMode(
-		storageKey = THEME_STORAGE_CONTRACT.modeStorageKey
-	): TokenThemeMode {
+	static getStoredMode(storageKey = THEME_STORAGE_CONTRACT.modeStorageKey): TokenThemeMode {
 		if (typeof localStorage === 'undefined') {
 			return THEME_STORAGE_CONTRACT.defaultThemeMode;
 		}
@@ -22,9 +20,7 @@ export class ManagerThemeStorage {
 	/**
 	 * Получает сохранённую схему темы из localStorage
 	 */
-	static getStoredScheme(
-		storageKey = THEME_STORAGE_CONTRACT.schemeStorageKey
-	): TokenThemeScheme {
+	static getStoredScheme(storageKey = THEME_STORAGE_CONTRACT.schemeStorageKey): TokenThemeScheme {
 		if (typeof localStorage === 'undefined') {
 			return THEME_STORAGE_CONTRACT.defaultThemeScheme;
 		}
@@ -79,9 +75,7 @@ export class ManagerThemeStorage {
 	/**
 	 * Очищает сохранённые настройки темы
 	 */
-	static clearSettings(
-		contract: ThemeStorageContract = THEME_STORAGE_CONTRACT
-	): void {
+	static clearSettings(contract: ThemeStorageContract = THEME_STORAGE_CONTRACT): void {
 		if (typeof localStorage === 'undefined') return;
 		localStorage.removeItem(contract.modeStorageKey);
 		localStorage.removeItem(contract.schemeStorageKey);

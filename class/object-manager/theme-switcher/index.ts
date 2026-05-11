@@ -10,7 +10,10 @@ export class ObjectManagerThemeSwitcher {
 		return themes && themes.length > 0 ? themes : THEME_SCHEMES;
 	}
 
-	static findTheme(themes: ThemeSchemeDefinition[], themeId: TokenThemeScheme): ThemeSchemeDefinition | undefined {
+	static findTheme(
+		themes: ThemeSchemeDefinition[],
+		themeId: TokenThemeScheme
+	): ThemeSchemeDefinition | undefined {
 		return themes.find((item) => item.id === themeId);
 	}
 
@@ -26,6 +29,3 @@ export class ObjectManagerThemeSwitcher {
 		);
 	}
 }
-
-
-

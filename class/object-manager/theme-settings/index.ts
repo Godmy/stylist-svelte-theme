@@ -18,8 +18,7 @@ export class ObjectManagerThemeSettings {
 			schemeSection: {
 				show: input.schemeSection?.show ?? true,
 				title: input.schemeSection?.title ?? 'UI palette',
-				description:
-					input.schemeSection?.description ?? 'Minimal, Ocean, Forest, Sunset'
+				description: input.schemeSection?.description ?? 'Minimal, Ocean, Forest, Sunset'
 			},
 			onThemeModeChange: input.onThemeModeChange,
 			onThemeSchemeChange: input.onThemeSchemeChange

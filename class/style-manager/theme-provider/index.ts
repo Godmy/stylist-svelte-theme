@@ -11,4 +11,3 @@ export class StyleManagerThemeProvider {
 		return mergeClassNames('theme-provider', className);
 	}
 }
-

@@ -48,26 +48,20 @@
 	{controls}
 >
 	{#snippet children(values: any)}
-		{@const currentTheme = (values.currentTheme ?? 'default') as ThemeModeToggleStoryProps['currentTheme']}
-		{@const defaultScheme = (values.defaultScheme ?? 'minimal') as ThemeModeToggleStoryProps['defaultScheme']}
+		{@const currentTheme = (values.currentTheme ??
+			'default') as ThemeModeToggleStoryProps['currentTheme']}
+		{@const defaultScheme = (values.defaultScheme ??
+			'minimal') as ThemeModeToggleStoryProps['defaultScheme']}
 		{@const showLabels = typeof values.showLabels === 'boolean' ? values.showLabels : true}
 		{@const disabled = typeof values.disabled === 'boolean' ? values.disabled : false}
 		<div class="rounded-lg bg-[var(--color-background-secondary)] p-8">
 			<h2 class="mb-4 text-xl font-bold">ThemeModeToggle Story</h2>
 			<p class="mb-4 text-sm text-gray-500">
 				Current: {currentTheme} | Default Scheme: {defaultScheme}
-				<br/>
+				<br />
 				When "default" is selected, the theme is determined by the defaultScheme and system preference.
 			</p>
 			<ThemeModeToggle {currentTheme} {defaultScheme} {showLabels} {disabled} />
 		</div>
 	{/snippet}
 </Story>
-
-
-
-
-
-
-
-

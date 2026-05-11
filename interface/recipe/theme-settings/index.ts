@@ -4,12 +4,10 @@ import type { ContractThemeSettingsViewModel } from '$stylist/theme/interface/co
 import type { ThemeModeToggleRecipe } from '$stylist/theme/interface/recipe/theme-mode-toggle';
 import type { ThemeSwitcherRecipe } from '$stylist/theme/interface/recipe/theme-switcher';
 
-export interface ThemeSettingsRecipe extends StructIntersectAll<[
-	InteractionHTMLAttributes<HTMLFormElement>
-]> {
+export interface ThemeSettingsRecipe
+	extends StructIntersectAll<[InteractionHTMLAttributes<HTMLFormElement>]> {
 	contract: ContractThemeSettingsViewModel;
 	modeToggleProps?: Partial<ThemeModeToggleRecipe>;
 	switcherProps?: Partial<ThemeSwitcherRecipe>;
 	class?: string;
 }
-

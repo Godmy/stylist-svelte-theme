@@ -36,11 +36,8 @@
 		})()
 	);
 
-	const iconSvg = $derived(
-		resolveThemeMode(state.theme) === 'dark' ? darkModeSvg : lightModeSvg
-	);
+	const iconSvg = $derived(resolveThemeMode(state.theme) === 'dark' ? darkModeSvg : lightModeSvg);
 	const resolvedMode = $derived(resolveThemeMode(state.theme));
-
 </script>
 
 <button
@@ -69,7 +66,12 @@
 		background: linear-gradient(
 			180deg,
 			color-mix(in srgb, var(--surface, var(--color-background-primary)) 97%, white 3%) 0%,
-			color-mix(in srgb, var(--surface, var(--color-background-primary)) 92%, var(--bg, var(--color-background-secondary)) 8%) 100%
+			color-mix(
+					in srgb,
+					var(--surface, var(--color-background-primary)) 92%,
+					var(--bg, var(--color-background-secondary)) 8%
+				)
+				100%
 		);
 		color: var(--text, var(--color-text-primary));
 		cursor: pointer;
@@ -111,15 +113,28 @@
 	}
 
 	.c-theme-mode-toggle:hover:not(:disabled) {
-		background: color-mix(in srgb, var(--surface, var(--color-background-primary)) 86%, var(--accent, var(--color-primary-600)) 14%);
-		border-color: color-mix(in srgb, var(--accent, var(--color-primary-600)) 42%, var(--line, var(--color-border-primary)) 58%);
+		background: color-mix(
+			in srgb,
+			var(--surface, var(--color-background-primary)) 86%,
+			var(--accent, var(--color-primary-600)) 14%
+		);
+		border-color: color-mix(
+			in srgb,
+			var(--accent, var(--color-primary-600)) 42%,
+			var(--line, var(--color-border-primary)) 58%
+		);
 		transform: translateY(-1px);
 	}
 
 	.c-theme-mode-toggle[data-resolved-mode='dark']:hover:not(:disabled) {
 		background: linear-gradient(
 			180deg,
-			color-mix(in srgb, var(--surface, var(--color-background-primary)) 72%, var(--accent, var(--color-primary-600)) 28%) 0%,
+			color-mix(
+					in srgb,
+					var(--surface, var(--color-background-primary)) 72%,
+					var(--accent, var(--color-primary-600)) 28%
+				)
+				0%,
 			color-mix(in srgb, var(--surface, var(--color-background-primary)) 74%, black 26%) 100%
 		);
 		border-color: color-mix(in srgb, var(--accent, var(--color-primary-600)) 48%, white 52%);
