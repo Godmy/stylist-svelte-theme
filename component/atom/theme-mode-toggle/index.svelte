@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '$stylist/media/component/atom/icon/index.svelte';
 	import { StyleManagerThemeModeToggle } from '$stylist/theme/class/style-manager/theme-mode-toggle';
-	import { createThemeModeToggleState } from '$stylist/theme/function/state/theme-mode-toggle';
+	import createThemeModeToggleState from '$stylist/theme/function/state/theme-mode-toggle/index.svelte';
 	import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 	import type { ThemeModeToggleRecipe } from '$stylist/theme/interface/recipe/theme-mode-toggle';

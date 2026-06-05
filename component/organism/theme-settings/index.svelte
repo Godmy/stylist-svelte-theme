@@ -2,12 +2,12 @@
 	import { StyleManagerThemeSettings } from '$stylist/theme/class/style-manager/theme-settings';
 	import { ObjectManagerThemeSettings } from '$stylist/theme/class/object-manager/theme-settings';
 	import type { ThemeSettingsRecipe } from '$stylist/theme/interface/recipe/theme-settings';
-	import { createThemeSettingsState } from '$stylist/theme/function/state/theme-settings';
+	import createThemeSettingsState from '$stylist/theme/function/state/theme-settings/index.svelte';
 	import { formatLabel } from '$stylist/theme/function/script/format-label';
 	import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
-	import { ThemeModeToggle } from '$stylist/theme/component/atom';
-	import { ThemeSwitcher } from '$stylist/theme/component/molecule';
-	import { ThemeSurface } from '$stylist/layout/component/molecule/theme-surface';
+	import ThemeModeToggle from '$stylist/theme/component/atom/theme-mode-toggle/index.svelte';
+	import ThemeSwitcher from '$stylist/theme/component/molecule/theme-switcher/index.svelte';
+	import ThemeSurface from '$stylist/layout/component/molecule/theme-surface/index.svelte';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 
 	let {

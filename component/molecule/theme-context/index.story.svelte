@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Story } from '$stylist/playground/component';
+	import Story from '$stylist/playground/component/molecule/story/index.svelte';
 	import ThemeContext from './index.svelte';
-	import { ThemeProvider } from '$stylist/theme';
+	import ThemeProvider from '$stylist/theme/component/atom/theme-provider/index.svelte';
 </script>
 
 <Story

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Story } from '$stylist/playground/component';
+	import Story from '$stylist/playground/component/molecule/story/index.svelte';
 	import type { InterfaceControllerSettings } from '$stylist/playground/type/struct/interface-controller-settings';
 	import { StyleManagerThemeSettings } from '$stylist/theme/class/style-manager/theme-settings';
 	import { ObjectManagerThemeSettings } from '$stylist/theme/class/object-manager/theme-settings';

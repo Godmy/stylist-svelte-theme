@@ -3,7 +3,7 @@
 	import BaseIcon from '$stylist/media/component/atom/icon/index.svelte';
 	import { StyleManagerThemeSwitcher } from '$stylist/theme/class/style-manager/theme-switcher';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
-	import { createThemeSwitcherState } from '$stylist/theme/function/state/theme-switcher';
+	import createThemeSwitcherState from '$stylist/theme/function/state/theme-switcher/index.svelte';
 	import { getPreviewTheme } from '$stylist/theme/function/script/theme-switcher';
 	import { getSurfaceStyle } from '$stylist/theme/function/script/get-surface-style';
 	import { getSwatchStyle } from '$stylist/theme/function/script/get-swatch-style';

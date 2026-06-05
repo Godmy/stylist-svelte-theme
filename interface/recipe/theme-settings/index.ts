@@ -1,5 +1,5 @@
-﻿import type { StructIntersectAll } from '$stylist/architecture/type/struct/intersect-all';
-import type { InteractionHTMLAttributes } from '$stylist/interaction/type/struct/interaction';
+import type { StructIntersectAll } from '$stylist/architecture/type/struct/intersect-all';
+import type { InteractionHTMLAttributes } from '$stylist/interaction/type/struct/interaction/interaction-html-attributes';
 import type { ContractThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
 import type { ThemeModeToggleRecipe } from '$stylist/theme/interface/recipe/theme-mode-toggle';
 import type { ThemeSwitcherRecipe } from '$stylist/theme/interface/recipe/theme-switcher';

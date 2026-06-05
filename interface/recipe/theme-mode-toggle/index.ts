@@ -1,6 +1,6 @@
-﻿import type { StructIntersectAll } from '$stylist/architecture/type/struct/intersect-all';
+import type { StructIntersectAll } from '$stylist/architecture/type/struct/intersect-all';
 import type { RecipeToggleBaseProps as RecipeToggleBaseProps } from '$stylist/control/interface/recipe/toggle-base-props';
-import type { InteractionHTMLAttributes } from '$stylist/interaction/type/struct/interaction';
+import type { InteractionHTMLAttributes } from '$stylist/interaction/type/struct/interaction/interaction-html-attributes';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
