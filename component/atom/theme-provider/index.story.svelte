@@ -6,13 +6,13 @@
 
 	const controls: InterfaceControllerSettings[] = [
 		{
-			name: 'initialMode',
+			name: 'themeMode',
 			type: 'select',
 			defaultValue: 'light',
 			options: ['default', 'light', 'dark']
 		},
 		{
-			name: 'initialScheme',
+			name: 'themeScheme',
 			type: 'select',
 			defaultValue: 'minimal',
 			options: ['minimal', 'ocean', 'forest', 'sunset']
@@ -27,25 +27,23 @@
 	description="Provides theme mode and scheme to nested consumers."
 >
 	{#snippet children(values: any)}
-		{#key `${values.initialMode}-${values.initialScheme}`}
+		{#key `${values.themeMode}-${values.themeScheme}`}
 			<ThemeProvider
-				initialMode={values.initialMode as any}
-				initialScheme={values.initialScheme as any}
-				class="block rounded-3xl border border-slate-200 p-6"
+				themeMode={values.themeMode as any}
+				themeScheme={values.themeScheme as any}
+				class="_c1"
 			>
 				{#snippet children()}
-					<div class="grid gap-4">
-						<div class="rounded-2xl border border-slate-200 bg-white p-4">
-							<p class="text-sm text-slate-500">Provider shell</p>
-							<h3 class="text-lg font-semibold text-slate-900">
-								Nested components inherit the active theme context.
-							</h3>
+					<div class="_c2">
+						<div class="_c3">
+							<p class="_c4">Provider shell</p>
+							<h3 class="_c5">Nested components inherit the active theme context.</h3>
 						</div>
 						<ThemeConsumer>
 							{#snippet children(themeContext)}
-								<div class="rounded-2xl bg-slate-50 p-4 text-sm text-slate-600">
-									Resolved mode: <strong class="text-slate-900">{themeContext?.themeMode}</strong>,
-									scheme: <strong class="text-slate-900">{themeContext?.themeScheme}</strong>
+								<div class="_c6">
+									Resolved mode: <strong class="_c7">{themeContext?.themeMode}</strong>, scheme:
+									<strong class="_c7">{themeContext?.themeScheme}</strong>
 								</div>
 							{/snippet}
 						</ThemeConsumer>
@@ -55,3 +53,48 @@
 		{/key}
 	{/snippet}
 </Story>
+
+<style>
+	._c1 {
+		display: block;
+		border-radius: 1.5rem;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e2e8f0;
+		padding: 1.5rem;
+	}
+	._c2 {
+		display: grid;
+		gap: 1rem;
+	}
+	._c3 {
+		border-radius: 1rem;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e2e8f0;
+		background-color: #ffffff;
+		padding: 1rem;
+	}
+	._c4 {
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		color: #64748b;
+	}
+	._c5 {
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+		font-weight: 600;
+		color: #0f172a;
+	}
+	._c6 {
+		border-radius: 1rem;
+		background-color: #f8fafc;
+		padding: 1rem;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		color: #475569;
+	}
+	._c7 {
+		color: #0f172a;
+	}
+</style>

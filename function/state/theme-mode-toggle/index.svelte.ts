@@ -1,32 +1,35 @@
-import type { ThemeModeToggleRecipe } from '$stylist/theme/interface/recipe/theme-mode-toggle';
-import { ObjectManagerThemeModeToggle } from '$stylist/theme/class/object-manager/theme-mode-toggle';
+import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
+import { mergeClassNames } from '$stylist/layout/function/script/merge-class-names';
+import darkModeSvg from '$stylist/theme/data/svg/dark-mode.svg?raw';
+import lightModeSvg from '$stylist/theme/data/svg/light-mode.svg?raw';
+import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
+import { ManagerThemeModeToggle } from '$stylist/theme/class/manager/theme-mode-toggle';
 import { applyThemeMode } from '$stylist/theme/function/script/dom/apply-theme-mode';
 import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
-function createThemeModeToggleState(
-	props: ThemeModeToggleRecipe,
-	getDefaultScheme: () => TokenThemeScheme | undefined,
-	setThemeMode?: (theme: TokenThemeMode) => void
-) {
-	let theme = $state(ObjectManagerThemeModeToggle.resolveTheme(props.currentTheme, props.darkMode));
+function createThemeModeToggleState(props: RecipeThemeModeToggle) {
+	const themeContext = ManagerThemeContext.getOptional();
+	let theme = $state(ManagerThemeModeToggle.resolveTheme(props.themeMode, props.darkMode));
 	let appliedTheme = $state<typeof theme | null>(null);
-	let defaultScheme = $state<TokenThemeScheme | undefined>(getDefaultScheme());
+	let defaultScheme = $state(ManagerThemeModeToggle.resolveDefaultScheme(props, themeContext));
 
 	$effect(() => {
-		theme = ObjectManagerThemeModeToggle.resolveTheme(props.currentTheme, props.darkMode);
+		theme = ManagerThemeModeToggle.resolveTheme(props.themeMode, props.darkMode);
 	});
 
-	// Отдельный эффект для обновления defaultScheme
 	$effect(() => {
-		defaultScheme = getDefaultScheme();
+		defaultScheme = ManagerThemeModeToggle.resolveDefaultScheme(props, themeContext);
 	});
 
-	const iconName = $derived(ObjectManagerThemeModeToggle.getIconName(theme));
-	const label = $derived(ObjectManagerThemeModeToggle.getLabel(theme));
-	const ariaLabel = $derived(ObjectManagerThemeModeToggle.getAriaLabel(label));
+	const label = $derived(ManagerThemeModeToggle.getLabel(theme));
+	const ariaLabel = $derived(ManagerThemeModeToggle.getAriaLabel(label));
+	const resolvedMode = $derived(resolveThemeMode(theme));
+	const iconSvg = $derived(resolvedMode === 'dark' ? darkModeSvg : lightModeSvg);
+	const className = $derived(mergeClassNames('c-theme-mode-toggle', props.class));
+	const restProps = $derived(ManagerThemeModeToggle.getButtonRestProps(props));
+	const disabled = $derived(props.disabled);
 
 	function applyTheme(newTheme: typeof theme) {
 		if (typeof document !== 'undefined') {
@@ -38,12 +41,12 @@ function createThemeModeToggleState(
 
 	function setTheme(newTheme: typeof theme) {
 		theme = newTheme;
-		props.onThemeChange?.(newTheme);
+		props.onThemeModeChange?.(newTheme);
 	}
 
 	function cycleTheme() {
 		if (props.disabled) return;
-		setTheme(ObjectManagerThemeModeToggle.getNextTheme(theme, resolveThemeMode(theme)));
+		setTheme(ManagerThemeModeToggle.getNextTheme(theme, resolveThemeMode(theme)));
 	}
 
 	$effect(() => {
@@ -51,12 +54,13 @@ function createThemeModeToggleState(
 			return;
 		}
 
+		const setThemeMode = themeContext?.setMode;
 		const effectiveTheme = setThemeMode ? resolveThemeMode(theme) : applyTheme(theme);
 		setThemeMode?.(theme);
 		appliedTheme = theme;
 		props.onToggle?.({ darkMode: effectiveTheme === 'dark' });
 		if (!setThemeMode) {
-			ManagerThemeStorage.persistMode(theme, ObjectManagerThemeModeToggle.storageKey);
+			ManagerThemeStorage.persistMode(theme, ManagerThemeModeToggle.storageKey);
 		}
 	});
 
@@ -64,14 +68,26 @@ function createThemeModeToggleState(
 		get theme() {
 			return theme;
 		},
-		get iconName() {
-			return iconName;
-		},
 		get label() {
 			return label;
 		},
 		get ariaLabel() {
 			return ariaLabel;
+		},
+		get resolvedMode() {
+			return resolvedMode;
+		},
+		get iconSvg() {
+			return iconSvg;
+		},
+		get className() {
+			return className;
+		},
+		get disabled() {
+			return disabled;
+		},
+		get restProps() {
+			return restProps;
 		},
 		cycleTheme,
 		setTheme

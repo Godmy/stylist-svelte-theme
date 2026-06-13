@@ -1,14 +1,17 @@
-﻿import type { Snippet } from 'svelte';
 import type { HTMLAttributes } from 'svelte/elements';
-import type { StructIntersectAll } from '$stylist/architecture/type/struct/intersect-all';
+import type { SlotChildren } from '$stylist/architecture/interface/slot/children';
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
+import type { SlotClass } from '$stylist/theme/interface/slot/class';
 import type { SlotTheme } from '$stylist/theme/interface/slot/theme';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { SlotThemeSettings } from '$stylist/theme/interface/slot/theme-settings';
 
-export interface ThemeProviderRecipe
-	extends StructIntersectAll<[SlotTheme, HTMLAttributes<HTMLDivElement>]> {
-	initialMode?: TokenThemeMode;
-	initialScheme?: TokenThemeScheme;
-	class?: string;
-	children: Snippet;
-}
+export interface RecipeThemeProvider
+	extends ComputeIntersectAll<
+		[
+			SlotChildren,
+			SlotClass,
+			SlotTheme,
+			Partial<SlotThemeSettings>,
+			Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'class'>
+		]
+	> {}

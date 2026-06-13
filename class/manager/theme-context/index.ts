@@ -1,8 +1,8 @@
-﻿import { setContext, getContext, hasContext } from 'svelte';
+import { setContext, getContext, hasContext } from 'svelte';
 import { TOKEN_THEME_CONTEXT } from '$stylist/theme/const/value/theme-context';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
-import type { ContractThemeContext } from '$stylist/theme/interface/contract/theme-context';
-import type { Theme } from '$stylist/theme/type/struct/theme';
+import type { RecipeTheme } from '$stylist/theme/interface/recipe/theme';
+import type { Theme } from '$stylist/theme/type/object/theme';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
@@ -16,8 +16,8 @@ export class ManagerThemeContext {
 		getThemeScheme: () => TokenThemeScheme,
 		setModeFn: (mode: TokenThemeMode) => void,
 		setSchemeFn: (scheme: TokenThemeScheme) => void
-	): ContractThemeContext {
-		const context: ContractThemeContext = {
+	): RecipeTheme {
+		const context: RecipeTheme = {
 			get theme() {
 				return getTheme();
 			},
@@ -40,17 +40,17 @@ export class ManagerThemeContext {
 	 * Получает контекст темы (обязательный)
 	 * Бросает ошибку, если контекст не найден
 	 */
-	static get(): ContractThemeContext {
-		return getContext<ContractThemeContext>(TOKEN_THEME_CONTEXT);
+	static get(): RecipeTheme {
+		return getContext<RecipeTheme>(TOKEN_THEME_CONTEXT);
 	}
 
 	/**
 	 * Получает контекст темы (опциональный)
 	 * Возвращает undefined, если контекст не найден
 	 */
-	static getOptional(): ContractThemeContext | undefined {
+	static getOptional(): RecipeTheme | undefined {
 		return hasContext(TOKEN_THEME_CONTEXT)
-			? getContext<ContractThemeContext>(TOKEN_THEME_CONTEXT)
+			? getContext<RecipeTheme>(TOKEN_THEME_CONTEXT)
 			: undefined;
 	}
 

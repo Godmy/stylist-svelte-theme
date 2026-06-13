@@ -18,8 +18,8 @@ export function applyThemeModeAndScheme(
 	applyThemeToDOM(theme, target);
 	target.classList.remove('light', 'dark', 'default');
 	target.classList.add(resolvedMode);
-	target.setAttribute('data-theme', resolvedMode);
-	target.setAttribute('data-scheme', scheme);
+	target.setAttribute('theme-mode', resolvedMode);
+	target.setAttribute('theme-scheme', scheme);
 
 	return resolvedMode;
 }

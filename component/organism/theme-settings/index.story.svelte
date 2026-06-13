@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Story from '$stylist/playground/component/molecule/story/index.svelte';
 	import type { InterfaceControllerSettings } from '$stylist/playground/type/struct/interface-controller-settings';
-	import { StyleManagerThemeSettings } from '$stylist/theme/class/style-manager/theme-settings';
-	import { ObjectManagerThemeSettings } from '$stylist/theme/class/object-manager/theme-settings';
+	import { ManagerThemeSettings } from '$stylist/theme/class/manager/theme-settings';
 	import AppearanceSettingsComponent from './index.svelte';
 
 	const controls: InterfaceControllerSettings[] = [
@@ -31,14 +30,14 @@
 	{controls}
 >
 	{#snippet children(values: any)}
-		<div class={StyleManagerThemeSettings.preferences('sb-organisms-appearance-settings p-4')}>
-			<h1 class="mb-4 text-lg font-semibold">AppearanceSettings Component</h1>
+		<div class="c-theme-settings sb-organisms-appearance-settings _c1">
+			<h1 class="_c2">AppearanceSettings Component</h1>
 
-			<div class="mb-6 rounded border p-4">
-				<h2 class="text-md mb-2 font-semibold">Interactive AppearanceSettings</h2>
-				<div class="max-w-md">
+			<div class="_c3">
+				<h2 class="_c4">Interactive AppearanceSettings</h2>
+				<div class="_c5">
 					<AppearanceSettingsComponent
-						contract={ObjectManagerThemeSettings.createContract({
+						{...ManagerThemeSettings.createContract({
 							themeMode: values.themeMode,
 							themeScheme: values.themeScheme
 						})}
@@ -48,3 +47,31 @@
 		</div>
 	{/snippet}
 </Story>
+
+<style>
+	._c1 {
+		padding: 1rem;
+	}
+	._c2 {
+		margin-bottom: 1rem;
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+		font-weight: 600;
+	}
+	._c3 {
+		margin-bottom: 1.5rem;
+		border-radius: 0.25rem;
+		border-width: 1px;
+		border-style: solid;
+		padding: 1rem;
+	}
+	._c4 {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		margin-bottom: 0.5rem;
+		font-weight: 600;
+	}
+	._c5 {
+		max-width: 28rem;
+	}
+</style>

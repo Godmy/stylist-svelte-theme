@@ -3,19 +3,9 @@ export {
 	ManagerTheme,
 	ManagerThemeCSS,
 	ManagerThemeContext,
+	ManagerThemeModeToggle,
 	ManagerThemeResolver,
-	ManagerThemeStorage
+	ManagerThemeSettings,
+	ManagerThemeStorage,
+	ManagerThemeSwitcher
 } from './manager';
-export {
-	ObjectManagerThemeModeToggle,
-	ObjectManagerThemeSettings,
-	ObjectManagerThemeSwitcher
-} from './object-manager';
-export {
-	StyleManagerThemeConsumer,
-	StyleManagerThemeContext,
-	StyleManagerThemeModeToggle,
-	StyleManagerThemeProvider,
-	StyleManagerThemeSettings,
-	StyleManagerThemeSwitcher
-} from './style-manager';

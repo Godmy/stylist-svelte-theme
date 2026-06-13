@@ -3,7 +3,7 @@ import { TOKEN_LAYOUT_SIZE } from '$stylist/layout/const/enum/layout-size';
 import { LAYOUT_GRADIENTS } from '$stylist/layout/const/record/layout-gradients';
 import { LAYOUT_ELEVATION_SEMANTIC } from '$stylist/layout/const/record/layout-elevation-semantic';
 import { LAYOUT_THEME } from '$stylist/layout/const/record/layout-theme';
-import type { Theme } from '$stylist/theme/type/struct/theme';
+import type { Theme } from '$stylist/theme/type/object/theme';
 
 export class ManagerThemeCSS {
 	static applyVars(theme: Theme, element: HTMLElement = document.documentElement): void {

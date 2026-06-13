@@ -1,5 +1,5 @@
 import { THEME_SCHEMES } from '$stylist/theme/const/record/theme-schemes';
-import type { ThemeSchemeDefinition } from '$stylist/theme/type/contract/theme-scheme-definition';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
 export const RECORD_THEME_SCHEME: Record<TokenThemeScheme, ThemeSchemeDefinition> =

@@ -11,7 +11,7 @@ export function toggleThemeMode(): TokenThemeMode {
 
 	const target = resolveTargetElement();
 	if (target) {
-		const rawScheme = target.getAttribute('data-scheme');
+		const rawScheme = target.getAttribute('theme-scheme');
 		const scheme: TokenThemeScheme =
 			rawScheme && TOKEN_THEME_SCHEME.includes(rawScheme as TokenThemeScheme)
 				? (rawScheme as TokenThemeScheme)

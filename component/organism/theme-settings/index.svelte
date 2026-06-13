@@ -1,7 +1,6 @@
-﻿<script lang="ts">
-	import { StyleManagerThemeSettings } from '$stylist/theme/class/style-manager/theme-settings';
-	import { ObjectManagerThemeSettings } from '$stylist/theme/class/object-manager/theme-settings';
-	import type { ThemeSettingsRecipe } from '$stylist/theme/interface/recipe/theme-settings';
+<script lang="ts">
+	import { ManagerThemeSettings } from '$stylist/theme/class/manager/theme-settings';
+	import type { RecipeThemeSettings } from '$stylist/theme/interface/recipe/theme-settings';
 	import createThemeSettingsState from '$stylist/theme/function/state/theme-settings/index.svelte';
 	import { formatLabel } from '$stylist/theme/function/script/format-label';
 	import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
@@ -11,18 +10,33 @@
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 
 	let {
-		contract,
+		themeMode,
+		themeScheme,
+		themes,
+		modeSection,
+		schemeSection,
+		onThemeModeChange,
+		onThemeSchemeChange,
 		modeToggleProps: modeToggleRecipeProps = {},
 		switcherProps: switcherRecipeProps = {},
 		class: className = '',
 		...restProps
-	}: ThemeSettingsRecipe = $props();
+	}: RecipeThemeSettings = $props();
 
 	const themeContext = ManagerThemeContext.getOptional();
-	const resolvedContract = $derived(ObjectManagerThemeSettings.createContract(contract));
-	const state = createThemeSettingsState(() => resolvedContract);
+	const resolvedSettings = $derived(
+		ManagerThemeSettings.createContract({
+			themeMode,
+			themeScheme,
+			themes,
+			modeSection,
+			schemeSection,
+			onThemeModeChange,
+			onThemeSchemeChange
+		})
+	);
+	const state = createThemeSettingsState(() => resolvedSettings);
 
-	// РСЃРїРѕР»СЊР·СѓРµРј С„СѓРЅРєС†РёРё РёР· РєРѕРЅС‚РµРєСЃС‚Р° С‚РµРјС‹ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє
 	function handleModeChange(nextTheme: 'light' | 'dark' | 'default') {
 		state.handleThemeModeChange(nextTheme);
 	}
@@ -32,24 +46,24 @@
 	}
 
 	const classNameStr = $derived(className == null ? undefined : String(className));
-	const formClass = $derived(StyleManagerThemeSettings.preferences('', classNameStr));
-	const surfaceClass = StyleManagerThemeSettings.surface();
-	const surfaceHeadingClass = StyleManagerThemeSettings.surfaceHeading();
-	const surfaceEyebrowClass = StyleManagerThemeSettings.surfaceEyebrow();
-	const surfaceTitleClass = StyleManagerThemeSettings.surfaceTitle();
-	const surfaceHelpClass = StyleManagerThemeSettings.surfaceHelp();
-	const surfaceSummaryClass = StyleManagerThemeSettings.surfaceSummary();
-	const surfaceBadgeClass = StyleManagerThemeSettings.surfaceBadge();
-	const itemClass = StyleManagerThemeSettings.item();
-	const itemColumnClass = StyleManagerThemeSettings.item(true);
-	const metaClass = StyleManagerThemeSettings.meta();
-	const metaEyebrowClass = StyleManagerThemeSettings.metaEyebrow();
-	const titleClass = StyleManagerThemeSettings.title();
-	const helpClass = StyleManagerThemeSettings.help();
-	const controlClass = StyleManagerThemeSettings.control();
+	const formClass = $derived(['c-theme-settings', classNameStr].filter(Boolean).join(' '));
+	const surfaceClass = 'c-theme-settings__surface';
+	const surfaceHeadingClass = 'c-theme-settings__surface-heading';
+	const surfaceEyebrowClass = 'c-theme-settings__surface-eyebrow';
+	const surfaceTitleClass = 'c-theme-settings__surface-title';
+	const surfaceHelpClass = 'c-theme-settings__surface-help';
+	const surfaceSummaryClass = 'c-theme-settings__surface-summary';
+	const surfaceBadgeClass = 'c-theme-settings__surface-badge';
+	const itemClass = 'c-theme-settings__item';
+	const itemColumnClass = 'c-theme-settings__item c-theme-settings__item--column';
+	const metaClass = 'c-theme-settings__meta';
+	const metaEyebrowClass = 'c-theme-settings__meta-eyebrow';
+	const titleClass = 'c-theme-settings__title';
+	const helpClass = 'c-theme-settings__help';
+	const controlClass = 'c-theme-settings__control';
 	const modeToggleProps = $derived({
 		...modeToggleRecipeProps,
-		defaultScheme: state.localThemeScheme
+		themeScheme: state.localThemeScheme
 	});
 	const switcherProps = $derived({
 		compact: false,
@@ -57,9 +71,9 @@
 		showLabels: true,
 		...switcherRecipeProps
 	});
-	const switcherThemes = $derived([...resolvedContract.themes]);
+	const switcherThemes = $derived([...resolvedSettings.themes]);
 	const modeDescription = $derived(
-		resolvedContract.modeSection.description || state.localThemeMode
+		resolvedSettings.modeSection.description || state.localThemeMode
 	);
 
 	const currentModeLabel = $derived(formatLabel(themeContext?.themeMode ?? state.localThemeMode));
@@ -88,13 +102,13 @@
 		{/snippet}
 
 		{#snippet content(themeContext)}
-			{#if resolvedContract.modeSection.show}
+			{#if resolvedSettings.modeSection.show}
 				<div class={itemClass}>
 					<div class={metaClass}>
 						<div class={metaEyebrowClass}>Display Mode</div>
-						<div class={titleClass}>{resolvedContract.modeSection.title}</div>
+						<div class={titleClass}>{resolvedSettings.modeSection.title}</div>
 						<div class={helpClass}>
-							{resolvedContract.modeSection.description ||
+							{resolvedSettings.modeSection.description ||
 								themeContext?.themeMode ||
 								modeDescription}
 						</div>
@@ -102,19 +116,19 @@
 					<div class={controlClass}>
 						<ThemeModeToggle
 							{...modeToggleProps}
-							currentTheme={state.localThemeMode}
-							onThemeChange={handleModeChange}
+							themeMode={state.localThemeMode}
+							onThemeModeChange={handleModeChange}
 						/>
 					</div>
 				</div>
 			{/if}
 
-			{#if resolvedContract.schemeSection.show}
+			{#if resolvedSettings.schemeSection.show}
 				<div class={itemColumnClass}>
 					<div class={metaClass}>
 						<div class={metaEyebrowClass}>Palette</div>
-						<div class={titleClass}>{resolvedContract.schemeSection.title}</div>
-						<div class={helpClass}>{resolvedContract.schemeSection.description}</div>
+						<div class={titleClass}>{resolvedSettings.schemeSection.title}</div>
+						<div class={helpClass}>{resolvedSettings.schemeSection.description}</div>
 					</div>
 					<div class={controlClass}>
 						<ThemeSwitcher
@@ -122,10 +136,10 @@
 							compact={switcherProps.compact}
 							showHeader={switcherProps.showHeader}
 							showLabels={switcherProps.showLabels}
-							currentScheme={state.localThemeScheme}
+							themeScheme={state.localThemeScheme}
 							themes={switcherThemes}
 							themeMode={effectiveThemeMode}
-							onSchemeChange={handleSchemeChange}
+							onThemeSchemeChange={handleSchemeChange}
 						/>
 					</div>
 				</div>

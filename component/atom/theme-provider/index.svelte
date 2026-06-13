@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { ThemeProviderRecipe } from '$stylist/theme/interface/recipe/theme-provider';
+	import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 	import createThemeProviderState from '$stylist/theme/function/state/theme-provider/index.svelte';
 
-	let props: ThemeProviderRecipe = $props();
+	let props: RecipeThemeProvider = $props();
 	const state = createThemeProviderState(props);
 
 	const restProps = $derived(
 		(() => {
 			const {
-				initialMode: _initialMode,
-				initialScheme: _initialScheme,
+				themeMode: _themeMode,
+				themeScheme: _themeScheme,
 				class: _class,
 				children: _children,
 				...rest

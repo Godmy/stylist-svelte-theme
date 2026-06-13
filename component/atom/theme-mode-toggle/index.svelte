@@ -1,55 +1,22 @@
 <script lang="ts">
 	import Icon from '$stylist/media/component/atom/icon/index.svelte';
-	import { StyleManagerThemeModeToggle } from '$stylist/theme/class/style-manager/theme-mode-toggle';
 	import createThemeModeToggleState from '$stylist/theme/function/state/theme-mode-toggle/index.svelte';
-	import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
-	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
-	import type { ThemeModeToggleRecipe } from '$stylist/theme/interface/recipe/theme-mode-toggle';
-	import darkModeSvg from '$stylist/theme/data/svg/dark-mode.svg?raw';
-	import lightModeSvg from '$stylist/theme/data/svg/light-mode.svg?raw';
+	import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
 
-	let props: ThemeModeToggleRecipe = $props();
-	const themeContext = ManagerThemeContext.getOptional();
-
-	const state = createThemeModeToggleState(
-		props,
-		() => props.defaultScheme ?? themeContext?.themeScheme,
-		themeContext?.setMode
-	);
-
-	const restProps = $derived(
-		(() => {
-			const {
-				class: _class,
-				disabled: _disabled,
-				size: _size,
-				checked: _checked,
-				darkMode: _darkMode,
-				onToggle: _onToggle,
-				currentTheme: _currentTheme,
-				showLabels: _showLabels,
-				onThemeChange: _onThemeChange,
-				defaultScheme: _defaultScheme,
-				...rest
-			} = props;
-			return rest;
-		})()
-	);
-
-	const iconSvg = $derived(resolveThemeMode(state.theme) === 'dark' ? darkModeSvg : lightModeSvg);
-	const resolvedMode = $derived(resolveThemeMode(state.theme));
+	let props: RecipeThemeModeToggle = $props();
+	const state = createThemeModeToggleState(props);
 </script>
 
 <button
 	type="button"
-	class={StyleManagerThemeModeToggle.root(props.class)}
+	class={state.className}
 	onclick={state.cycleTheme}
 	aria-label={state.ariaLabel}
-	disabled={props.disabled}
-	data-resolved-mode={resolvedMode}
-	{...restProps}
+	disabled={state.disabled}
+	data-resolved-mode={state.resolvedMode}
+	{...state.restProps}
 >
-	<Icon svg={iconSvg} size={16} class="c-theme-mode-toggle__icon" />
+	<Icon svg={state.iconSvg} size={16} class="c-theme-mode-toggle__icon" />
 </button>
 
 <style>

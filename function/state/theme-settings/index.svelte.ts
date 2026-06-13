@@ -1,27 +1,27 @@
-﻿import type { ContractThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
+import type { RecipeThemeSettings } from '$stylist/theme/interface/recipe/theme-settings';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
-function createThemeSettingsState(getContract: () => ContractThemeSettingsViewModel) {
-	let localThemeMode = $state<TokenThemeMode>(getContract().themeMode);
-	let localThemeScheme = $state<TokenThemeScheme>(getContract().themeScheme);
+function createThemeSettingsState(getSettings: () => RecipeThemeSettings) {
+	let localThemeMode = $state<TokenThemeMode>(getSettings().themeMode);
+	let localThemeScheme = $state<TokenThemeScheme>(getSettings().themeScheme);
 
 	$effect(() => {
-		const contract = getContract();
-		localThemeMode = contract.themeMode;
-		localThemeScheme = contract.themeScheme;
+		const settings = getSettings();
+		localThemeMode = settings.themeMode;
+		localThemeScheme = settings.themeScheme;
 	});
 
 	function handleThemeModeChange(nextTheme: TokenThemeMode) {
 		localThemeMode = nextTheme;
-		const contract = getContract();
-		contract.onThemeModeChange?.(nextTheme);
+		const settings = getSettings();
+		settings.onThemeModeChange?.(nextTheme);
 	}
 
 	function handleThemeSchemeChange(nextTheme: TokenThemeScheme) {
 		localThemeScheme = nextTheme;
-		const contract = getContract();
-		contract.onThemeSchemeChange?.(nextTheme);
+		const settings = getSettings();
+		settings.onThemeSchemeChange?.(nextTheme);
 	}
 
 	return {

@@ -1,11 +1,12 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export type { ContractThemeContext, ContractThemeSettingsViewModel } from './contract';
+export type { BehaviorTheme, BehaviorThemeMode, BehaviorThemeScheme } from './behavior';
 export type {
-	ThemeConsumerRecipe,
-	ThemeContextRecipe,
-	ThemeModeToggleRecipe,
-	ThemeProviderRecipe,
-	ThemeSettingsRecipe,
-	ThemeSwitcherRecipe
+	RecipeTheme,
+	RecipeThemeConsumer,
+	RecipeThemeContext,
+	RecipeThemeModeToggle,
+	RecipeThemeProvider,
+	RecipeThemeSettings,
+	RecipeThemeSwitcher
 } from './recipe';
-export type { SlotTheme } from './slot';
+export type { SlotClass, SlotTheme, SlotThemeChildren, SlotThemeSettings } from './slot';

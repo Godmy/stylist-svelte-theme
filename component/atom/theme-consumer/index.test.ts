@@ -7,8 +7,8 @@ describe('ThemeConsumer', () => {
 		render(ThemeConsumerHarness);
 
 		const consumer = screen.getByTestId('theme-consumer');
-		expect(consumer.getAttribute('data-theme-mode')).toBe('dark');
-		expect(consumer.getAttribute('data-theme-name')).toBe('dark');
+		expect(consumer.getAttribute('theme-mode')).toBe('dark');
+		expect(consumer.getAttribute('theme-scheme')).toBe('dark');
 		expect(consumer.textContent).toBe('dark');
 	});
 });

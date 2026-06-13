@@ -7,7 +7,7 @@
 
 	const controls: InterfaceControllerSettings[] = [
 		{
-			name: 'currentScheme',
+			name: 'themeScheme',
 			type: 'select',
 			defaultValue: 'minimal',
 			options: ['minimal', 'ocean', 'forest', 'sunset']
@@ -24,15 +24,31 @@
 >
 	{#snippet children(values: any)}
 		<div
-			class="space-y-3 rounded-xl border p-4"
+			class="_c1"
 			style="background:var(--app-bg,#f7f7f9);color:var(--app-text,#171923);border-color:var(--app-line,#d8deea);"
 		>
 			<ThemeSwitcher
-				currentScheme={values.currentScheme}
+				themeScheme={values.themeScheme}
 				showLabels={values.showLabels}
-				onSchemeChange={(theme) => (selectedTheme = theme)}
+				onThemeSchemeChange={(theme) => (selectedTheme = theme)}
 			/>
-			<p class="text-sm">Selected UI theme: {selectedTheme}</p>
+			<p class="_c2">Selected UI theme: {selectedTheme}</p>
 		</div>
 	{/snippet}
 </Story>
+
+<style>
+	._c1 {
+		border-radius: 0.75rem;
+		border-width: 1px;
+		border-style: solid;
+		padding: 1rem;
+	}
+	._c1 > * + * {
+		margin-top: 0.75rem;
+	}
+	._c2 {
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+	}
+</style>

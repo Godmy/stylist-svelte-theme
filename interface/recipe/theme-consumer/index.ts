@@ -1,7 +1,6 @@
-import type { StructIntersectAll } from '$stylist/architecture/type/struct/intersect-all';
-import type { Snippet } from 'svelte';
-import type { ContractThemeContext } from '$stylist/theme/interface/contract/theme-context';
+﻿import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
+import type { RecipeTheme } from '$stylist/theme/interface/recipe/theme';
+import type { SlotThemeChildren } from '$stylist/theme/interface/slot/theme-children';
 
-export interface ThemeConsumerRecipe extends StructIntersectAll<[]> {
-	children: Snippet<[ContractThemeContext | null]>;
-}
+export interface RecipeThemeConsumer
+	extends ComputeIntersectAll<[SlotThemeChildren<RecipeTheme>]> {}

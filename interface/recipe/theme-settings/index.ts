@@ -1,13 +1,34 @@
-import type { StructIntersectAll } from '$stylist/architecture/type/struct/intersect-all';
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { InteractionHTMLAttributes } from '$stylist/interaction/type/struct/interaction/interaction-html-attributes';
-import type { ContractThemeSettingsViewModel } from '$stylist/theme/interface/contract/theme-settings-view-model';
-import type { ThemeModeToggleRecipe } from '$stylist/theme/interface/recipe/theme-mode-toggle';
-import type { ThemeSwitcherRecipe } from '$stylist/theme/interface/recipe/theme-switcher';
+import type { BehaviorThemeMode } from '$stylist/theme/interface/behavior/theme-mode';
+import type { BehaviorThemeScheme } from '$stylist/theme/interface/behavior/theme-scheme';
+import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
+import type { RecipeThemeSwitcher } from '$stylist/theme/interface/recipe/theme-switcher';
+import type { SlotClass } from '$stylist/theme/interface/slot/class';
+import type { SlotThemeSettings } from '$stylist/theme/interface/slot/theme-settings';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';
 
-export interface ThemeSettingsRecipe
-	extends StructIntersectAll<[InteractionHTMLAttributes<HTMLFormElement>]> {
-	contract: ContractThemeSettingsViewModel;
-	modeToggleProps?: Partial<ThemeModeToggleRecipe>;
-	switcherProps?: Partial<ThemeSwitcherRecipe>;
-	class?: string;
+export interface RecipeThemeSettings
+	extends ComputeIntersectAll<
+		[
+			SlotClass,
+			SlotThemeSettings,
+			BehaviorThemeMode,
+			BehaviorThemeScheme,
+			Omit<InteractionHTMLAttributes<HTMLFormElement>, 'class'>
+		]
+	> {
+	themes: readonly ThemeSchemeDefinition[];
+	modeSection: {
+		show: boolean;
+		title: string;
+		description: string;
+	};
+	schemeSection: {
+		show: boolean;
+		title: string;
+		description: string;
+	};
+	modeToggleProps?: Partial<RecipeThemeModeToggle>;
+	switcherProps?: Partial<RecipeThemeSwitcher>;
 }

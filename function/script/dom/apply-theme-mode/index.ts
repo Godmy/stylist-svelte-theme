@@ -21,7 +21,7 @@ export function applyThemeMode(
 
 	target.classList.remove('light', 'dark', 'default');
 	target.classList.add(resolvedMode);
-	target.setAttribute('data-theme', resolvedMode);
+	target.setAttribute('theme-mode', resolvedMode);
 
 	return resolvedMode;
 }

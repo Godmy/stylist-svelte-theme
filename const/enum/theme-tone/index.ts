@@ -1,12 +1,3 @@
-export const TOKEN_THEME_TONE = [
-	'default',
-	'neutral',
-	'primary',
-	'secondary',
-	'tertiary',
-	'success',
-	'info',
-	'warning',
-	'danger',
-	'error'
-] as const;
+import { TOKEN_COLOR_TONE } from '$stylist/color/const/enum/tone';
+
+export const TOKEN_THEME_TONE = TOKEN_COLOR_TONE;

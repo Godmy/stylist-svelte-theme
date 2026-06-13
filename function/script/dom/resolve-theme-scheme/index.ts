@@ -7,7 +7,7 @@ export function resolveThemeScheme(
 ): TokenThemeScheme | undefined {
 	if (defaultScheme) return defaultScheme;
 
-	const rawScheme = target.getAttribute('data-scheme');
+	const rawScheme = target.getAttribute('theme-scheme');
 	if (!rawScheme) return undefined;
 
 	return TOKEN_THEME_SCHEME.includes(rawScheme as TokenThemeScheme)
