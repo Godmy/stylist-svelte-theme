@@ -1,5 +1,6 @@
+import type { SlotInteraction } from '$stylist/interaction/interface/slot/interaction';
+import type { HTMLAttributes } from 'svelte/elements';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
-import type { InteractionHTMLAttributes } from '$stylist/interaction/type/struct/interaction/interaction-html-attributes';
 import type { BehaviorThemeMode } from '$stylist/theme/interface/behavior/theme-mode';
 import type { BehaviorThemeScheme } from '$stylist/theme/interface/behavior/theme-scheme';
 import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
@@ -15,7 +16,7 @@ export interface RecipeThemeSettings
 			SlotThemeSettings,
 			BehaviorThemeMode,
 			BehaviorThemeScheme,
-			Omit<InteractionHTMLAttributes<HTMLFormElement>, 'class'>
+			Omit<HTMLAttributes<HTMLFormElement>, 'class'> & SlotInteraction
 		]
 	> {
 	themes: readonly ThemeSchemeDefinition[];

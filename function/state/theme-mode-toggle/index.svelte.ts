@@ -1,5 +1,4 @@
 import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
-import { mergeClassNames } from '$stylist/layout/function/script/merge-class-names';
 import darkModeSvg from '$stylist/theme/data/svg/dark-mode.svg?raw';
 import lightModeSvg from '$stylist/theme/data/svg/light-mode.svg?raw';
 import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
@@ -7,7 +6,6 @@ import { ManagerThemeModeToggle } from '$stylist/theme/class/manager/theme-mode-
 import { applyThemeMode } from '$stylist/theme/function/script/dom/apply-theme-mode';
 import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 
 function createThemeModeToggleState(props: RecipeThemeModeToggle) {
 	const themeContext = ManagerThemeContext.getOptional();
@@ -27,7 +25,9 @@ function createThemeModeToggleState(props: RecipeThemeModeToggle) {
 	const ariaLabel = $derived(ManagerThemeModeToggle.getAriaLabel(label));
 	const resolvedMode = $derived(resolveThemeMode(theme));
 	const iconSvg = $derived(resolvedMode === 'dark' ? darkModeSvg : lightModeSvg);
-	const className = $derived(mergeClassNames('c-theme-mode-toggle', props.class));
+	const className = $derived(
+		props.class ? `c-theme-mode-toggle ${props.class}` : 'c-theme-mode-toggle'
+	);
 	const restProps = $derived(ManagerThemeModeToggle.getButtonRestProps(props));
 	const disabled = $derived(props.disabled);
 

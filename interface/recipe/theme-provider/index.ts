@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'svelte/elements';
-import type { SlotChildren } from '$stylist/architecture/interface/slot/children';
+import type { SlotChildren } from '$stylist/layout/interface/slot/children';
 import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { SlotClass } from '$stylist/theme/interface/slot/class';
 import type { SlotTheme } from '$stylist/theme/interface/slot/theme';

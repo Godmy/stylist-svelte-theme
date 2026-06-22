@@ -7,7 +7,6 @@ import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-the
 import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 import { ManagerTheme } from '$stylist/theme/class/manager/theme';
 import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
-import { mergeClassNames } from '$stylist/layout/function/script/merge-class-names';
 
 function createThemeProviderState(props: RecipeThemeProvider) {
 	let currentMode = $state<TokenThemeMode>(props.themeMode ?? ManagerThemeStorage.getStoredMode());
@@ -55,7 +54,9 @@ function createThemeProviderState(props: RecipeThemeProvider) {
 		applyThemeModeAndScheme(currentMode, currentScheme);
 	});
 
-	const containerClass = $derived(mergeClassNames('c-theme-provider', props.class));
+	const containerClass = $derived(
+		props.class ? `c-theme-provider ${props.class}` : 'c-theme-provider'
+	);
 
 	return {
 		get currentMode() {
