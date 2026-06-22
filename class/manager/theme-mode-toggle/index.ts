@@ -1,7 +1,6 @@
 import { TOKEN_THEME_MODE_STORAGE } from '$stylist/theme/const/value/theme-mode-storage';
 import type { RecipeTheme } from '$stylist/theme/interface/recipe/theme';
 import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
-import type { TokenThemeIcon } from '$stylist/theme/type/enum/icon';
 import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
 
@@ -26,7 +25,7 @@ export class ManagerThemeModeToggle {
 		return theme === 'dark' ? 'light' : 'dark';
 	}
 
-	static getIconName(theme: TokenThemeMode): TokenThemeIcon | 'sparkles' {
+	static getIconName(theme: TokenThemeMode): string {
 		if (theme === 'default') return 'sparkles';
 		if (theme === 'light') return 'light-mode';
 		return 'dark-mode';

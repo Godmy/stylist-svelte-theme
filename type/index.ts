@@ -1,7 +1,6 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type { ComputeIntersectAll } from './compute';
 export type {
-	TokenThemeIcon,
 	TokenThemeMode,
 	TokenThemeScheme,
 	TokenThemeTone,
