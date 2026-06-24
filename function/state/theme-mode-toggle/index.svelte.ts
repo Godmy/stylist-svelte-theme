@@ -1,7 +1,9 @@
 import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
-import darkModeSvg from '$stylist/theme/data/svg/dark-mode.svg?raw';
-import lightModeSvg from '$stylist/theme/data/svg/light-mode.svg?raw';
+import { TOKEN_ICON_REGISTRY } from '$stylist/svg/const/record/icon-registry';
 import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
+
+const darkModeSvg = TOKEN_ICON_REGISTRY['dark-mode'];
+const lightModeSvg = TOKEN_ICON_REGISTRY['light-mode'];
 import { ManagerThemeModeToggle } from '$stylist/theme/class/manager/theme-mode-toggle';
 import { applyThemeMode } from '$stylist/theme/function/script/dom/apply-theme-mode';
 import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
