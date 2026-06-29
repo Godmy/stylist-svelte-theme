@@ -3,8 +3,8 @@ import { TOKEN_THEME_CONTEXT } from '$stylist/theme/const/value/theme-context';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 import type { RecipeTheme } from '$stylist/theme/interface/recipe/theme';
 import type { Theme } from '$stylist/theme/type/object/theme';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 
 export class ManagerThemeContext {
 	/**

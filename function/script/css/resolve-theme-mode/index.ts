@@ -1,4 +1,4 @@
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
 import { ManagerTheme } from '$stylist/theme/class/manager/theme';
 
 export function resolveThemeMode(mode: TokenThemeMode): 'light' | 'dark' {

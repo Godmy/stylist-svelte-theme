@@ -1,11 +1,11 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export type { ComputeIntersectAll } from './compute';
 export type {
 	TokenThemeMode,
 	TokenThemeScheme,
 	TokenThemeTone,
 	TokenTokenValue
-} from './enum';
+} from './alias';
+export type { ComputeIntersectAll } from './compute';
 export type {
 	Theme,
 	ThemeColorBackground,

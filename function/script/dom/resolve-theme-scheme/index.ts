@@ -1,5 +1,5 @@
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
-import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/enum/theme-scheme';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
+import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/array/theme-scheme';
 
 export function resolveThemeScheme(
 	target: HTMLElement,

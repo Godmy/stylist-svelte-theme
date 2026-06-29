@@ -1,5 +1,5 @@
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 import { applyThemeToDOM } from '$stylist/theme/function/script/css/apply-theme-to-dom';
 import { resolveTargetElement } from '$stylist/theme/function/script/resolve-target-element';
 import { ManagerThemeResolver } from '$stylist/theme/class/manager/theme-resolver';

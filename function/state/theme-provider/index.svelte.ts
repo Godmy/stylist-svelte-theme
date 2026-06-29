@@ -1,6 +1,6 @@
 import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 import { applyThemeModeAndScheme } from '$stylist/theme/function/script/dom/apply-theme-mode-and-scheme';
 import { ManagerThemeResolver } from '$stylist/theme/class/manager/theme-resolver';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';

@@ -1,6 +1,6 @@
 import type { RecipeThemeSettings } from '$stylist/theme/interface/recipe/theme-settings';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 
 function createThemeSettingsState(getSettings: () => RecipeThemeSettings) {
 	let localThemeMode = $state<TokenThemeMode>(getSettings().themeMode);

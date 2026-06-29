@@ -1,6 +1,6 @@
 import { THEME_SCHEMES } from '$stylist/theme/const/record/theme-schemes';
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 
 export const RECORD_THEME_SCHEME: Record<TokenThemeScheme, ThemeSchemeDefinition> =
 	THEME_SCHEMES.reduce(

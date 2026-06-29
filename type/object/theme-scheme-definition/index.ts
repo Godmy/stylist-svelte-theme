@@ -1,4 +1,4 @@
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 import type { Theme } from '$stylist/theme/type/object/theme';
 
 export type ThemeSchemeDefinition = {

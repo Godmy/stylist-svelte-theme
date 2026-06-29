@@ -1,5 +1,5 @@
 import { INTERACTION_MOTION } from '$stylist/interaction/const/record/interaction-motion';
-import { TOKEN_LAYOUT_SIZE } from '$stylist/layout/const/enum/layout-size';
+import { TOKEN_LAYOUT_SIZE } from '$stylist/layout/const/array/layout-size';
 import { LAYOUT_GRADIENTS } from '$stylist/layout/const/record/layout-gradients';
 import { LAYOUT_ELEVATION_SEMANTIC } from '$stylist/layout/const/record/layout-elevation-semantic';
 import { LAYOUT_THEME } from '$stylist/layout/const/record/layout-theme';

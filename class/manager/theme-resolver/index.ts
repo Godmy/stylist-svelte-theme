@@ -1,11 +1,11 @@
 import { RECORD_THEME_SCHEME } from '$stylist/theme/const/record/theme-scheme';
-import { TOKEN_THEME_MODE } from '$stylist/theme/const/enum/theme-mode';
-import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/enum/theme-scheme';
+import { TOKEN_THEME_MODE } from '$stylist/theme/const/array/theme-mode';
+import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/array/theme-scheme';
 import { applyThemeToDOM } from '$stylist/theme/function/script/css/apply-theme-to-dom';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 import type { Theme } from '$stylist/theme/type/object/theme';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 
 export class ManagerThemeResolver {
 	/**

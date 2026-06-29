@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Story from '$stylist/playground/component/molecule/story/index.svelte';
 	import type { InterfaceControllerSettings } from '$stylist/playground/type/struct/interface-controller-settings';
-	import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-	import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+	import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
+	import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 	import ThemeModeToggle from './index.svelte';
 
 	type ThemeModeToggleStoryProps = {

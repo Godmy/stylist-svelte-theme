@@ -1,5 +1,5 @@
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
 import { getPreviewTheme } from '$stylist/theme/function/script/theme-switcher';
 
 export function getSurfaceStyle(item: ThemeSchemeDefinition, themeMode: TokenThemeMode) {

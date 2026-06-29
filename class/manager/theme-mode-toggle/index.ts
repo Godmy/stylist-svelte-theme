@@ -1,8 +1,8 @@
 import { TOKEN_THEME_MODE_STORAGE } from '$stylist/theme/const/value/theme-mode-storage';
 import type { RecipeTheme } from '$stylist/theme/interface/recipe/theme';
 import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 
 export class ManagerThemeModeToggle {
 	static readonly modes: TokenThemeMode[] = ['default', 'light', 'dark'];

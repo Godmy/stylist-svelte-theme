@@ -1,9 +1,9 @@
-import { TOKEN_THEME_MODE } from '$stylist/theme/const/enum/theme-mode';
-import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/enum/theme-scheme';
+import { TOKEN_THEME_MODE } from '$stylist/theme/const/array/theme-mode';
+import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/array/theme-scheme';
 import { THEME_STORAGE_CONTRACT } from '$stylist/theme/const/record/theme-storage-contract';
 import type { ThemeStorageContract } from '$stylist/theme/type/object/theme-storage';
-import type { TokenThemeMode } from '$stylist/theme/type/enum/theme-mode';
-import type { TokenThemeScheme } from '$stylist/theme/type/enum/theme-scheme';
+import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 import type { SlotThemeSettings } from '$stylist/theme/interface/slot/theme-settings';
 
 export class ManagerThemeStorage {

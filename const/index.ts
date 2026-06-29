@@ -4,7 +4,7 @@ export {
 	TOKEN_THEME_SCHEME,
 	TOKEN_THEME_TONE,
 	TOKEN_TOKEN_VALUE
-} from './enum';
+} from './array';
 export {
 	RECORD_THEME_MODE,
 	RECORD_THEME_SCHEME,
