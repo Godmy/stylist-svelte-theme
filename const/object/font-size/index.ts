@@ -1,4 +1,4 @@
-export const RECORD_FONT_SIZE = {
+export const TOKEN_FONT_SIZE = {
 	'3': '0.75rem',
 	'4': '1rem',
 	'5': '1.25rem',

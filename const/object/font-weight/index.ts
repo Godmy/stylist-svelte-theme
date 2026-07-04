@@ -1,4 +1,4 @@
-export const RECORD_FONT_WEIGHT = {
+export const TOKEN_FONT_WEIGHT = {
 	thin: '100',
 	extralight: '200',
 	light: '300',

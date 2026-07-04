@@ -1,4 +1,4 @@
-export const RECORD_BORDER_RADIUS = {
+export const TOKEN_BORDER_RADIUS = {
 	none: '0',
 	sm: '0.125rem',
 	base: '0.25rem',

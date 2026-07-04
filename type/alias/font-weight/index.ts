@@ -1,3 +1,3 @@
-import { TOKEN_FONT_WEIGHT } from '$stylist/theme/const/array/font-weight';
+import { TOKEN_FONT_WEIGHT } from '$stylist/theme/const/object/font-weight';
 
-export type TokenFontWeight = (typeof TOKEN_FONT_WEIGHT)[number];
+export type TokenFontWeight = keyof typeof TOKEN_FONT_WEIGHT;

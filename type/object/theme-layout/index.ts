@@ -1,5 +1,5 @@
 import type { TOKEN_OPACITY } from '$stylist/theme/const/object/opacity';
-import type { RECORD_BORDER_RADIUS } from '$stylist/theme/const/record/border-radius';
+import type { TOKEN_BORDER_RADIUS } from '$stylist/theme/const/object/border-radius';
 import type { RECORD_ELEVATION } from '$stylist/theme/const/record/elevation';
 import type { RECORD_SPACING } from '$stylist/theme/const/record/spacing';
 import type { TOKEN_Z_INDEX } from '$stylist/theme/const/object/z-index';
@@ -9,5 +9,5 @@ export type ThemeLayout = {
 	opacity: typeof TOKEN_OPACITY;
 	spacing: typeof RECORD_SPACING;
 	boxShadow: Record<keyof typeof RECORD_ELEVATION, string>;	
-	borderRadius: Record<keyof typeof RECORD_BORDER_RADIUS, string>;
+	borderRadius: Record<keyof typeof TOKEN_BORDER_RADIUS, string>;
 };

@@ -27,8 +27,8 @@ export type {
 	ThemeColorBorder,
 	ThemeColorSurfaceTint,
 	ThemeColorText,
+	ThemeColors,
 	ThemeLayout,
 	ThemeSchemeDefinition,
 	ThemeStorageContract
 } from './object';
-export type { ThemeColors } from './struct';

@@ -1,3 +1,3 @@
-import { TOKEN_FONT_SIZE } from '$stylist/theme/const/array/font-size';
+import { TOKEN_FONT_SIZE } from '$stylist/theme/const/object/font-size';
 
-export type TokenFontSize = (typeof TOKEN_FONT_SIZE)[number];
+export type TokenFontSize = keyof typeof TOKEN_FONT_SIZE;

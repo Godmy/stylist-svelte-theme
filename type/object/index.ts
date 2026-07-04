@@ -4,6 +4,7 @@ export type { ThemeColorBackground } from './theme-color-background';
 export type { ThemeColorBorder } from './theme-color-border';
 export type { ThemeColorSurfaceTint } from './theme-color-surface-tint';
 export type { ThemeColorText } from './theme-color-text';
+export type { ThemeColors } from './theme-colors';
 export type { ThemeLayout } from './theme-layout';
 export type { ThemeSchemeDefinition } from './theme-scheme-definition';
 export type { ThemeStorageContract } from './theme-storage';

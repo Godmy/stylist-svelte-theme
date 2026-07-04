@@ -1,5 +1,4 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export { RECORD_BORDER_RADIUS } from './border-radius';
 export {
 	COLORS_SCALES_AMBER,
 	COLORS_SCALES_BLUE,
