@@ -1,6 +1,6 @@
 import type { RecipeThemePalette } from '$stylist/theme/interface/recipe/theme-palette';
 
-export class ObjectManagerThemePalette {
+export class ManagerThemePalette {
 	static resolveColors(props: RecipeThemePalette) {
 		return props.colors ?? [];
 	}

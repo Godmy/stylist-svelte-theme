@@ -1,13 +1,13 @@
-import { ObjectManagerThemePalette } from '$stylist/theme/class/object-manager/theme-palette';
+import { ManagerThemePalette } from '$stylist/theme/class/manager/theme-palette';
 import type { RecipeThemePalette } from '$stylist/theme/interface/recipe/theme-palette';
 import type { SlotThemePaletteColor } from '$stylist/theme/interface/slot/theme-palette-color';
 
 export function createThemePaletteState(props: RecipeThemePalette) {
-	const colors = $derived(ObjectManagerThemePalette.resolveColors(props));
-	const title = $derived(ObjectManagerThemePalette.resolveTitle(props));
-	const showLabels = $derived(ObjectManagerThemePalette.resolveShowLabels(props));
-	const showValues = $derived(ObjectManagerThemePalette.resolveShowValues(props));
-	const columns = $derived(ObjectManagerThemePalette.resolveColumns(props));
+	const colors = $derived(ManagerThemePalette.resolveColors(props));
+	const title = $derived(ManagerThemePalette.resolveTitle(props));
+	const showLabels = $derived(ManagerThemePalette.resolveShowLabels(props));
+	const showValues = $derived(ManagerThemePalette.resolveShowValues(props));
+	const columns = $derived(ManagerThemePalette.resolveColumns(props));
 
 	const containerClasses = $derived(['c-theme-palette', props.class].filter(Boolean).join(' '));
 	const headerClasses = $derived(

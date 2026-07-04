@@ -1,15 +1,15 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export {
+	ManagerColorSwatch,
 	ManagerTheme,
 	ManagerThemeCSS,
 	ManagerThemeContext,
 	ManagerThemeModeToggle,
+	ManagerThemePalette,
 	ManagerThemeResolver,
 	ManagerThemeSettings,
 	ManagerThemeStorage,
-	ManagerThemeSwitcher,
-	ObjectManagerColorSwatch,
-	ObjectManagerThemePalette
+	ManagerThemeSwitcher
 } from './class';
 export {
 	ColorPicker,

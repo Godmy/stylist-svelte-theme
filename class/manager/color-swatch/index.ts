@@ -1,6 +1,6 @@
 import type { RecipeThemeColorSwatch } from '$stylist/theme/interface/recipe/color-swatch';
 
-export class ObjectManagerColorSwatch {
+export class ManagerColorSwatch {
 	static resolveColor(props: RecipeThemeColorSwatch): string {
 		return String(props.color ?? '#0ea5e9');
 	}
