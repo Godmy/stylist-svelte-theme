@@ -1,7 +1,7 @@
 import { TOKEN_THEME_MODE } from '$stylist/theme/const/array/theme-mode';
 import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/array/theme-scheme';
 import { THEME_STORAGE_CONTRACT } from '$stylist/theme/const/record/theme-storage-contract';
-import type { ThemeStorageContract } from '$stylist/theme/type/object/theme-storage';
+import type { ThemeStorageContract } from '$stylist/theme/type/struct/theme-storage';
 import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 import type { SlotThemeSettings } from '$stylist/theme/interface/slot/theme-settings';

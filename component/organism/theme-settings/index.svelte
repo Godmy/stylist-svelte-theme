@@ -6,7 +6,7 @@
 	import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 	import ThemeModeToggle from '$stylist/theme/component/atom/theme-mode-toggle/index.svelte';
 	import ThemeSwitcher from '$stylist/theme/component/molecule/theme-switcher/index.svelte';
-	import ThemeSurface from '$stylist/layout/component/molecule/theme-surface/index.svelte';
+	import ThemeSurface from '$stylist/theme/component/molecule/theme-surface/index.svelte';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 
 	let {

@@ -9,3 +9,7 @@ export {
 	ManagerThemeStorage,
 	ManagerThemeSwitcher
 } from './manager';
+export {
+	ObjectManagerColorSwatch,
+	ObjectManagerThemePalette
+} from './object-manager';

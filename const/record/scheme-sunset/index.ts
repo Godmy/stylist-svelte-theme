@@ -1,9 +1,9 @@
-import { COLORS_SCALES_AMBER } from '$stylist/color/const/record/colors-scales/amber';
-import { COLORS_SCALES_SLATE } from '$stylist/color/const/record/colors-scales/slate';
-import { TOKEN_COLOR } from '$stylist/color/const/map/color';
+import { COLORS_SCALES_AMBER } from '$stylist/theme/const/record/colors-scales/amber';
+import { COLORS_SCALES_SLATE } from '$stylist/theme/const/record/colors-scales/slate';
+import { TOKEN_COLOR } from '$stylist/theme/const/object/color';
 import { THEME_MODE_DARK } from '$stylist/theme/const/record/theme-mode-dark';
 import { THEME_MODE_LIGHT } from '$stylist/theme/const/record/theme-mode-light';
-import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/struct/theme-scheme-definition';
 
 export const SCHEME_SUNSET: ThemeSchemeDefinition & {
 	light: typeof THEME_MODE_LIGHT;

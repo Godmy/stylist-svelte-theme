@@ -1,9 +1,9 @@
-import { INTERACTION_MOTION } from '$stylist/interaction/const/record/interaction-motion';
-import { TOKEN_LAYOUT_SIZE } from '$stylist/layout/const/array/layout-size';
-import { LAYOUT_GRADIENTS } from '$stylist/layout/const/record/layout-gradients';
-import { LAYOUT_ELEVATION_SEMANTIC } from '$stylist/layout/const/record/layout-elevation-semantic';
-import { LAYOUT_THEME } from '$stylist/layout/const/record/layout-theme';
-import type { Theme } from '$stylist/theme/type/object/theme';
+import { INTERACTION_MOTION } from '$stylist/theme/const/record/interaction-motion';
+import { TOKEN_LAYOUT_SIZE } from '$stylist/theme/const/array/layout-size';
+import { LAYOUT_GRADIENTS } from '$stylist/theme/const/record/layout-gradients';
+import { LAYOUT_ELEVATION_SEMANTIC } from '$stylist/theme/const/record/layout-elevation-semantic';
+import { THEME_LAYOUT } from '$stylist/theme/const/record/theme-layout';
+import type { Theme } from '$stylist/theme/type/struct/theme';
 
 export class ManagerThemeCSS {
 	static applyVars(theme: Theme, element: HTMLElement = document.documentElement): void {
@@ -39,7 +39,7 @@ export class ManagerThemeCSS {
 			size: TOKEN_LAYOUT_SIZE,
 			gradients: LAYOUT_GRADIENTS,
 			elevation: LAYOUT_ELEVATION_SEMANTIC,
-			layout: LAYOUT_THEME
+			layout: THEME_LAYOUT
 		};
 		const flatten = (obj: Record<string, unknown>, prefix: string): void => {
 			for (const [key, value] of Object.entries(obj)) {
@@ -122,7 +122,7 @@ export class ManagerThemeCSS {
 			size: TOKEN_LAYOUT_SIZE,
 			gradients: LAYOUT_GRADIENTS,
 			elevation: LAYOUT_ELEVATION_SEMANTIC,
-			layout: LAYOUT_THEME
+			layout: THEME_LAYOUT
 		};
 		const collectKeys = (obj: Record<string, unknown>, prefix: string): void => {
 			for (const [key, value] of Object.entries(obj)) {

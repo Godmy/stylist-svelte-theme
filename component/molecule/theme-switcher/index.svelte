@@ -6,7 +6,6 @@
 	import { getPreviewTheme } from '$stylist/theme/function/script/theme-switcher';
 	import { getSurfaceStyle } from '$stylist/theme/function/script/get-surface-style';
 	import { getSwatchStyle } from '$stylist/theme/function/script/get-swatch-style';
-	import { mergeClassNames } from '$stylist/layout/function/script/merge-class-names';
 
 	let props: RecipeThemeSwitcher = $props();
 	const themeContext = ManagerThemeContext.getOptional();
@@ -17,7 +16,7 @@
 	);
 </script>
 
-<div class={mergeClassNames('c-theme-switcher', state.hostClass)} {...state.restProps}>
+<div class={['c-theme-switcher', state.hostClass].filter(Boolean).join(' ')} {...state.restProps}>
 	{#if state.showHeader}
 		<div class="c-theme-switcher__title">
 			<BaseIcon name="palette" size={16} />
@@ -25,18 +24,22 @@
 		</div>
 	{/if}
 	<div
-		class={mergeClassNames(
+		class={[
 			'c-theme-switcher__list',
 			state.compact && 'c-theme-switcher__list--compact'
-		)}
+		]
+			.filter(Boolean)
+			.join(' ')}
 	>
 		{#each state.resolvedThemes as item}
 			<button
 				type="button"
-				class={mergeClassNames(
+				class={[
 					'c-theme-switcher__item',
 					state.scheme === item.id && 'c-theme-switcher__item--active'
-				)}
+				]
+					.filter(Boolean)
+					.join(' ')}
 				onclick={() => state.setScheme(item.id)}
 				aria-pressed={state.scheme === item.id}
 			>
@@ -48,10 +51,12 @@
 						{/if}
 					</div>
 					<span
-						class={mergeClassNames(
+						class={[
 							'c-theme-switcher__badge',
 							state.scheme === item.id && 'c-theme-switcher__badge--active'
-						)}
+						]
+							.filter(Boolean)
+							.join(' ')}
 					>
 						{state.scheme === item.id ? 'Active' : 'Preview'}
 					</span>

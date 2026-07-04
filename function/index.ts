@@ -1,4 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
+export { resolveAriaLabel } from './resolve';
 export {
 	applyThemeMode,
 	applyThemeModeAndScheme,
@@ -14,10 +15,14 @@ export {
 	toggleThemeMode
 } from './script';
 export {
+	createColorPickerState,
+	createColorSwatchState,
 	createThemeConsumerState,
 	createThemeContextState,
 	createThemeModeToggleState,
+	createThemePaletteState,
 	createThemeProviderState,
 	createThemeSettingsState,
+	createThemeSurfaceState,
 	createThemeSwitcherState
 } from './state';

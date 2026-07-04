@@ -1,12 +1,12 @@
-import { COLORS_SCALES_AMBER } from '$stylist/color/const/record/colors-scales/amber';
-import { COLORS_SCALES_BLUE } from '$stylist/color/const/record/colors-scales/blue';
-import { COLORS_SCALES_NEUTRAL } from '$stylist/color/const/record/colors-scales/neutral';
-import { COLORS_SCALES_RED } from '$stylist/color/const/record/colors-scales/red';
-import { COLORS_SCALES_SLATE } from '$stylist/color/const/record/colors-scales/slate';
-import { COLORS_SCALES_TEAL } from '$stylist/color/const/record/colors-scales/teal';
-import { TOKEN_COLOR } from '$stylist/color/const/map/color';
-import type { Theme } from '$stylist/theme/type/object/theme';
-import { THEME_TYPOGRAPHY } from '$stylist/typography/const/record/theme-typography';
+import { COLORS_SCALES_AMBER } from '$stylist/theme/const/record/colors-scales/amber';
+import { COLORS_SCALES_BLUE } from '$stylist/theme/const/record/colors-scales/blue';
+import { COLORS_SCALES_NEUTRAL } from '$stylist/theme/const/record/colors-scales/neutral';
+import { COLORS_SCALES_RED } from '$stylist/theme/const/record/colors-scales/red';
+import { COLORS_SCALES_SLATE } from '$stylist/theme/const/record/colors-scales/slate';
+import { COLORS_SCALES_TEAL } from '$stylist/theme/const/record/colors-scales/teal';
+import { TOKEN_COLOR } from '$stylist/theme/const/object/color';
+import type { Theme } from '$stylist/theme/type/struct/theme';
+import { THEME_TYPOGRAPHY } from '$stylist/theme/const/object/theme-typography';
 
 export const THEME_MODE_DARK: Theme & {
 	domain?: {
