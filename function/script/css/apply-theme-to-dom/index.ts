@@ -1,4 +1,4 @@
-import type { Theme } from '$stylist/theme/type/struct/theme';
+import type { Theme } from '$stylist/theme/type/object/theme';
 import { ManagerThemeCSS } from '$stylist/theme/class/manager/theme-css';
 import { resolveTargetElement } from '$stylist/theme/function/script/resolve-target-element';
 

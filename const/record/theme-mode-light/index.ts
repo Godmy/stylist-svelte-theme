@@ -6,7 +6,7 @@ import { COLORS_SCALES_NEUTRAL } from '$stylist/theme/const/record/colors-scales
 import { COLORS_SCALES_RED } from '$stylist/theme/const/record/colors-scales/red';
 import { COLORS_SCALES_SLATE } from '$stylist/theme/const/record/colors-scales/slate';
 import { TOKEN_COLOR } from '$stylist/theme/const/object/color';
-import type { Theme } from '$stylist/theme/type/struct/theme';
+import type { Theme } from '$stylist/theme/type/object/theme';
 import { THEME_TYPOGRAPHY } from '$stylist/theme/const/object/theme-typography';
 
 export const THEME_MODE_LIGHT: Theme & {

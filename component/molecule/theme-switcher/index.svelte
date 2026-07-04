@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { RecipeThemeSwitcher } from '$stylist/theme/interface/recipe/theme-switcher';
-	import BaseIcon from '$stylist/svg/component/atom/icon/index.svelte';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 	import createThemeSwitcherState from '$stylist/theme/function/state/theme-switcher/index.svelte';
 	import { getPreviewTheme } from '$stylist/theme/function/script/theme-switcher';
@@ -19,7 +18,26 @@
 <div class={['c-theme-switcher', state.hostClass].filter(Boolean).join(' ')} {...state.restProps}>
 	{#if state.showHeader}
 		<div class="c-theme-switcher__title">
-			<BaseIcon name="palette" size={16} />
+			<svg
+				class="c-theme-switcher__title-icon"
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"
+			>
+				<circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+				<circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+				<circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+				<circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+				<path
+					d="M12 2C6.5 2 2 6 2 11.2c0 3.9 3.1 7.1 7 7.1h1.6c.8 0 1.4.6 1.4 1.4 0 .7.6 1.3 1.3 1.3h.7c4.4 0 8-3.6 8-8C22 6.9 17.5 2 12 2Z"
+				/>
+			</svg>
 			<span>UI Theme</span>
 		</div>
 	{/if}
@@ -106,6 +124,12 @@
 		gap: 0.5rem;
 		padding-inline: 0.1rem;
 		color: var(--text, var(--color-text-primary));
+	}
+
+	.c-theme-switcher__title-icon {
+		display: block;
+		flex: 0 0 auto;
+		stroke: currentColor;
 	}
 
 	.c-theme-switcher__list {

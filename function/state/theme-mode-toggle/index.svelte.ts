@@ -1,9 +1,5 @@
 import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
-import { TOKEN_ICON_REGISTRY } from '$stylist/svg/const/record/icon-registry';
 import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
-
-const darkModeSvg = TOKEN_ICON_REGISTRY['dark-mode'];
-const lightModeSvg = TOKEN_ICON_REGISTRY['light-mode'];
 import { ManagerThemeModeToggle } from '$stylist/theme/class/manager/theme-mode-toggle';
 import { applyThemeMode } from '$stylist/theme/function/script/dom/apply-theme-mode';
 import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
@@ -26,7 +22,6 @@ function createThemeModeToggleState(props: RecipeThemeModeToggle) {
 	const label = $derived(ManagerThemeModeToggle.getLabel(theme));
 	const ariaLabel = $derived(ManagerThemeModeToggle.getAriaLabel(label));
 	const resolvedMode = $derived(resolveThemeMode(theme));
-	const iconSvg = $derived(resolvedMode === 'dark' ? darkModeSvg : lightModeSvg);
 	const className = $derived(
 		props.class ? `c-theme-mode-toggle ${props.class}` : 'c-theme-mode-toggle'
 	);
@@ -78,9 +73,6 @@ function createThemeModeToggleState(props: RecipeThemeModeToggle) {
 		},
 		get resolvedMode() {
 			return resolvedMode;
-		},
-		get iconSvg() {
-			return iconSvg;
 		},
 		get className() {
 			return className;

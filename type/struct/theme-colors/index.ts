@@ -1,7 +1,7 @@
-import type { ThemeColorBackground } from '$stylist/theme/type/struct/theme-color-background';
-import type { ThemeColorBorder } from '$stylist/theme/type/struct/theme-color-border';
-import type { ThemeColorSurfaceTint } from '$stylist/theme/type/struct/theme-color-surface-tint';
-import type { ThemeColorText } from '$stylist/theme/type/struct/theme-color-text';
+import type { ThemeColorBackground } from '$stylist/theme/type/object/theme-color-background';
+import type { ThemeColorBorder } from '$stylist/theme/type/object/theme-color-border';
+import type { ThemeColorSurfaceTint } from '$stylist/theme/type/object/theme-color-surface-tint';
+import type { ThemeColorText } from '$stylist/theme/type/object/theme-color-text';
 
 export type ThemeColors = {
 	primary: Record<number, string>;

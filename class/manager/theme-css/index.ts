@@ -1,9 +1,9 @@
 import { INTERACTION_MOTION } from '$stylist/theme/const/record/interaction-motion';
-import { TOKEN_LAYOUT_SIZE } from '$stylist/theme/const/array/layout-size';
+import { TOKEN_SIZE_REM } from '$stylist/theme/const/array/size-rem';
 import { LAYOUT_GRADIENTS } from '$stylist/theme/const/record/layout-gradients';
 import { LAYOUT_ELEVATION_SEMANTIC } from '$stylist/theme/const/record/layout-elevation-semantic';
 import { THEME_LAYOUT } from '$stylist/theme/const/record/theme-layout';
-import type { Theme } from '$stylist/theme/type/struct/theme';
+import type { Theme } from '$stylist/theme/type/object/theme';
 
 export class ManagerThemeCSS {
 	static applyVars(theme: Theme, element: HTMLElement = document.documentElement): void {
@@ -36,7 +36,7 @@ export class ManagerThemeCSS {
 		const vars: Record<string, string> = {};
 		const systemTheme = {
 			motion: INTERACTION_MOTION,
-			size: TOKEN_LAYOUT_SIZE,
+			size: TOKEN_SIZE_REM,
 			gradients: LAYOUT_GRADIENTS,
 			elevation: LAYOUT_ELEVATION_SEMANTIC,
 			layout: THEME_LAYOUT
@@ -119,7 +119,7 @@ export class ManagerThemeCSS {
 		const keys: string[] = [];
 		const systemTheme = {
 			motion: INTERACTION_MOTION,
-			size: TOKEN_LAYOUT_SIZE,
+			size: TOKEN_SIZE_REM,
 			gradients: LAYOUT_GRADIENTS,
 			elevation: LAYOUT_ELEVATION_SEMANTIC,
 			layout: THEME_LAYOUT

@@ -1,7 +1,28 @@
 import { RECORD_ELEVATION } from '$stylist/theme/const/record/elevation';
-import type { RecordElevationSemantic } from '$stylist/theme/type/record/elevation-semantic';
 
-export const LAYOUT_ELEVATION_SEMANTIC: RecordElevationSemantic = {
+export const LAYOUT_ELEVATION_SEMANTIC: Record<
+	| 'none'
+	| 'level1'
+	| 'level2'
+	| 'level3'
+	| 'level4'
+	| 'level5'
+	| 'focus'
+	| 'focusStrong'
+	| 'accent'
+	| 'accentStrong'
+	| 'overlay'
+	| 'modal'
+	| 'star'
+	| 'icon'
+	| 'pill'
+	| 'card'
+	| 'cardHover'
+	| 'detail'
+	| 'focusNode'
+	| 'fullscreen',
+	string
+> = {
 	none: RECORD_ELEVATION.none,
 	level1: RECORD_ELEVATION.sm,
 	level2: RECORD_ELEVATION.base,

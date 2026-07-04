@@ -4,7 +4,7 @@ import { COLORS_SCALES_TEAL } from '$stylist/theme/const/record/colors-scales/te
 import { TOKEN_COLOR } from '$stylist/theme/const/object/color';
 import { THEME_MODE_DARK } from '$stylist/theme/const/record/theme-mode-dark';
 import { THEME_MODE_LIGHT } from '$stylist/theme/const/record/theme-mode-light';
-import type { ThemeSchemeDefinition } from '$stylist/theme/type/struct/theme-scheme-definition';
+import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';
 
 export const SCHEME_FOREST: ThemeSchemeDefinition & {
 	light: typeof THEME_MODE_LIGHT;

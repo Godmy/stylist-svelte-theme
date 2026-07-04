@@ -22,22 +22,13 @@ export type {
 export type { ComputeIntersectAll } from './compute';
 export type {
 	ObjectThemeTypography,
-	ThemeLayout
-} from './object';
-export type {
-	RecordBorderRadius,
-	RecordElevation,
-	RecordElevationSemantic,
-	RecordSpacing,
-	RecordZIndex
-} from './record';
-export type {
 	Theme,
 	ThemeColorBackground,
 	ThemeColorBorder,
 	ThemeColorSurfaceTint,
 	ThemeColorText,
-	ThemeColors,
+	ThemeLayout,
 	ThemeSchemeDefinition,
 	ThemeStorageContract
-} from './struct';
+} from './object';
+export type { ThemeColors } from './struct';
