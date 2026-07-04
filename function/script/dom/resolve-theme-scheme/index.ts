@@ -1,0 +1,16 @@
+import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
+import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/array/theme-scheme';
+
+export function resolveThemeScheme(
+	target: HTMLElement,
+	defaultScheme?: TokenThemeScheme
+): TokenThemeScheme | undefined {
+	if (defaultScheme) return defaultScheme;
+
+	const rawScheme = target.getAttribute('theme-scheme');
+	if (!rawScheme) return undefined;
+
+	return TOKEN_THEME_SCHEME.includes(rawScheme as TokenThemeScheme)
+		? (rawScheme as TokenThemeScheme)
+		: undefined;
+}
