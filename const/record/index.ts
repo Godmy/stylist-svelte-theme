@@ -19,7 +19,6 @@ export { SCHEME_OCEAN } from './scheme-ocean';
 export { SCHEME_SUNSET } from './scheme-sunset';
 export { RECORD_SPACING } from './spacing';
 export { THEME_LAYOUT } from './theme-layout';
-export { RECORD_THEME_MODE } from './theme-mode';
 export { THEME_MODE_DARK } from './theme-mode-dark';
 export { THEME_MODE_DEFAULT } from './theme-mode-default';
 export { THEME_MODE_LIGHT } from './theme-mode-light';
