@@ -1,3 +1,3 @@
-import { TOKEN_COLOR_TONE } from '$stylist/theme/const/array/color-tone';
+import type { TokenColorTone } from '$stylist/theme/type/alias/color-tone';
 
-export type TokenTypographyTone = (typeof TOKEN_COLOR_TONE)[number];
+export type TokenTypographyTone = TokenColorTone;

@@ -10,6 +10,7 @@ export {
 	TOKEN_THEME_SCHEME,
 	TOKEN_TOKEN_VALUE
 } from './array';
+export { TOKEN_COLOR_TONE_ICON } from './map';
 export {
 	GRADIENT_CUSTOM,
 	GRADIENT_LINEAR,
