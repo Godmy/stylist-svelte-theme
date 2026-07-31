@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Story from '$stylist/playground/component/molecule/story/index.svelte';
-	import type { InterfaceControllerSettings } from '$stylist/playground/type/struct/interface-controller-settings';
+	import Story from '$stylist/theme/component/molecule/story/index.svelte';
+	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import { THEME_SCHEMES } from '$stylist/theme/const/record/theme-schemes';
 	import ThemePalette from './index.svelte';
 
@@ -9,7 +9,7 @@
 	const modeOptions = ['light', 'dark'];
 	const colorSourceOptions = ['semantic', 'background', 'text', 'border', 'primary', 'secondary', 'neutral'];
 
-	const controls: InterfaceControllerSettings[] = [
+	const controls: SlotStory[] = [
 		{
 			name: 'scheme',
 			type: 'select',

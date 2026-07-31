@@ -7,6 +7,7 @@ export {
 } from './atom';
 export {
 	ColorPicker,
+	Story,
 	ThemeContext,
 	ThemeSurface,
 	ThemeSwitcher

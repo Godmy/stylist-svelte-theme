@@ -3,6 +3,7 @@ import { TOKEN_SIZE_REM } from '$stylist/theme/const/array/size-rem';
 import { LAYOUT_GRADIENTS } from '$stylist/theme/const/record/layout-gradients';
 import { LAYOUT_ELEVATION_SEMANTIC } from '$stylist/theme/const/record/layout-elevation-semantic';
 import { THEME_LAYOUT } from '$stylist/theme/const/record/theme-layout';
+import { TOKEN_OPACITY } from '$stylist/theme/const/object/opacity';
 import type { Theme } from '$stylist/theme/type/object/theme';
 
 export class ManagerThemeCSS {
@@ -39,7 +40,8 @@ export class ManagerThemeCSS {
 			size: TOKEN_SIZE_REM,
 			gradients: LAYOUT_GRADIENTS,
 			elevation: LAYOUT_ELEVATION_SEMANTIC,
-			layout: THEME_LAYOUT
+			layout: THEME_LAYOUT,
+			opacity: TOKEN_OPACITY
 		};
 		const flatten = (obj: Record<string, unknown>, prefix: string): void => {
 			for (const [key, value] of Object.entries(obj)) {
@@ -122,7 +124,8 @@ export class ManagerThemeCSS {
 			size: TOKEN_SIZE_REM,
 			gradients: LAYOUT_GRADIENTS,
 			elevation: LAYOUT_ELEVATION_SEMANTIC,
-			layout: THEME_LAYOUT
+			layout: THEME_LAYOUT,
+			opacity: TOKEN_OPACITY
 		};
 		const collectKeys = (obj: Record<string, unknown>, prefix: string): void => {
 			for (const [key, value] of Object.entries(obj)) {

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Story from '$stylist/playground/component/molecule/story/index.svelte';
-	import type { InterfaceControllerSettings } from '$stylist/playground/type/struct/interface-controller-settings';
+	import Story from '$stylist/theme/component/molecule/story/index.svelte';
+	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
 	import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 	import ThemeModeToggle from './index.svelte';
@@ -12,7 +12,7 @@
 		disabled: boolean;
 	};
 
-	const controls: InterfaceControllerSettings[] = [
+	const controls: SlotStory[] = [
 		{
 			name: 'themeMode',
 			type: 'select',

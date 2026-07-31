@@ -5,6 +5,7 @@ export type {
 	BehaviorThemeScheme
 } from './behavior';
 export type {
+	RecipeStory,
 	RecipeTheme,
 	RecipeThemeColorPicker,
 	RecipeThemeColorSwatch,
@@ -22,6 +23,7 @@ export type {
 	SlotChildren,
 	SlotClass,
 	SlotContent,
+	SlotStory,
 	SlotTheme,
 	SlotThemeBorder,
 	SlotThemeChildren,

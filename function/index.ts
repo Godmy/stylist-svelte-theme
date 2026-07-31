@@ -17,6 +17,7 @@ export {
 export {
 	createColorPickerState,
 	createColorSwatchState,
+	createStoryState,
 	createThemeConsumerState,
 	createThemeContextState,
 	createThemeModeToggleState,

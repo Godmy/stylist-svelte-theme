@@ -1,6 +1,7 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type { RecipeThemeColorPicker } from './color-picker';
 export type { RecipeThemeColorSwatch } from './color-swatch';
+export type { RecipeStory } from './story';
 export type { RecipeTheme } from './theme';
 export type { RecipeThemeConsumer } from './theme-consumer';
 export type { RecipeThemeContext } from './theme-context';

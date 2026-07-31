@@ -1,6 +1,7 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export { createColorPickerState } from './color-picker';
 export { createColorSwatchState } from './color-swatch';
+export { createStoryState } from './story';
 export { createThemeConsumerState } from './theme-consumer';
 export { createThemeContextState } from './theme-context';
 export { createThemeModeToggleState } from './theme-mode-toggle';
