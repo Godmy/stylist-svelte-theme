@@ -9,6 +9,6 @@ export interface RecipeStory {
 	category?: string;
 	description?: string;
 	tags?: string[];
-	children?: Snippet<[Record<string, unknown>]> | ((values: Record<string, unknown>) => unknown);
+	children?: Snippet<[Record<string, unknown>]>;
 	variants?: Snippet<[]>;
 }

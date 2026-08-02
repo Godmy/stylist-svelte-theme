@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="playground-container"
+	class="c-story"
 	data-story-id={props.id}
 	data-story-title={props.title}
 	data-story-category={props.category}
@@ -172,7 +172,7 @@
 </div>
 
 <style>
-	.playground-container {
+	.c-story {
 		display: grid;
 		gap: 1.5rem;
 		min-width: 0;
