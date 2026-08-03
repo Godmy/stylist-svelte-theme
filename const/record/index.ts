@@ -5,6 +5,7 @@ export {
 	COLORS_SCALES_GRAY,
 	COLORS_SCALES_GREEN,
 	COLORS_SCALES_NEUTRAL,
+	COLORS_SCALES_ORANGE,
 	COLORS_SCALES_RED,
 	COLORS_SCALES_SLATE,
 	COLORS_SCALES_TEAL
@@ -17,6 +18,7 @@ export { SCHEME_FOREST } from './scheme-forest';
 export { SCHEME_MINIMAL } from './scheme-minimal';
 export { SCHEME_OCEAN } from './scheme-ocean';
 export { SCHEME_SUNSET } from './scheme-sunset';
+export { SCHEME_WEORACLE } from './scheme-weoracle';
 export { RECORD_SPACING } from './spacing';
 export { THEME_LAYOUT } from './theme-layout';
 export { THEME_MODE_DARK } from './theme-mode-dark';

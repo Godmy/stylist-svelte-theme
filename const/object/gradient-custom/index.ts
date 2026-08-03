@@ -9,6 +9,7 @@ export const GRADIENT_CUSTOM = {
 	sunset: 'linear-gradient(135deg, #f97316 0%, #ec4899 100%)',
 	ocean: 'linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%)',
 	forest: 'linear-gradient(135deg, #22c55e 0%, #14b8a6 100%)',
+	weoracle: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
 	cosmic: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
 	custom12:
 		'linear-gradient( 120deg, color-mix(in srgb, var(--color-background-primary) 95%, transparent), color-mix(in srgb, var(--color-background-secondary) 85%, transparent) )',

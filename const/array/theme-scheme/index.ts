@@ -1,1 +1,1 @@
-export const TOKEN_THEME_SCHEME = ['minimal', 'ocean', 'forest', 'sunset'] as const;
+export const TOKEN_THEME_SCHEME = ['minimal', 'ocean', 'forest', 'sunset', 'weoracle'] as const;
