@@ -8,6 +8,7 @@
 	import ThemeSwitcher from '$stylist/theme/component/molecule/theme-switcher/index.svelte';
 	import ThemeSurface from '$stylist/theme/component/molecule/theme-surface/index.svelte';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
+	import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 
 	let {
 		themeMode,
@@ -41,7 +42,7 @@
 		state.handleThemeModeChange(nextTheme);
 	}
 
-	function handleSchemeChange(nextTheme: 'minimal' | 'ocean' | 'forest' | 'sunset') {
+	function handleSchemeChange(nextTheme: TokenThemeScheme) {
 		state.handleThemeSchemeChange(nextTheme);
 	}
 

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Story from '$stylist/theme/component/molecule/story/index.svelte';
 	import type { SlotStory } from '$stylist/theme/interface/slot/story';
+	import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 	import ThemeSwitcher from './index.svelte';
 
-	let selectedTheme = $state<'minimal' | 'ocean' | 'forest' | 'sunset'>('minimal');
+	let selectedTheme = $state<TokenThemeScheme>('minimal');
 
 	const controls: SlotStory[] = [
 		{
