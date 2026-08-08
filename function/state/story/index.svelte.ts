@@ -2,7 +2,9 @@ import type { RecipeStory } from '$stylist/theme/interface/recipe/story';
 import type { SlotStory } from '$stylist/theme/interface/slot/story';
 
 export function createStoryState(props: RecipeStory) {
-	let controlValues = $state<Record<string, unknown>>({});
+	let controlValues = $state<Record<string, unknown>>(
+		Object.fromEntries((props.controls ?? []).map((control) => [control.name, control.defaultValue]))
+	);
 
 	$effect(() => {
 		for (const control of props.controls ?? []) {
