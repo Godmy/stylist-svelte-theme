@@ -11,6 +11,7 @@ export type { TokenOpacity } from './opacity';
 export type { TokenShape } from './shape';
 export type { TokenSize } from './size';
 export type { TokenSizeRem } from './size-rem';
+export type { TokenStoryViewport } from './story-viewport';
 export type { TokenThemeMode } from './theme-mode';
 export type { TokenThemeScheme } from './theme-scheme';
 export type { TokenThemeTone } from './theme-tone';

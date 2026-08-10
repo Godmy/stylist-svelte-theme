@@ -1,11 +1,11 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type {
-	BehaviorTheme,
 	BehaviorThemeMode,
 	BehaviorThemeScheme
 } from './behavior';
 export type {
 	RecipeStory,
+	RecipeStoryViewport,
 	RecipeTheme,
 	RecipeThemeColorPicker,
 	RecipeThemeColorSwatch,

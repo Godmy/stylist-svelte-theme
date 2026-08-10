@@ -38,12 +38,21 @@
 	{/if}
 
 	<div class="component-preview">
-		{#if props.children}
-			{@render props.children(state.controlValues)}
-		{:else if props.component}
-			{@const PreviewComponent = props.component}
-			<PreviewComponent {...state.controlValues} />
+		{#if state.previewMaxWidth}
+			<p class="component-preview__viewport-badge">{state.viewport} · {state.previewMaxWidth}</p>
 		{/if}
+		<div
+			class="component-preview__surface"
+			class:component-preview__surface--constrained={state.previewMaxWidth}
+			style={state.previewMaxWidth ? `max-width: ${state.previewMaxWidth};` : ''}
+		>
+			{#if props.children}
+				{@render props.children(state.controlValues)}
+			{:else if props.component}
+				{@const PreviewComponent = props.component}
+				<PreviewComponent {...state.controlValues} />
+			{/if}
+		</div>
 	</div>
 
 	{#if props.variants}
@@ -259,6 +268,35 @@
 		border-radius: 0.5rem;
 		background: var(--color-background-primary);
 		box-shadow: var(--shadow-sm, 0 10px 25px rgb(15 23 42 / 0.05));
+	}
+
+	.component-preview {
+		display: grid;
+		justify-items: center;
+		gap: 0.75rem;
+	}
+
+	.component-preview__viewport-badge {
+		margin: 0;
+		padding: 0.25rem 0.65rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-primary-500) 12%, transparent);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		color: var(--color-text-secondary);
+	}
+
+	.component-preview__surface {
+		box-sizing: border-box;
+		width: 100%;
+	}
+
+	.component-preview__surface--constrained {
+		margin-inline: auto;
+		padding: 1rem;
+		border: 1px dashed color-mix(in srgb, var(--color-border-primary) 70%, transparent);
+		border-radius: 0.5rem;
 	}
 
 	.controls-panel {

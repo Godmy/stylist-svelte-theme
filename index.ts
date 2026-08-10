@@ -1,6 +1,7 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export {
 	ManagerColorSwatch,
+	ManagerStoryViewportContext,
 	ManagerTheme,
 	ManagerThemeCSS,
 	ManagerThemeContext,
@@ -73,6 +74,8 @@ export {
 	TOKEN_SIZE,
 	TOKEN_SIZE_PX,
 	TOKEN_SIZE_REM,
+	TOKEN_STORY_VIEWPORT,
+	TOKEN_STORY_VIEWPORT_CONTEXT,
 	TOKEN_THEME_CONTEXT,
 	TOKEN_THEME_MODE,
 	TOKEN_THEME_MODE_STORAGE,
@@ -132,6 +135,7 @@ export type {
 	TokenShape,
 	TokenSize,
 	TokenSizeRem,
+	TokenStoryViewport,
 	TokenThemeMode,
 	TokenThemeScheme,
 	TokenThemeTone,
@@ -140,11 +144,11 @@ export type {
 	TokenZIndex
 } from './type';
 export type {
-	BehaviorTheme,
 	BehaviorThemeMode,
 	BehaviorThemeScheme,
 	ContentList,
 	RecipeStory,
+	RecipeStoryViewport,
 	RecipeTheme,
 	RecipeThemeColorPicker,
 	RecipeThemeColorSwatch,

@@ -12,6 +12,7 @@ export type {
 	TokenShape,
 	TokenSize,
 	TokenSizeRem,
+	TokenStoryViewport,
 	TokenThemeMode,
 	TokenThemeScheme,
 	TokenThemeTone,

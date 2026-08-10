@@ -1,5 +1,6 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export { ManagerColorSwatch } from './color-swatch';
+export { ManagerStoryViewportContext } from './story-viewport-context';
 export { ManagerTheme } from './theme';
 export { ManagerThemeContext } from './theme-context';
 export { ManagerThemeCSS } from './theme-css';
