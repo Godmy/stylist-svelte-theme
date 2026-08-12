@@ -14,16 +14,3 @@ export {
 	supportsThemeMode,
 	toggleThemeMode
 } from './script';
-export {
-	createColorPickerState,
-	createColorSwatchState,
-	createStoryState,
-	createThemeConsumerState,
-	createThemeContextState,
-	createThemeModeToggleState,
-	createThemePaletteState,
-	createThemeProviderState,
-	createThemeSettingsState,
-	createThemeSurfaceState,
-	createThemeSwitcherState
-} from './state';

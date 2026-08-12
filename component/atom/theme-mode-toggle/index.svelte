@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createThemeModeToggleState from '$stylist/theme/function/state/theme-mode-toggle/index.svelte';
+	import createThemeModeToggleState from './state.svelte';
 	import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
 
 	let props: RecipeThemeModeToggle = $props();

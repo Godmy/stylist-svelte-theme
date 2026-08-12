@@ -7,7 +7,6 @@ import type { RecipeThemeSwitcher } from '$stylist/theme/interface/recipe/theme-
 import type { SlotClass } from '$stylist/theme/interface/slot/class';
 import type { SlotThemeSettings } from '$stylist/theme/interface/slot/theme-settings';
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';
-
 export interface RecipeThemeSettings
 	extends ComputeIntersectAll<
 		[

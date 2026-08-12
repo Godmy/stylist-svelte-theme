@@ -3,7 +3,6 @@ import type { TokenLetterSpacing } from '$stylist/theme/type/alias/letter-spacin
 import type { TokenFontFamily } from '$stylist/theme/type/alias/font-family';
 import type { TokenFontSize } from '$stylist/theme/type/alias/font-size';
 import type { TokenFontWeight } from '$stylist/theme/type/alias/font-weight';
-
 /** Typography token settings: font, size, weight, spacing, and alignment. */
 export interface SlotTypography {
 	/** Font size token. */

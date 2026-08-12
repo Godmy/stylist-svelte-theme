@@ -1,5 +1,5 @@
 <script lang="ts">
-	import createThemePaletteState from '$stylist/theme/function/state/theme-palette/index.svelte';
+	import createThemePaletteState from './state.svelte';
 	import type { RecipeThemePalette } from '$stylist/theme/interface/recipe/theme-palette';
 
 	let props: RecipeThemePalette = $props();

@@ -24,12 +24,6 @@ export type { ComputeIntersectAll } from './compute';
 export type {
 	ObjectThemeTypography,
 	Theme,
-	ThemeColorBackground,
-	ThemeColorBorder,
-	ThemeColorSurfaceTint,
-	ThemeColorText,
-	ThemeColors,
-	ThemeLayout,
 	ThemeSchemeDefinition,
 	ThemeStorageContract
 } from './object';

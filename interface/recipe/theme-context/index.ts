@@ -4,7 +4,6 @@ import type { SlotClass } from '$stylist/theme/interface/slot/class';
 import type { SlotTheme } from '$stylist/theme/interface/slot/theme';
 import type { SlotThemeChildren } from '$stylist/theme/interface/slot/theme-children';
 import type { RecipeTheme } from '$stylist/theme/interface/recipe/theme';
-
 export interface RecipeThemeContext
 	extends ComputeIntersectAll<
 		[

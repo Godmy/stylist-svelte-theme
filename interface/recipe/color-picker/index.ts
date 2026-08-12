@@ -1,5 +1,4 @@
 import type { HTMLAttributes } from 'svelte/elements';
-
 export interface RecipeThemeColorPicker
 	extends Omit<HTMLAttributes<HTMLInputElement>, 'class' | 'value' | 'on:input' | 'on:change'> {
 	value?: string;

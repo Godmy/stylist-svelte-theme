@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeThemeConsumer } from '$stylist/theme/interface/recipe/theme-consumer';
-	import createThemeConsumerState from '$stylist/theme/function/state/theme-consumer/index.svelte';
+	import createThemeConsumerState from './state.svelte';
 
 	let { children }: RecipeThemeConsumer = $props();
 	const state = createThemeConsumerState();

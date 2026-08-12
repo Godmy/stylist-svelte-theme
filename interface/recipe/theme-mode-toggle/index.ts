@@ -4,7 +4,6 @@ import type { BehaviorThemeMode } from '$stylist/theme/interface/behavior/theme-
 import type { SlotClass } from '$stylist/theme/interface/slot/class';
 import type { SlotThemeSettings } from '$stylist/theme/interface/slot/theme-settings';
 import type { TokenSize } from '$stylist/theme/type/alias/size';
-
 export interface RecipeThemeModeToggle
 	extends ComputeIntersectAll<
 		[
