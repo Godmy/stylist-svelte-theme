@@ -1,7 +1,7 @@
 import { ManagerColorSwatch } from '$stylist/theme/class/manager/color-swatch';
-import type { RecipeThemeColorSwatch } from '$stylist/theme/interface/recipe/color-swatch';
+import type { RecipeColorSwatch } from '$stylist/theme/interface/recipe/color-swatch';
 
-export function createColorSwatchState(props: RecipeThemeColorSwatch) {
+export function createColorSwatchState(props: RecipeColorSwatch) {
 	const color = $derived(ManagerColorSwatch.resolveColor(props));
 	const size = $derived(ManagerColorSwatch.resolveSize(props));
 	const className = $derived(typeof props.class === 'string' ? props.class : undefined);

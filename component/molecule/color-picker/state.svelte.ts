@@ -1,6 +1,6 @@
-import type { RecipeThemeColorPicker as IColorPickerProps } from '$stylist/theme/interface/recipe/color-picker';
+import type { RecipeColorPicker } from '$stylist/theme/interface/recipe/color-picker';
 
-export const createColorPickerState = (props: IColorPickerProps) => {
+export const createColorPickerState = (props: RecipeColorPicker) => {
 	let selectedColor = $state(props.value ?? 'var(--color-text-primary)');
 
 	$effect(() => {

@@ -4,11 +4,11 @@ export type {
 	BehaviorThemeScheme
 } from './behavior';
 export type {
+	RecipeColorPicker,
+	RecipeColorSwatch,
 	RecipeStory,
 	RecipeStoryViewport,
 	RecipeTheme,
-	RecipeThemeColorPicker,
-	RecipeThemeColorSwatch,
 	RecipeThemeConsumer,
 	RecipeThemeContext,
 	RecipeThemeModeToggle,

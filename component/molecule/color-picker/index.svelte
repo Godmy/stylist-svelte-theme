@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { RecipeThemeColorPicker as IColorPickerProps } from '$stylist/theme/interface/recipe/color-picker';
+	import type { RecipeColorPicker } from '$stylist/theme/interface/recipe/color-picker';
 	import createColorPickerState from './state.svelte';
 
-	let props: IColorPickerProps = $props();
+	let props: RecipeColorPicker = $props();
 	const state = createColorPickerState(props);
 </script>
 

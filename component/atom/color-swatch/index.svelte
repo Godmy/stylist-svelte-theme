@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { RecipeThemeColorSwatch } from '$stylist/theme/interface/recipe/color-swatch';
+	import type { RecipeColorSwatch } from '$stylist/theme/interface/recipe/color-swatch';
 	import createColorSwatchState from './state.svelte';
 
-	let props: RecipeThemeColorSwatch = $props();
+	let props: RecipeColorSwatch = $props();
 	const state = createColorSwatchState(props);
 	const restProps = $derived(
 		(() => {
