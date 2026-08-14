@@ -7,12 +7,22 @@ import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-the
 
 function createThemeModeToggleState(props: RecipeThemeModeToggle) {
 	const themeContext = ManagerThemeContext.getOptional();
-	let theme = $state(ManagerThemeModeToggle.resolveTheme(props.themeMode, props.darkMode));
+	let theme = $state(
+		ManagerThemeModeToggle.resolveTheme(
+			props.themeMode,
+			props.darkMode,
+			themeContext?.themeMode ?? ManagerThemeStorage.getStoredMode()
+		)
+	);
 	let appliedTheme = $state<typeof theme | null>(null);
 	let defaultScheme = $state(ManagerThemeModeToggle.resolveDefaultScheme(props, themeContext));
 
 	$effect(() => {
-		theme = ManagerThemeModeToggle.resolveTheme(props.themeMode, props.darkMode);
+		theme = ManagerThemeModeToggle.resolveTheme(
+			props.themeMode,
+			props.darkMode,
+			themeContext?.themeMode ?? ManagerThemeStorage.getStoredMode()
+		);
 	});
 
 	$effect(() => {

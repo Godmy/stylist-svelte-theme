@@ -8,10 +8,14 @@ export class ManagerThemeModeToggle {
 	static readonly modes: TokenThemeMode[] = ['default', 'light', 'dark'];
 	static readonly storageKey = TOKEN_THEME_MODE_STORAGE;
 
-	static resolveTheme(currentScheme?: TokenThemeMode, darkMode?: boolean): TokenThemeMode {
+	static resolveTheme(
+		currentScheme?: TokenThemeMode,
+		darkMode?: boolean,
+		fallback?: TokenThemeMode
+	): TokenThemeMode {
 		if (currentScheme) return currentScheme;
 		if (typeof darkMode === 'boolean') return darkMode ? 'dark' : 'light';
-		return 'default';
+		return fallback ?? 'default';
 	}
 
 	static getNextTheme(
