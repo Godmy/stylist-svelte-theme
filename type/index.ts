@@ -1,8 +1,11 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export type {
+	TokenAnimation,
 	TokenColor,
 	TokenColorTone,
 	TokenDirection,
+	TokenDuration,
+	TokenEasing,
 	TokenFontFamily,
 	TokenFontSize,
 	TokenFontWeight,

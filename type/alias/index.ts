@@ -1,7 +1,10 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
+export type { TokenAnimation } from './animation';
 export type { TokenColor } from './color';
 export type { TokenColorTone } from './color-tone';
 export type { TokenDirection } from './direction';
+export type { TokenDuration } from './duration';
+export type { TokenEasing } from './easing';
 export type { TokenFontFamily } from './font-family';
 export type { TokenFontSize } from './font-size';
 export type { TokenFontWeight } from './font-weight';
