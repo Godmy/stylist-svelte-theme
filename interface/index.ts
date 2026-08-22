@@ -1,5 +1,8 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export type { BehaviorThemeMode, BehaviorThemeScheme } from './behavior';
+export type {
+	BehaviorThemeMode,
+	BehaviorThemeScheme
+} from './behavior';
 export type {
 	RecipeColorPicker,
 	RecipeColorSwatch,
