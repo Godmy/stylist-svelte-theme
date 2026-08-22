@@ -188,7 +188,11 @@
 	}
 
 	.c-theme-palette__item:hover {
-		border-color: color-mix(in srgb, var(--accent, var(--color-primary-600)) 42%, var(--line, var(--color-border-primary)));
+		border-color: color-mix(
+			in srgb,
+			var(--accent, var(--color-primary-600)) 42%,
+			var(--line, var(--color-border-primary))
+		);
 		background: color-mix(
 			in srgb,
 			var(--surface, var(--color-background-primary)) 90%,
@@ -254,13 +258,7 @@
 		min-width: 0;
 		overflow: hidden;
 		font-family:
-			ui-monospace,
-			SFMono-Regular,
-			Menlo,
-			Monaco,
-			Consolas,
-			'Liberation Mono',
-			'Courier New',
+			ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
 			monospace;
 		font-size: 0.72rem;
 		line-height: 1.25;

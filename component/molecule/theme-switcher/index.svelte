@@ -42,10 +42,7 @@
 		</div>
 	{/if}
 	<div
-		class={[
-			'c-theme-switcher__list',
-			state.compact && 'c-theme-switcher__list--compact'
-		]
+		class={['c-theme-switcher__list', state.compact && 'c-theme-switcher__list--compact']
 			.filter(Boolean)
 			.join(' ')}
 	>

@@ -69,7 +69,9 @@
 						{control.label ?? control.name}
 					</label>
 					{#if control.type === 'range' || control.type === 'number' || control.type === 'color'}
-						<span class="control-item__value">{String(state.controlValues[control.name] ?? '')}</span>
+						<span class="control-item__value"
+							>{String(state.controlValues[control.name] ?? '')}</span
+						>
 					{/if}
 				</div>
 				{#if control.description}

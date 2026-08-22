@@ -4,10 +4,10 @@ import { TOKEN_OPACITY } from '$stylist/theme/const/object/opacity';
 import { RECORD_SPACING } from '$stylist/theme/const/record/spacing';
 import { TOKEN_Z_INDEX } from '$stylist/theme/const/object/z-index';
 export const THEME_LAYOUT: {
-	zIndex: typeof TOKEN_Z_INDEX;	
+	zIndex: typeof TOKEN_Z_INDEX;
 	opacity: typeof TOKEN_OPACITY;
 	spacing: typeof RECORD_SPACING;
-	boxShadow: Record<keyof typeof RECORD_ELEVATION, string>;	
+	boxShadow: Record<keyof typeof RECORD_ELEVATION, string>;
 	borderRadius: Record<keyof typeof TOKEN_BORDER_RADIUS, string>;
 } = {
 	opacity: TOKEN_OPACITY,

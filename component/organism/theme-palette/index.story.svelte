@@ -7,7 +7,15 @@
 	const columnOptions = [2, 3, 4, 5, 6];
 	const schemeOptions = THEME_SCHEMES.map((scheme) => scheme.id);
 	const modeOptions = ['light', 'dark'];
-	const colorSourceOptions = ['semantic', 'background', 'text', 'border', 'primary', 'secondary', 'neutral'];
+	const colorSourceOptions = [
+		'semantic',
+		'background',
+		'text',
+		'border',
+		'primary',
+		'secondary',
+		'neutral'
+	];
 
 	const controls: SlotStory[] = [
 		{
@@ -92,7 +100,8 @@
 	function getThemePaletteColors(values: any) {
 		const colors = getTheme(values).colors;
 
-		if (values.colorSource === 'background') return getRecordColors(colors.background, 'background');
+		if (values.colorSource === 'background')
+			return getRecordColors(colors.background, 'background');
 		if (values.colorSource === 'text') return getRecordColors(colors.text, 'text');
 		if (values.colorSource === 'border') return getRecordColors(colors.border, 'border');
 		if (values.colorSource === 'primary') return getScaleColors(colors.primary, 'primary');
@@ -166,7 +175,11 @@
 			<div>
 				<h3 class="_c3">Text Tokens</h3>
 				<ThemePalette
-					colors={getThemePaletteColors({ scheme: schemeOptions[0], mode: 'light', colorSource: 'text' })}
+					colors={getThemePaletteColors({
+						scheme: schemeOptions[0],
+						mode: 'light',
+						colorSource: 'text'
+					})}
 					title="Text Tokens"
 					showLabels={true}
 					showValues={true}

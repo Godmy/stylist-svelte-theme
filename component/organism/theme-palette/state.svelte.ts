@@ -15,7 +15,9 @@ export function createThemePaletteState(props: RecipeThemePalette) {
 	);
 	const gridClasses = $derived('c-theme-palette__grid');
 	const gridStyle = $derived(`--palette-cols: ${columns}`);
-	const itemClasses = $derived(['c-theme-palette__item', props.itemClass].filter(Boolean).join(' '));
+	const itemClasses = $derived(
+		['c-theme-palette__item', props.itemClass].filter(Boolean).join(' ')
+	);
 	const colorSwatchClasses = $derived('c-theme-palette__swatch');
 	const labelClasses = $derived('c-theme-palette__label');
 	const valueClasses = $derived('c-theme-palette__value');

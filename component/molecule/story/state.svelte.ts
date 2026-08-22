@@ -14,7 +14,9 @@ export function createStoryState(props: RecipeStory) {
 	const viewportContext = ManagerStoryViewportContext.getOptional();
 
 	let controlValues = $state<Record<string, unknown>>(
-		Object.fromEntries((props.controls ?? []).map((control) => [control.name, control.defaultValue]))
+		Object.fromEntries(
+			(props.controls ?? []).map((control) => [control.name, control.defaultValue])
+		)
 	);
 
 	$effect(() => {

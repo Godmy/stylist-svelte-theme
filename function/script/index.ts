@@ -1,9 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
-export {
-	applyThemeToDOM,
-	resolveThemeMode,
-	supportsThemeMode
-} from './css';
+export { applyThemeToDOM, resolveThemeMode, supportsThemeMode } from './css';
 export {
 	applyThemeMode,
 	applyThemeModeAndScheme,
