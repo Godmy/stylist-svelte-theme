@@ -8,7 +8,7 @@ import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context'
 import { ManagerTheme } from '$stylist/theme/class/manager/theme';
 import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
 
-function createThemeProviderState(props: RecipeThemeProvider) {
+export default function createThemeProviderState(props: RecipeThemeProvider) {
 	let currentMode = $state<TokenThemeMode>(props.themeMode ?? ManagerThemeStorage.getStoredMode());
 	let currentScheme = $state<TokenThemeScheme>(
 		props.themeScheme ?? ManagerThemeStorage.getStoredScheme()
@@ -57,6 +57,18 @@ function createThemeProviderState(props: RecipeThemeProvider) {
 	const containerClass = $derived(
 		props.class ? `c-theme-provider ${props.class}` : 'c-theme-provider'
 	);
+	const restProps = $derived(
+		(() => {
+			const {
+				themeMode: _themeMode,
+				themeScheme: _themeScheme,
+				class: _class,
+				children: _children,
+				...rest
+			} = props;
+			return rest;
+		})()
+	);
 
 	return {
 		get currentMode() {
@@ -68,9 +80,10 @@ function createThemeProviderState(props: RecipeThemeProvider) {
 		get containerClass() {
 			return containerClass;
 		},
+		get restProps() {
+			return restProps;
+		},
 		setMode,
 		setScheme
 	};
 }
-
-export default createThemeProviderState;

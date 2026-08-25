@@ -4,18 +4,12 @@
 
 	let props: RecipeColorSwatch = $props();
 	const state = createColorSwatchState(props);
-	const restProps = $derived(
-		(() => {
-			const { class: _class, children: _children, color: _color, size: _size, ...rest } = props;
-			return rest;
-		})()
-	);
 </script>
 
 <div
 	class={state.classes}
-	style={`background-color: ${state.color}; width: ${state.size}px; height: ${state.size}px;`}
-	{...restProps}
+	style={`background-color: ${state.color}; width: ${state.size}; height: ${state.size};`}
+	{...state.restProps}
 >
 	{#if props.children}
 		<div class="c-color-swatch__content">

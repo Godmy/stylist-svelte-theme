@@ -370,8 +370,23 @@
 		outline: none;
 		transition:
 			border-color 140ms ease,
-			box-shadow 140ms ease,
+		box-shadow 140ms ease,
 			background-color 140ms ease;
+	}
+
+	select.control-input {
+		appearance: none;
+		padding-right: 2.25rem;
+		background-image:
+			linear-gradient(45deg, transparent 50%, currentColor 50%),
+			linear-gradient(135deg, currentColor 50%, transparent 50%);
+		background-position:
+			calc(100% - 1rem) 50%,
+			calc(100% - 0.72rem) 50%;
+		background-size:
+			0.32rem 0.32rem,
+			0.32rem 0.32rem;
+		background-repeat: no-repeat;
 	}
 
 	.control-input:focus {
@@ -446,11 +461,26 @@
 	.control-color__picker {
 		width: 3rem;
 		height: 3rem;
-		padding: 0.2rem;
+		padding: 0;
 		border: 1px solid color-mix(in srgb, var(--color-border-primary) 86%, transparent);
-		border-radius: 0.95rem;
+		border-radius: 0.5rem;
 		background: var(--color-background-primary);
 		cursor: pointer;
+		overflow: hidden;
+	}
+
+	.control-color__picker::-webkit-color-swatch-wrapper {
+		padding: 0;
+	}
+
+	.control-color__picker::-webkit-color-swatch {
+		border: 0;
+		border-radius: 0.4375rem;
+	}
+
+	.control-color__picker::-moz-color-swatch {
+		border: 0;
+		border-radius: 0.4375rem;
 	}
 
 	.control-color__value {

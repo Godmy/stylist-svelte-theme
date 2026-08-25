@@ -1,6 +1,5 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export {
-	ManagerColorSwatch,
 	ManagerStoryViewportContext,
 	ManagerTheme,
 	ManagerThemeCSS,
@@ -72,7 +71,6 @@ export {
 	TOKEN_OPACITY,
 	TOKEN_SHAPE,
 	TOKEN_SIZE,
-	TOKEN_SIZE_PX,
 	TOKEN_SIZE_REM,
 	TOKEN_STORY_VIEWPORT,
 	TOKEN_STORY_VIEWPORT_CONTEXT,

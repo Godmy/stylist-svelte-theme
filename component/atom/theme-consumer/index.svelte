@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
 	import type { RecipeThemeConsumer } from '$stylist/theme/interface/recipe/theme-consumer';
-	import createThemeConsumerState from './state.svelte';
 
 	let { children }: RecipeThemeConsumer = $props();
-	const state = createThemeConsumerState();
+	const themeContext = ManagerThemeContext.getOptional();
 </script>
 
-{@render children(state.themeContext ?? null)}
+{@render children(themeContext ?? null)}

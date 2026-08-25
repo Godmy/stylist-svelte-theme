@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { SlotStory } from '$stylist/theme/interface/slot/story';
+	import type { TokenSizeRem } from '$stylist/theme/type/alias/size-rem';
 	import Story from '$stylist/theme/component/molecule/story/index.svelte';
 	import ColorSwatch from './index.svelte';
 
@@ -11,8 +12,8 @@
 		},
 		{
 			name: 'size',
-			type: 'text', // Using text type since we need to handle numeric values as strings in the control system
-			defaultValue: '32'
+			type: 'text',
+			defaultValue: '2rem'
 		}
 	];
 </script>
@@ -25,7 +26,6 @@
 	tags={['information', 'data-display', 'color']}
 >
 	{#snippet children(values: any)}
-		{@const parsedSize = Number(values.size)}
-		<ColorSwatch color={values.color as string} size={Number.isNaN(parsedSize) ? 32 : parsedSize} />
+		<ColorSwatch color={values.color as string} size={values.size as TokenSizeRem} />
 	{/snippet}
 </Story>

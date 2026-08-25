@@ -4,22 +4,9 @@
 
 	let props: RecipeThemeProvider = $props();
 	const state = createThemeProviderState(props);
-
-	const restProps = $derived(
-		(() => {
-			const {
-				themeMode: _themeMode,
-				themeScheme: _themeScheme,
-				class: _class,
-				children: _children,
-				...rest
-			} = props;
-			return rest;
-		})()
-	);
 </script>
 
-<div class={state.containerClass} {...restProps}>
+<div class={state.containerClass} {...state.restProps}>
 	{#if props.children}{@render props.children()}{/if}
 </div>
 
