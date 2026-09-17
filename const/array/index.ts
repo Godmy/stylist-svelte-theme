@@ -3,6 +3,7 @@ export { TOKEN_COLOR_TONE } from './color-tone';
 export { TOKEN_DIRECTION } from './direction';
 export { TOKEN_SHAPE } from './shape';
 export { TOKEN_SIZE } from './size';
+export { TOKEN_SIZE_PX } from './size-px';
 export { TOKEN_SIZE_REM } from './size-rem';
 export { TOKEN_STORY_VIEWPORT } from './story-viewport';
 export { TOKEN_THEME_MODE } from './theme-mode';

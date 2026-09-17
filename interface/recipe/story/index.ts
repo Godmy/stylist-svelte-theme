@@ -8,6 +8,7 @@ export interface RecipeStory {
 	category?: string;
 	description?: string;
 	tags?: string[];
+	preview?: 'card' | 'fullscreen';
 	children?: Snippet<[Record<string, unknown>]>;
 	variants?: Snippet<[]>;
 }

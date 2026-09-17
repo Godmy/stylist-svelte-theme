@@ -8,13 +8,14 @@
 
 <div
 	class="c-story"
+	class:c-story--fullscreen={props.preview === 'fullscreen'}
 	data-story-id={props.id}
 	data-story-title={props.title}
 	data-story-category={props.category}
 	data-story-description={props.description}
 	data-story-tags={props.tags?.join(',')}
 >
-	{#if props.title || props.description || props.category || (props.tags && props.tags.length > 0)}
+	{#if props.preview !== 'fullscreen' && (props.title || props.description || props.category || (props.tags && props.tags.length > 0))}
 		<header class="story-header">
 			<div class="story-header__meta">
 				{#if props.category}
@@ -55,14 +56,15 @@
 		</div>
 	</div>
 
-	{#if props.variants}
+	{#if props.variants && props.preview !== 'fullscreen'}
 		<div class="variants-preview">
 			{@render props.variants()}
 		</div>
 	{/if}
 
-	<div class="controls-panel">
-		{#each props.controls ?? [] as control}
+	{#if props.preview !== 'fullscreen' || (props.controls && props.controls.length > 0)}
+		<div class="controls-panel">
+			{#each props.controls ?? [] as control}
 			<div class="control-item">
 				<div class="control-item__header">
 					<label class="control-item__label" for="control-{control.name}">
@@ -178,8 +180,9 @@
 					</div>
 				{/if}
 			</div>
-		{/each}
-	</div>
+			{/each}
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -187,6 +190,14 @@
 		display: grid;
 		gap: 1.5rem;
 		min-width: 0;
+	}
+
+	.c-story--fullscreen {
+		gap: 0;
+		min-height: 100%;
+		margin: -1rem;
+		background: var(--color-background-primary);
+		overflow: visible;
 	}
 
 	.story-header {
@@ -292,6 +303,11 @@
 	.component-preview__surface {
 		box-sizing: border-box;
 		width: 100%;
+		/* Lets previewed components react to the simulated device width via
+		   `@container` queries — plain `@media` only sees the real browser
+		   viewport, so the mobile/tablet/desktop switcher above would
+		   otherwise just shrink an inert box. */
+		container-type: inline-size;
 	}
 
 	.component-preview__surface--constrained {
@@ -299,6 +315,31 @@
 		padding: 1rem;
 		border: 1px dashed color-mix(in srgb, var(--color-border-primary) 70%, transparent);
 		border-radius: 0.5rem;
+	}
+
+	.c-story--fullscreen .component-preview {
+		min-height: 100%;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		box-shadow: none;
+		overflow: visible;
+	}
+
+	.c-story--fullscreen .component-preview__viewport-badge {
+		display: none;
+	}
+
+	.c-story--fullscreen .component-preview__surface {
+		margin-inline: auto;
+		overflow: visible;
+	}
+
+	.c-story--fullscreen .component-preview__surface--constrained {
+		padding: 0;
+		border: 0;
+		border-radius: 0;
 	}
 
 	.controls-panel {
