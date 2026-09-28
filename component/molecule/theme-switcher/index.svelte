@@ -9,7 +9,7 @@
 	let props: RecipeThemeSwitcher = $props();
 	const themeContext = ManagerThemeContext.getOptional();
 	const state = createThemeSwitcherState(
-		props,
+		() => props,
 		() => themeContext?.themeMode ?? props.themeMode ?? 'default',
 		themeContext?.setScheme
 	);

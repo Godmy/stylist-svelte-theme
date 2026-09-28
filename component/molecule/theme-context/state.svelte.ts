@@ -1,6 +1,7 @@
 import type { RecipeThemeContext } from '$stylist/theme/interface/recipe/theme-context';
 
-function createThemeContextState(props: RecipeThemeContext) {
+function createThemeContextState(getProps: () => RecipeThemeContext) {
+	const props = $derived(getProps());
 	const rootClass = $derived(props.class?.trim() || '');
 	const restProps = $derived.by(() => {
 		const { class: _class, children: _children, ...rest } = props;

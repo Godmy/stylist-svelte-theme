@@ -3,7 +3,7 @@
 	import createColorSwatchState from './state.svelte';
 
 	let props: RecipeColorSwatch = $props();
-	const state = createColorSwatchState(props);
+	const state = createColorSwatchState(() => props);
 </script>
 
 <div

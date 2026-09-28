@@ -3,7 +3,7 @@
 	import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
 
 	let props: RecipeThemeModeToggle = $props();
-	const state = createThemeModeToggleState(props);
+	const state = createThemeModeToggleState(() => props);
 </script>
 
 <button

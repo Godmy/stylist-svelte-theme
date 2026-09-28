@@ -4,7 +4,7 @@
 	import createThemeContextState from './state.svelte';
 
 	let props: RecipeThemeContext = $props();
-	const state = createThemeContextState(props);
+	const state = createThemeContextState(() => props);
 </script>
 
 <div class={state.rootClass} {...state.restProps}>

@@ -4,7 +4,7 @@
 
 	let props: RecipeThemePalette = $props();
 
-	const state = createThemePaletteState(props);
+	const state = createThemePaletteState(() => props);
 	const colorCountLabel = $derived(`${state.colors.length} colors`);
 </script>
 

@@ -8,10 +8,11 @@ import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 
 function createThemeSwitcherState(
-	props: RecipeThemeSwitcher,
+	getProps: () => RecipeThemeSwitcher,
 	getThemeMode: () => TokenThemeMode,
 	setThemeScheme?: (scheme: TokenThemeScheme) => void
 ) {
+	const props = $derived(getProps());
 	const resolvedThemes = $derived(ManagerThemeSwitcher.resolveThemes(props.themes));
 
 	let scheme = $state(

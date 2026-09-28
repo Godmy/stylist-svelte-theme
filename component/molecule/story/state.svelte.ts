@@ -10,7 +10,8 @@ const VIEWPORT_WIDTH: Record<TokenStoryViewport, string | null> = {
 	fullscreen: null
 };
 
-export function createStoryState(props: RecipeStory) {
+export function createStoryState(getProps: () => RecipeStory) {
+	const props = $derived(getProps());
 	const viewportContext = ManagerStoryViewportContext.getOptional();
 
 	let controlValues = $state<Record<string, unknown>>(

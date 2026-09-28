@@ -1,6 +1,7 @@
 import type { RecipeColorSwatch } from '$stylist/theme/interface/recipe/color-swatch';
 
-export default function createColorSwatchState(props: RecipeColorSwatch) {
+export default function createColorSwatchState(getProps: () => RecipeColorSwatch) {
+	const props = $derived(getProps());
 	const color = $derived(String(props.color ?? '#0ea5e9'));
 	const size = $derived(props.size ?? '2rem');
 	const className = $derived(typeof props.class === 'string' ? props.class : undefined);

@@ -2,7 +2,8 @@ import { ManagerThemePalette } from '$stylist/theme/class/manager/theme-palette'
 import type { RecipeThemePalette } from '$stylist/theme/interface/recipe/theme-palette';
 import type { SlotThemePaletteColor } from '$stylist/theme/interface/slot/theme-palette-color';
 
-export function createThemePaletteState(props: RecipeThemePalette) {
+export function createThemePaletteState(getProps: () => RecipeThemePalette) {
+	const props = $derived(getProps());
 	const colors = $derived(ManagerThemePalette.resolveColors(props));
 	const title = $derived(ManagerThemePalette.resolveTitle(props));
 	const showLabels = $derived(ManagerThemePalette.resolveShowLabels(props));

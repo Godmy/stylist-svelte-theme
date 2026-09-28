@@ -3,7 +3,7 @@
 	import createColorPickerState from './state.svelte';
 
 	let props: RecipeColorPicker = $props();
-	const state = createColorPickerState(props);
+	const state = createColorPickerState(() => props);
 </script>
 
 <div class={state.containerClass}>

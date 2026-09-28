@@ -3,7 +3,7 @@
 	import { createStoryState } from './state.svelte';
 
 	let props: RecipeStory = $props();
-	const state = createStoryState(props);
+	const state = createStoryState(() => props);
 </script>
 
 <div

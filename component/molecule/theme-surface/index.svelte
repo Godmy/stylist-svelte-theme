@@ -4,7 +4,7 @@
 	import createThemeSurfaceState from './state.svelte';
 
 	let props: RecipeThemeSurface = $props();
-	const state = createThemeSurfaceState(props);
+	const state = createThemeSurfaceState(() => props);
 </script>
 
 <ThemeConsumer>

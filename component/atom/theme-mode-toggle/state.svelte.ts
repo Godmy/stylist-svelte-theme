@@ -5,7 +5,8 @@ import { applyThemeMode } from '$stylist/theme/function/script/dom/apply-theme-m
 import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 
-function createThemeModeToggleState(props: RecipeThemeModeToggle) {
+function createThemeModeToggleState(getProps: () => RecipeThemeModeToggle) {
+	const props = $derived(getProps());
 	const themeContext = ManagerThemeContext.getOptional();
 	let theme = $state(
 		ManagerThemeModeToggle.resolveTheme(

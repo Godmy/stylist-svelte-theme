@@ -3,7 +3,7 @@
 	import createThemeProviderState from './state.svelte';
 
 	let props: RecipeThemeProvider = $props();
-	const state = createThemeProviderState(props);
+	const state = createThemeProviderState(() => props);
 </script>
 
 <div class={state.containerClass} {...state.restProps}>

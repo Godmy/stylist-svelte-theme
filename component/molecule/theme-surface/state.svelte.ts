@@ -1,6 +1,7 @@
 import type { RecipeThemeSurface } from '$stylist/theme/interface/recipe/theme-surface';
 
-export function createThemeSurfaceState(props: RecipeThemeSurface) {
+export function createThemeSurfaceState(getProps: () => RecipeThemeSurface) {
+	const props = $derived(getProps());
 	const restProps = $derived.by(() => {
 		const {
 			content: _content,
