@@ -10,10 +10,11 @@ import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage'
 
 export default function createThemeProviderState(getProps: () => RecipeThemeProvider) {
 	const props = $derived(getProps());
-	let currentMode = $state<TokenThemeMode>(props.themeMode ?? ManagerThemeStorage.getStoredMode());
-	let currentScheme = $state<TokenThemeScheme>(
-		props.themeScheme ?? ManagerThemeStorage.getStoredScheme()
-	);
+	// Track each setting separately: unrelated prop updates must preserve local choices.
+	const requestedMode = $derived(props.themeMode);
+	const requestedScheme = $derived(props.themeScheme);
+	let currentMode = $derived<TokenThemeMode>(requestedMode ?? ManagerThemeStorage.getStoredMode());
+	let currentScheme = $derived<TokenThemeScheme>(requestedScheme ?? ManagerThemeStorage.getStoredScheme());
 
 	$effect(() => {
 		const cleanup = ManagerTheme.initSystemThemeListener((isDark) => {

@@ -4,31 +4,26 @@ import { ManagerThemeModeToggle } from '$stylist/theme/class/manager/theme-mode-
 import { applyThemeMode } from '$stylist/theme/function/script/dom/apply-theme-mode';
 import { ManagerThemeStorage } from '$stylist/theme/class/manager/theme-storage';
 import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
+import { untrack } from 'svelte';
 
 function createThemeModeToggleState(getProps: () => RecipeThemeModeToggle) {
 	const props = $derived(getProps());
 	const themeContext = ManagerThemeContext.getOptional();
-	let theme = $state(
+	const requestedTheme = $derived(
 		ManagerThemeModeToggle.resolveTheme(
 			props.themeMode,
 			props.darkMode,
-			themeContext?.themeMode ?? ManagerThemeStorage.getStoredMode()
+			// Do not subscribe to context when an explicit mode controls this toggle.
+			props.themeMode || typeof props.darkMode === 'boolean'
+				? undefined
+				: themeContext?.themeMode ?? ManagerThemeStorage.getStoredMode()
 		)
 	);
-	let appliedTheme = $state<typeof theme | null>(null);
-	let defaultScheme = $state(ManagerThemeModeToggle.resolveDefaultScheme(props, themeContext));
-
-	$effect(() => {
-		theme = ManagerThemeModeToggle.resolveTheme(
-			props.themeMode,
-			props.darkMode,
-			themeContext?.themeMode ?? ManagerThemeStorage.getStoredMode()
-		);
-	});
-
-	$effect(() => {
-		defaultScheme = ManagerThemeModeToggle.resolveDefaultScheme(props, themeContext);
-	});
+	// Local clicks override the value until the requested mode actually changes.
+	let theme = $derived(requestedTheme);
+	const defaultScheme = $derived(ManagerThemeModeToggle.resolveDefaultScheme(props, themeContext));
+	let appliedTheme: typeof theme | null = null;
+	let appliedScheme: typeof defaultScheme;
 
 	const label = $derived(ManagerThemeModeToggle.getLabel(theme));
 	const ariaLabel = $derived(ManagerThemeModeToggle.getAriaLabel(label));
@@ -58,18 +53,26 @@ function createThemeModeToggleState(getProps: () => RecipeThemeModeToggle) {
 	}
 
 	$effect(() => {
-		if (appliedTheme === theme) {
+		const nextTheme = theme;
+		const nextScheme = defaultScheme;
+		if (appliedTheme === nextTheme && appliedScheme === nextScheme) {
 			return;
 		}
-
-		const setThemeMode = themeContext?.setMode;
-		const effectiveTheme = setThemeMode ? resolveThemeMode(theme) : applyTheme(theme);
-		setThemeMode?.(theme);
-		appliedTheme = theme;
-		props.onToggle?.({ darkMode: effectiveTheme === 'dark' });
-		if (!setThemeMode) {
-			ManagerThemeStorage.persistMode(theme, ManagerThemeModeToggle.storageKey);
-		}
+		// Callbacks and context mutators must not become dependencies of this effect.
+		untrack(() => {
+			const modeChanged = appliedTheme !== nextTheme;
+			const setThemeMode = themeContext?.setMode;
+			const effectiveTheme = setThemeMode ? resolveThemeMode(nextTheme) : applyTheme(nextTheme);
+			appliedTheme = nextTheme;
+			appliedScheme = nextScheme;
+			if (modeChanged) {
+				setThemeMode?.(nextTheme);
+				props.onToggle?.({ darkMode: effectiveTheme === 'dark' });
+				if (!setThemeMode) {
+					ManagerThemeStorage.persistMode(nextTheme, ManagerThemeModeToggle.storageKey);
+				}
+			}
+		});
 	});
 
 	return {
