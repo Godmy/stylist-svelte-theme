@@ -10,11 +10,19 @@ export class ManagerStoryViewportContext {
 	 * в каком viewport (mobile/tablet/desktop/fullscreen) сейчас показывается
 	 * превью, не оборачивая всю историю целиком во внешнюю рамку устройства.
 	 */
-	static set(getViewport: () => TokenStoryViewport): RecipeStoryViewport {
+	static set(
+		getViewport: () => TokenStoryViewport,
+		getFullscreen: () => boolean = () => false,
+		isolated = false
+	): RecipeStoryViewport {
 		const context: RecipeStoryViewport = {
 			get viewport() {
 				return getViewport();
-			}
+			},
+			get fullscreen() {
+				return getFullscreen();
+			},
+			isolated
 		};
 
 		setContext(TOKEN_STORY_VIEWPORT_CONTEXT, context);

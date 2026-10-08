@@ -4,18 +4,20 @@
 
 	let props: RecipeStory = $props();
 	const state = createStoryState(() => props);
+	const fullscreen = $derived(props.preview === 'fullscreen' || state.fullscreen);
 </script>
 
 <div
 	class="c-story"
-	class:c-story--fullscreen={props.preview === 'fullscreen'}
+	class:c-story--fullscreen={fullscreen}
+	class:c-story--isolated={state.isolated}
 	data-story-id={props.id}
 	data-story-title={props.title}
 	data-story-category={props.category}
 	data-story-description={props.description}
 	data-story-tags={props.tags?.join(',')}
 >
-	{#if props.preview !== 'fullscreen' && (props.title || props.description || props.category || (props.tags && props.tags.length > 0))}
+	{#if !fullscreen && (props.title || props.description || props.category || (props.tags && props.tags.length > 0))}
 		<header class="story-header">
 			<div class="story-header__meta">
 				{#if props.category}
@@ -56,114 +58,45 @@
 		</div>
 	</div>
 
-	{#if props.variants && props.preview !== 'fullscreen'}
+	{#if props.variants && !fullscreen}
 		<div class="variants-preview">
 			{@render props.variants()}
 		</div>
 	{/if}
 
-	{#if props.preview !== 'fullscreen' || (props.controls && props.controls.length > 0)}
+	{#if !fullscreen && props.controls && props.controls.length > 0}
 		<div class="controls-panel">
 			{#each props.controls ?? [] as control}
-			<div class="control-item">
-				<div class="control-item__header">
-					<label class="control-item__label" for="control-{control.name}">
-						{control.label ?? control.name}
-					</label>
-					{#if control.type === 'range' || control.type === 'number' || control.type === 'color'}
-						<span class="control-item__value"
-							>{String(state.controlValues[control.name] ?? '')}</span
-						>
+				<div class="control-item">
+					<div class="control-item__header">
+						<label class="control-item__label" for="control-{control.name}">
+							{control.label ?? control.name}
+						</label>
+						{#if control.type === 'range' || control.type === 'number' || control.type === 'color'}
+							<span class="control-item__value"
+								>{String(state.controlValues[control.name] ?? '')}</span
+							>
+						{/if}
+					</div>
+					{#if control.description}
+						<p class="control-item__description">{control.description}</p>
 					{/if}
-				</div>
-				{#if control.description}
-					<p class="control-item__description">{control.description}</p>
-				{/if}
-				{#if control.type === 'text'}
-					<input
-						class="control-input"
-						id="control-{control.name}"
-						type="text"
-						value={state.controlValues[control.name]}
-						oninput={(e: Event) => {
-							const target = e.target as HTMLInputElement;
-							state.handleChange(control, target ? target.value : '');
-						}}
-					/>
-				{:else if control.type === 'number'}
-					<input
-						class="control-input"
-						id="control-{control.name}"
-						type="number"
-						min={control.min}
-						max={control.max}
-						step={control.step}
-						value={state.controlValues[control.name]}
-						oninput={(e: Event) => {
-							const target = e.target as HTMLInputElement;
-							state.handleChange(control, target ? target.value : '');
-						}}
-					/>
-				{:else if control.type === 'boolean'}
-					<label class="control-toggle" for="control-{control.name}">
+					{#if control.type === 'text'}
 						<input
+							class="control-input"
 							id="control-{control.name}"
-							type="checkbox"
-							checked={state.controlValues[control.name] as boolean}
-							onchange={(e: Event) => {
-								const target = e.target as HTMLInputElement;
-								state.handleChange(control, target ? target.checked : false);
-							}}
-						/>
-						<span class="control-toggle__track">
-							<span class="control-toggle__thumb"></span>
-						</span>
-						<span class="control-toggle__text"
-							>{state.controlValues[control.name] ? 'Enabled' : 'Disabled'}</span
-						>
-					</label>
-				{:else if control.type === 'select'}
-					<select
-						class="control-input"
-						id="control-{control.name}"
-						value={state.controlValues[control.name]}
-						onchange={(e: Event) => {
-							const target = e.target as HTMLSelectElement;
-							state.handleChange(control, target ? target.value : '');
-						}}
-					>
-						{#each control.options ?? [] as option}
-							<option value={option}>{option}</option>
-						{/each}
-					</select>
-				{:else if control.type === 'color'}
-					<div class="control-color">
-						<input
-							class="control-color__picker"
-							id="control-{control.name}"
-							type="color"
+							type="text"
 							value={state.controlValues[control.name]}
 							oninput={(e: Event) => {
 								const target = e.target as HTMLInputElement;
-								state.handleChange(control, target ? target.value : '#000000');
+								state.handleChange(control, target ? target.value : '');
 							}}
 						/>
+					{:else if control.type === 'number'}
 						<input
-							class="control-input control-color__value"
-							type="text"
-							value={String(state.controlValues[control.name] ?? '')}
-							oninput={(e: Event) => {
-								const target = e.target as HTMLInputElement;
-								state.handleChange(control, target ? target.value : '#000000');
-							}}
-						/>
-					</div>
-				{:else if control.type === 'range'}
-					<div class="control-range">
-						<input
-							class="control-range__slider"
+							class="control-input"
 							id="control-{control.name}"
-							type="range"
+							type="number"
 							min={control.min}
 							max={control.max}
 							step={control.step}
@@ -173,13 +106,82 @@
 								state.handleChange(control, target ? target.value : '');
 							}}
 						/>
-						<div class="control-range__legend">
-							<span>{control.min ?? 0}</span>
-							<span>{control.max ?? 100}</span>
+					{:else if control.type === 'boolean'}
+						<label class="control-toggle" for="control-{control.name}">
+							<input
+								id="control-{control.name}"
+								type="checkbox"
+								checked={state.controlValues[control.name] as boolean}
+								onchange={(e: Event) => {
+									const target = e.target as HTMLInputElement;
+									state.handleChange(control, target ? target.checked : false);
+								}}
+							/>
+							<span class="control-toggle__track">
+								<span class="control-toggle__thumb"></span>
+							</span>
+							<span class="control-toggle__text"
+								>{state.controlValues[control.name] ? 'Enabled' : 'Disabled'}</span
+							>
+						</label>
+					{:else if control.type === 'select'}
+						<select
+							class="control-input"
+							id="control-{control.name}"
+							value={state.controlValues[control.name]}
+							onchange={(e: Event) => {
+								const target = e.target as HTMLSelectElement;
+								state.handleChange(control, target ? target.value : '');
+							}}
+						>
+							{#each control.options ?? [] as option}
+								<option value={option}>{option}</option>
+							{/each}
+						</select>
+					{:else if control.type === 'color'}
+						<div class="control-color">
+							<input
+								class="control-color__picker"
+								id="control-{control.name}"
+								type="color"
+								value={state.controlValues[control.name]}
+								oninput={(e: Event) => {
+									const target = e.target as HTMLInputElement;
+									state.handleChange(control, target ? target.value : '#000000');
+								}}
+							/>
+							<input
+								class="control-input control-color__value"
+								type="text"
+								value={String(state.controlValues[control.name] ?? '')}
+								oninput={(e: Event) => {
+									const target = e.target as HTMLInputElement;
+									state.handleChange(control, target ? target.value : '#000000');
+								}}
+							/>
 						</div>
-					</div>
-				{/if}
-			</div>
+					{:else if control.type === 'range'}
+						<div class="control-range">
+							<input
+								class="control-range__slider"
+								id="control-{control.name}"
+								type="range"
+								min={control.min}
+								max={control.max}
+								step={control.step}
+								value={state.controlValues[control.name]}
+								oninput={(e: Event) => {
+									const target = e.target as HTMLInputElement;
+									state.handleChange(control, target ? target.value : '');
+								}}
+							/>
+							<div class="control-range__legend">
+								<span>{control.min ?? 0}</span>
+								<span>{control.max ?? 100}</span>
+							</div>
+						</div>
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/if}
@@ -190,6 +192,24 @@
 		display: grid;
 		gap: 1.5rem;
 		min-width: 0;
+	}
+
+	.c-story--isolated .component-preview {
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+	}
+	.c-story--isolated .component-preview__surface--constrained {
+		padding: 0;
+		border: 0;
+		max-width: none !important;
+	}
+	.c-story--isolated .component-preview__viewport-badge {
+		display: none;
+	}
+	.c-story--isolated.c-story--fullscreen {
+		margin: 0;
+		min-height: 100vh;
 	}
 
 	.c-story--fullscreen {
@@ -411,7 +431,7 @@
 		outline: none;
 		transition:
 			border-color 140ms ease,
-		box-shadow 140ms ease,
+			box-shadow 140ms ease,
 			background-color 140ms ease;
 	}
 

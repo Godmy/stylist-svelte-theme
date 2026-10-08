@@ -66,6 +66,12 @@ export function createStoryState(getProps: () => RecipeStory) {
 		get previewMaxWidth() {
 			return VIEWPORT_WIDTH[viewportContext?.viewport ?? 'fullscreen'];
 		},
+		get fullscreen() {
+			return viewportContext?.fullscreen ?? false;
+		},
+		get isolated() {
+			return viewportContext?.isolated ?? false;
+		},
 		handleChange
 	};
 }

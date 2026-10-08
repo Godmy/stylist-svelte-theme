@@ -56,7 +56,7 @@
 		font-size: 0.75rem;
 		line-height: 1rem;
 		font-weight: 500;
-		color: var(--color-emerald-800, #emerald-800);
+		color: var(--color-emerald-800, #065f46);
 	}
 	._c2 {
 		display: flex;
