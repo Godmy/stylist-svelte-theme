@@ -13,7 +13,7 @@ export class ManagerStoryViewportContext {
 	static set(
 		getViewport: () => TokenStoryViewport,
 		getFullscreen: () => boolean = () => false,
-		isolated = false
+		isolated: boolean | (() => boolean) = false
 	): RecipeStoryViewport {
 		const context: RecipeStoryViewport = {
 			get viewport() {
@@ -22,7 +22,9 @@ export class ManagerStoryViewportContext {
 			get fullscreen() {
 				return getFullscreen();
 			},
-			isolated
+			get isolated() {
+				return typeof isolated === 'function' ? isolated() : isolated;
+			}
 		};
 
 		setContext(TOKEN_STORY_VIEWPORT_CONTEXT, context);

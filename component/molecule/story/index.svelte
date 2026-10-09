@@ -47,6 +47,7 @@
 		<div
 			class="component-preview__surface"
 			class:component-preview__surface--constrained={state.previewMaxWidth}
+			class:component-preview__surface--container={!state.isolated && !!state.previewMaxWidth}
 			style={state.previewMaxWidth ? `max-width: ${state.previewMaxWidth};` : ''}
 		>
 			{#if props.children}
@@ -188,6 +189,9 @@
 </div>
 
 <style>
+	.component-preview__surface--container {
+		container-type: inline-size;
+	}
 	.c-story {
 		display: grid;
 		gap: 1.5rem;
