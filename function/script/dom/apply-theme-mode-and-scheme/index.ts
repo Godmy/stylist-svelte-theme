@@ -16,6 +16,7 @@ export function applyThemeModeAndScheme(
 
 	const theme = ManagerThemeResolver.resolve(scheme, resolvedMode);
 	applyThemeToDOM(theme, target);
+	target.style.colorScheme = resolvedMode;
 	target.classList.remove('light', 'dark', 'default');
 	target.classList.add(resolvedMode);
 	target.setAttribute('theme-mode', resolvedMode);

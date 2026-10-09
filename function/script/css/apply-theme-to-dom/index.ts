@@ -10,5 +10,6 @@ export function applyThemeToDOM(theme: Theme, element?: HTMLElement): void {
 
 	const vars = ManagerThemeCSS.convertToCSSVars(theme);
 	ManagerThemeCSS.setVars(vars, target);
+	target.style.scrollbarColor = 'var(--color-text-secondary) var(--color-background-secondary)';
 	target.setAttribute('theme-mode', theme.mode);
 }

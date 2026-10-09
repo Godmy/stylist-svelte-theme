@@ -19,6 +19,7 @@ export function applyThemeMode(
 		return applyThemeModeAndScheme(mode, resolvedScheme, target);
 	}
 
+	target.style.colorScheme = resolvedMode;
 	target.classList.remove('light', 'dark', 'default');
 	target.classList.add(resolvedMode);
 	target.setAttribute('theme-mode', resolvedMode);
