@@ -4,15 +4,14 @@ import type { BehaviorThemeScheme } from '$stylist/theme/interface/behavior/them
 import type { SlotClass } from '$stylist/theme/interface/slot/class';
 import type { SlotThemeSettings } from '$stylist/theme/interface/slot/theme-settings';
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';
-export interface RecipeThemeSwitcher
-	extends ComputeIntersectAll<
-		[
-			BehaviorThemeScheme,
-			SlotClass,
-			Omit<HTMLAttributes<HTMLDivElement>, 'class'>,
-			Partial<SlotThemeSettings>
-		]
-	> {
+export interface RecipeThemeSwitcher extends ComputeIntersectAll<
+	[
+		BehaviorThemeScheme,
+		SlotClass,
+		Omit<HTMLAttributes<HTMLDivElement>, 'class'>,
+		Partial<SlotThemeSettings>
+	]
+> {
 	compact?: boolean;
 	showHeader?: boolean;
 	showLabels?: boolean;

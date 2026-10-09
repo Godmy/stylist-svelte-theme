@@ -16,7 +16,7 @@ function createThemeModeToggleState(getProps: () => RecipeThemeModeToggle) {
 			// Do not subscribe to context when an explicit mode controls this toggle.
 			props.themeMode || typeof props.darkMode === 'boolean'
 				? undefined
-				: themeContext?.themeMode ?? ManagerThemeStorage.getStoredMode()
+				: (themeContext?.themeMode ?? ManagerThemeStorage.getStoredMode())
 		)
 	);
 	// Local clicks override the value until the requested mode actually changes.

@@ -14,7 +14,9 @@ export default function createThemeProviderState(getProps: () => RecipeThemeProv
 	const requestedMode = $derived(props.themeMode);
 	const requestedScheme = $derived(props.themeScheme);
 	let currentMode = $derived<TokenThemeMode>(requestedMode ?? ManagerThemeStorage.getStoredMode());
-	let currentScheme = $derived<TokenThemeScheme>(requestedScheme ?? ManagerThemeStorage.getStoredScheme());
+	let currentScheme = $derived<TokenThemeScheme>(
+		requestedScheme ?? ManagerThemeStorage.getStoredScheme()
+	);
 
 	$effect(() => {
 		const cleanup = ManagerTheme.initSystemThemeListener((isDark) => {
