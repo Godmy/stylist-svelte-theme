@@ -4,110 +4,68 @@
 
 	const controls: SlotStory[] = [
 		{ name: 'titleText', type: 'text', defaultValue: 'Live preview title' },
-		{ name: 'showAccent', type: 'boolean', defaultValue: true }
+		{ name: 'showAccent', type: 'boolean', defaultValue: true },
+		{ name: 'size', type: 'range', defaultValue: 16, min: 12, max: 32, step: 1 },
+		{ name: 'tone', type: 'select', defaultValue: 'primary', options: ['primary', 'success'] }
 	];
 </script>
 
 <Story
 	{controls}
-	component={Story}
 	title="Story"
-	description="Playground wrapper with live controls and an optional variants slot."
+	category="Theme / Molecule"
+	description="Playground wrapper: header, live preview, optional variants slot and a controls panel."
+	tags={['sandbox', 'controls']}
 >
-	{#snippet children(values: any)}
-		<div class="_c1">
-			<div class="_c2">
-				<span class:hidden={!values.showAccent} class="_c3"></span>
-				<strong class="_c4">{values.titleText as string}</strong>
-			</div>
-			<p class="_c5">This inner preview reacts to the Story control panel on the right.</p>
+	{#snippet children(values)}
+		<div class="_preview" style:--accent="var(--color-{values.tone}-500)">
+			<span class="_dot" class:_dot--hidden={!values.showAccent}></span>
+			<strong style:font-size="{values.size}px">{values.titleText}</strong>
 		</div>
 	{/snippet}
 
 	{#snippet variants()}
-		<div class="_c6">
-			<p class="_c7 tracking-[0.18em]">Variants slot</p>
-			<div class="_c8">
-				<span class="_c9">Default</span>
-				<span class="_c10">Success</span>
-			</div>
+		<div class="_variants">
+			<span class="_chip">Default</span>
+			<span class="_chip _chip--success">Success</span>
 		</div>
 	{/snippet}
 </Story>
 
 <style>
-	._c1 {
-		display: grid;
-		gap: 0.75rem;
-		border-radius: 1rem;
-		border-width: 1px;
-		border-style: solid;
-		border-color: #e2e8f0;
-		background-color: #ffffff;
-		padding: 1.25rem;
-	}
-	._c10 {
-		border-radius: 9999px;
-		background-color: var(--color-emerald-100);
-		padding-left: 0.75rem;
-		padding-right: 0.75rem;
-		padding-top: 0.25rem;
-		padding-bottom: 0.25rem;
-		font-size: 0.75rem;
-		line-height: 1rem;
-		font-weight: 500;
-		color: var(--color-emerald-800, #065f46);
-	}
-	._c2 {
+	._preview {
 		display: flex;
 		align-items: center;
 		gap: 0.75rem;
-	}
-	._c3 {
-		height: 0.75rem;
-		width: 0.75rem;
-		border-radius: 9999px;
-		background-color: var(--color-emerald-500);
-	}
-	._c4 {
-		color: #0f172a;
-	}
-	._c5 {
-		font-size: 0.875rem;
-		line-height: 1.25rem;
-		color: #64748b;
-	}
-	._c6 {
-		display: grid;
-		gap: 0.5rem;
+		padding: 1.25rem;
+		border: 1px solid var(--color-border-primary);
 		border-radius: 1rem;
-		border-width: 1px;
-		border-style: dashed;
-		border-color: #cbd5e1;
-		background-color: #f8fafc;
-		padding: 1rem;
+		background: var(--color-background-primary);
+		color: var(--color-text-primary);
 	}
-	._c7 {
-		font-size: 0.75rem;
-		line-height: 1rem;
-		font-weight: 600;
-		color: #64748b;
-		text-transform: uppercase;
+	._dot {
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 9999px;
+		background: var(--accent);
 	}
-	._c8 {
+	._dot--hidden {
+		visibility: hidden;
+	}
+	._variants {
 		display: flex;
 		gap: 0.5rem;
 	}
-	._c9 {
+	._chip {
+		padding: 0.25rem 0.75rem;
 		border-radius: 9999px;
-		background-color: #0f172a;
-		padding-left: 0.75rem;
-		padding-right: 0.75rem;
-		padding-top: 0.25rem;
-		padding-bottom: 0.25rem;
+		background: var(--color-background-secondary);
 		font-size: 0.75rem;
-		line-height: 1rem;
 		font-weight: 500;
-		color: #ffffff;
+		color: var(--color-text-secondary);
+	}
+	._chip--success {
+		background: color-mix(in srgb, var(--color-success-500) 15%, transparent);
+		color: var(--color-success-700, var(--color-text-primary));
 	}
 </style>

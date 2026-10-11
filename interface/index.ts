@@ -28,6 +28,5 @@ export type {
 	SlotThemeBorder,
 	SlotThemeChildren,
 	SlotThemePaletteColor,
-	SlotThemeSettings,
-	SlotTypography
+	SlotThemeSettings
 } from './slot';

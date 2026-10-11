@@ -15,17 +15,10 @@ function createThemeSwitcherState(
 	const props = $derived(getProps());
 	const resolvedThemes = $derived(ManagerThemeSwitcher.resolveThemes(props.themes));
 
-	let scheme = $state(
-		ManagerThemeSwitcher.resolveCurrentScheme(props.themeScheme ?? 'minimal', props.themes)
+	let scheme = $derived(
+		ManagerThemeSwitcher.resolveCurrentScheme(props.themeScheme ?? 'minimal', resolvedThemes)
 	);
 	let appliedScheme = $state<typeof scheme | null>(null);
-
-	$effect(() => {
-		scheme = ManagerThemeSwitcher.resolveCurrentScheme(
-			props.themeScheme ?? 'minimal',
-			resolvedThemes
-		);
-	});
 
 	const effectiveThemeMode = $derived(resolveThemeMode(getThemeMode()));
 

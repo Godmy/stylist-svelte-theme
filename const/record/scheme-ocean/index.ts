@@ -1,6 +1,6 @@
-import { COLORS_SCALES_BLUE } from '$stylist/theme/const/record/colors-scales/blue';
-import { COLORS_SCALES_SLATE } from '$stylist/theme/const/record/colors-scales/slate';
-import { TOKEN_COLOR } from '$stylist/theme/const/object/color';
+import { COLORS_SCALES_BLUE } from '$stylist/design-token/const/record/colors-scales/blue';
+import { COLORS_SCALES_SLATE } from '$stylist/design-token/const/record/colors-scales/slate';
+import { TOKEN_COLOR } from '$stylist/design-token/const/object/color';
 import { THEME_MODE_DARK } from '$stylist/theme/const/record/theme-mode-dark';
 import { THEME_MODE_LIGHT } from '$stylist/theme/const/record/theme-mode-light';
 import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-scheme-definition';

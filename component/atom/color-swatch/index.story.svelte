@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { SlotStory } from '$stylist/theme/interface/slot/story';
-	import type { TokenSizeRem } from '$stylist/theme/type/alias/size-rem';
+	import type { TokenSizeRem } from '$stylist/design-token/type/alias/size-rem';
 	import Story from '$stylist/theme/component/molecule/story/index.svelte';
 	import ColorSwatch from './index.svelte';
 

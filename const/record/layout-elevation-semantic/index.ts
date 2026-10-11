@@ -1,4 +1,4 @@
-import { RECORD_ELEVATION } from '$stylist/theme/const/record/elevation';
+import { RECORD_ELEVATION } from '$stylist/design-token/const/record/elevation';
 
 export const LAYOUT_ELEVATION_SEMANTIC: Record<
 	| 'none'

@@ -4,12 +4,12 @@
 
 	let props: RecipeStory = $props();
 	const state = createStoryState(() => props);
-	const fullscreen = $derived(props.preview === 'fullscreen' || state.fullscreen);
+	const inputValue = (event: Event) => (event.currentTarget as HTMLInputElement).value;
 </script>
 
 <div
 	class="c-story"
-	class:c-story--fullscreen={fullscreen}
+	class:c-story--fullscreen={state.fullscreen}
 	class:c-story--isolated={state.isolated}
 	data-story-id={props.id}
 	data-story-title={props.title}
@@ -17,7 +17,7 @@
 	data-story-description={props.description}
 	data-story-tags={props.tags?.join(',')}
 >
-	{#if !fullscreen && (props.title || props.description || props.category || (props.tags && props.tags.length > 0))}
+	{#if !state.fullscreen && state.hasHeader}
 		<header class="story-header">
 			<div class="story-header__meta">
 				{#if props.category}
@@ -30,9 +30,9 @@
 					<p class="story-header__description">{props.description}</p>
 				{/if}
 			</div>
-			{#if props.tags && props.tags.length > 0}
+			{#if props.tags?.length}
 				<div class="story-header__tags">
-					{#each props.tags as tag}
+					{#each props.tags as tag (tag)}
 						<span class="story-tag">{tag}</span>
 					{/each}
 				</div>
@@ -41,101 +41,68 @@
 	{/if}
 
 	<div class="component-preview">
-		{#if state.previewMaxWidth}
-			<p class="component-preview__viewport-badge">{state.viewport} · {state.previewMaxWidth}</p>
-		{/if}
-		<div
-			class="component-preview__surface"
-			class:component-preview__surface--constrained={state.previewMaxWidth}
-			class:component-preview__surface--container={!state.isolated && !!state.previewMaxWidth}
-			style={state.previewMaxWidth ? `max-width: ${state.previewMaxWidth};` : ''}
-		>
+		<div class="component-preview__surface">
 			{#if props.children}
 				{@render props.children(state.controlValues)}
 			{:else if props.component}
-				{@const PreviewComponent = props.component}
-				<PreviewComponent {...state.controlValues} />
+				<props.component {...state.controlValues} />
 			{/if}
 		</div>
 	</div>
 
-	{#if props.variants && !fullscreen}
+	{#if props.variants && !state.fullscreen}
 		<div class="variants-preview">
 			{@render props.variants()}
 		</div>
 	{/if}
 
-	{#if !fullscreen && props.controls && props.controls.length > 0}
+	{#if !state.fullscreen && state.controls.length > 0}
 		<div class="controls-panel">
-			{#each props.controls ?? [] as control}
+			{#each state.controls as control (control.name)}
+				{@const id = `control-${control.name}`}
+				{@const value = state.controlValues[control.name]}
 				<div class="control-item">
 					<div class="control-item__header">
-						<label class="control-item__label" for="control-{control.name}">
-							{control.label ?? control.name}
-						</label>
+						<label class="control-item__label" for={id}>{control.label ?? control.name}</label>
 						{#if control.type === 'range' || control.type === 'number' || control.type === 'color'}
-							<span class="control-item__value"
-								>{String(state.controlValues[control.name] ?? '')}</span
-							>
+							<span class="control-item__value">{String(value ?? '')}</span>
 						{/if}
 					</div>
 					{#if control.description}
 						<p class="control-item__description">{control.description}</p>
 					{/if}
-					{#if control.type === 'text'}
+					{#if control.type === 'text' || control.type === 'number'}
 						<input
 							class="control-input"
-							id="control-{control.name}"
-							type="text"
-							value={state.controlValues[control.name]}
-							oninput={(e: Event) => {
-								const target = e.target as HTMLInputElement;
-								state.handleChange(control, target ? target.value : '');
-							}}
-						/>
-					{:else if control.type === 'number'}
-						<input
-							class="control-input"
-							id="control-{control.name}"
-							type="number"
+							{id}
+							type={control.type}
 							min={control.min}
 							max={control.max}
 							step={control.step}
-							value={state.controlValues[control.name]}
-							oninput={(e: Event) => {
-								const target = e.target as HTMLInputElement;
-								state.handleChange(control, target ? target.value : '');
-							}}
+							value={value ?? ''}
+							oninput={(e) => state.handleChange(control, inputValue(e))}
 						/>
 					{:else if control.type === 'boolean'}
-						<label class="control-toggle" for="control-{control.name}">
+						<label class="control-toggle" for={id}>
 							<input
-								id="control-{control.name}"
+								{id}
 								type="checkbox"
-								checked={state.controlValues[control.name] as boolean}
-								onchange={(e: Event) => {
-									const target = e.target as HTMLInputElement;
-									state.handleChange(control, target ? target.checked : false);
-								}}
+								checked={Boolean(value)}
+								onchange={(e) => state.handleChange(control, e.currentTarget.checked)}
 							/>
 							<span class="control-toggle__track">
 								<span class="control-toggle__thumb"></span>
 							</span>
-							<span class="control-toggle__text"
-								>{state.controlValues[control.name] ? 'Enabled' : 'Disabled'}</span
-							>
+							<span class="control-toggle__text">{value ? 'Enabled' : 'Disabled'}</span>
 						</label>
 					{:else if control.type === 'select'}
 						<select
 							class="control-input"
-							id="control-{control.name}"
-							value={state.controlValues[control.name]}
-							onchange={(e: Event) => {
-								const target = e.target as HTMLSelectElement;
-								state.handleChange(control, target ? target.value : '');
-							}}
+							{id}
+							{value}
+							onchange={(e) => state.handleChange(control, e.currentTarget.value)}
 						>
-							{#each control.options ?? [] as option}
+							{#each control.options ?? [] as option (option)}
 								<option value={option}>{option}</option>
 							{/each}
 						</select>
@@ -143,38 +110,29 @@
 						<div class="control-color">
 							<input
 								class="control-color__picker"
-								id="control-{control.name}"
+								{id}
 								type="color"
-								value={state.controlValues[control.name]}
-								oninput={(e: Event) => {
-									const target = e.target as HTMLInputElement;
-									state.handleChange(control, target ? target.value : '#000000');
-								}}
+								value={value ?? '#000000'}
+								oninput={(e) => state.handleChange(control, inputValue(e))}
 							/>
 							<input
 								class="control-input control-color__value"
 								type="text"
-								value={String(state.controlValues[control.name] ?? '')}
-								oninput={(e: Event) => {
-									const target = e.target as HTMLInputElement;
-									state.handleChange(control, target ? target.value : '#000000');
-								}}
+								value={String(value ?? '')}
+								oninput={(e) => state.handleChange(control, inputValue(e))}
 							/>
 						</div>
 					{:else if control.type === 'range'}
 						<div class="control-range">
 							<input
 								class="control-range__slider"
-								id="control-{control.name}"
+								{id}
 								type="range"
 								min={control.min}
 								max={control.max}
 								step={control.step}
-								value={state.controlValues[control.name]}
-								oninput={(e: Event) => {
-									const target = e.target as HTMLInputElement;
-									state.handleChange(control, target ? target.value : '');
-								}}
+								{value}
+								oninput={(e) => state.handleChange(control, inputValue(e))}
 							/>
 							<div class="control-range__legend">
 								<span>{control.min ?? 0}</span>
@@ -189,9 +147,6 @@
 </div>
 
 <style>
-	.component-preview__surface--container {
-		container-type: inline-size;
-	}
 	.c-story {
 		display: grid;
 		gap: 1.5rem;
@@ -202,14 +157,6 @@
 		padding: 0;
 		border: 0;
 		border-radius: 0;
-	}
-	.c-story--isolated .component-preview__surface--constrained {
-		padding: 0;
-		border: 0;
-		max-width: none !important;
-	}
-	.c-story--isolated .component-preview__viewport-badge {
-		display: none;
 	}
 	.c-story--isolated.c-story--fullscreen {
 		margin: 0;
@@ -313,32 +260,10 @@
 		gap: 0.75rem;
 	}
 
-	.component-preview__viewport-badge {
-		margin: 0;
-		padding: 0.25rem 0.65rem;
-		border-radius: 999px;
-		background: color-mix(in srgb, var(--color-primary-500) 12%, transparent);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.04em;
-		color: var(--color-text-secondary);
-	}
-
 	.component-preview__surface {
 		box-sizing: border-box;
 		width: 100%;
-		/* Lets previewed components react to the simulated device width via
-		   `@container` queries — plain `@media` only sees the real browser
-		   viewport, so the mobile/tablet/desktop switcher above would
-		   otherwise just shrink an inert box. */
 		container-type: inline-size;
-	}
-
-	.component-preview__surface--constrained {
-		margin-inline: auto;
-		padding: 1rem;
-		border: 1px dashed color-mix(in srgb, var(--color-border-primary) 70%, transparent);
-		border-radius: 0.5rem;
 	}
 
 	.c-story--fullscreen .component-preview {
@@ -351,19 +276,9 @@
 		overflow: visible;
 	}
 
-	.c-story--fullscreen .component-preview__viewport-badge {
-		display: none;
-	}
-
 	.c-story--fullscreen .component-preview__surface {
 		margin-inline: auto;
 		overflow: visible;
-	}
-
-	.c-story--fullscreen .component-preview__surface--constrained {
-		padding: 0;
-		border: 0;
-		border-radius: 0;
 	}
 
 	.controls-panel {

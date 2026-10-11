@@ -1,11 +1,11 @@
-import { COLORS_SCALES_AMBER } from '$stylist/theme/const/record/colors-scales/amber';
-import { COLORS_SCALES_BLUE } from '$stylist/theme/const/record/colors-scales/blue';
-import { COLORS_SCALES_GRAY } from '$stylist/theme/const/record/colors-scales/gray';
-import { COLORS_SCALES_GREEN } from '$stylist/theme/const/record/colors-scales/green';
-import { COLORS_SCALES_NEUTRAL } from '$stylist/theme/const/record/colors-scales/neutral';
-import { COLORS_SCALES_RED } from '$stylist/theme/const/record/colors-scales/red';
-import { COLORS_SCALES_SLATE } from '$stylist/theme/const/record/colors-scales/slate';
-import { TOKEN_COLOR } from '$stylist/theme/const/object/color';
+import { COLORS_SCALES_AMBER } from '$stylist/design-token/const/record/colors-scales/amber';
+import { COLORS_SCALES_BLUE } from '$stylist/design-token/const/record/colors-scales/blue';
+import { COLORS_SCALES_GRAY } from '$stylist/design-token/const/record/colors-scales/gray';
+import { COLORS_SCALES_GREEN } from '$stylist/design-token/const/record/colors-scales/green';
+import { COLORS_SCALES_NEUTRAL } from '$stylist/design-token/const/record/colors-scales/neutral';
+import { COLORS_SCALES_RED } from '$stylist/design-token/const/record/colors-scales/red';
+import { COLORS_SCALES_SLATE } from '$stylist/design-token/const/record/colors-scales/slate';
+import { TOKEN_COLOR } from '$stylist/design-token/const/object/color';
 import type { Theme } from '$stylist/theme/type/object/theme';
 import { THEME_TYPOGRAPHY } from '$stylist/theme/const/object/theme-typography';
 

@@ -9,4 +9,3 @@ export type { SlotThemeBorder } from './theme-border';
 export type { SlotThemeChildren } from './theme-children';
 export type { SlotThemePaletteColor } from './theme-palette-color';
 export type { SlotThemeSettings } from './theme-settings';
-export type { SlotTypography } from './typography';

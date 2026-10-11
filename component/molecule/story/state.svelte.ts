@@ -1,77 +1,50 @@
 import type { RecipeStory } from '$stylist/theme/interface/recipe/story';
 import type { SlotStory } from '$stylist/theme/interface/slot/story';
 import { ManagerStoryViewportContext } from '$stylist/theme/class/manager/story-viewport-context';
-import type { TokenStoryViewport } from '$stylist/theme/type/alias/story-viewport';
 
-const VIEWPORT_WIDTH: Record<TokenStoryViewport, string | null> = {
-	mobile: '375px',
-	tablet: '768px',
-	desktop: '1440px',
-	fullscreen: null
-};
+function coerceValue(control: SlotStory, raw: unknown): unknown {
+	if (control.type === 'boolean') return Boolean(raw);
+	if (control.type === 'number' || control.type === 'range') {
+		const parsed = Number(raw);
+		return Number.isNaN(parsed) ? (control.defaultValue ?? 0) : parsed;
+	}
+	if (control.type === 'select' && typeof control.options?.[0] === 'number') {
+		const parsed = Number(raw);
+		return Number.isNaN(parsed) ? control.options[0] : parsed;
+	}
+	return raw;
+}
 
 export function createStoryState(getProps: () => RecipeStory) {
 	const props = $derived(getProps());
-	const viewportContext = ManagerStoryViewportContext.getOptional();
+	// Set by the sandbox preview; device width is applied by its iframe, not here.
+	const viewport = ManagerStoryViewportContext.getOptional();
+	const controls = $derived(props.controls ?? []);
 
-	let controlValues = $state<Record<string, unknown>>(
-		Object.fromEntries(
-			(props.controls ?? []).map((control) => [control.name, control.defaultValue])
-		)
-	);
-
-	$effect(() => {
-		for (const control of props.controls ?? []) {
-			if (!(control.name in controlValues)) {
-				controlValues = { ...controlValues, [control.name]: control.defaultValue };
-			}
-		}
+	let overrides = $state<Record<string, unknown>>({});
+	const controlValues = $derived({
+		...Object.fromEntries(controls.map((control) => [control.name, control.defaultValue])),
+		...overrides
 	});
 
-	function coerceValue(control: SlotStory, raw: unknown): unknown {
-		if (control.type === 'boolean') {
-			return Boolean(raw);
-		}
-
-		if (control.type === 'number' || control.type === 'range') {
-			const parsed = Number(raw);
-			return Number.isNaN(parsed) ? (control.defaultValue ?? 0) : parsed;
-		}
-
-		if (control.type === 'select' && Array.isArray(control.options) && control.options.length > 0) {
-			const first = control.options[0];
-			if (typeof first === 'number') {
-				const parsed = Number(raw);
-				return Number.isNaN(parsed) ? first : parsed;
-			}
-		}
-
-		return raw;
-	}
-
-	function handleChange(control: SlotStory, value: unknown) {
-		controlValues = {
-			...controlValues,
-			[control.name]: coerceValue(control, value)
-		};
-	}
-
 	return {
+		get controls() {
+			return controls;
+		},
 		get controlValues() {
 			return controlValues;
 		},
-		get viewport() {
-			return viewportContext?.viewport ?? 'fullscreen';
-		},
-		get previewMaxWidth() {
-			return VIEWPORT_WIDTH[viewportContext?.viewport ?? 'fullscreen'];
-		},
 		get fullscreen() {
-			return viewportContext?.fullscreen ?? false;
+			return props.preview === 'fullscreen' || (viewport?.fullscreen ?? false);
 		},
 		get isolated() {
-			return viewportContext?.isolated ?? false;
+			return viewport?.isolated ?? false;
 		},
-		handleChange
+		get hasHeader() {
+			return !!(props.title || props.description || props.category || props.tags?.length);
+		},
+		handleChange(control: SlotStory, value: unknown) {
+			overrides = { ...overrides, [control.name]: coerceValue(control, value) };
+		}
 	};
 }

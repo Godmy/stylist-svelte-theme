@@ -3,7 +3,7 @@ import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-
 import type { BehaviorThemeMode } from '$stylist/theme/interface/behavior/theme-mode';
 import type { SlotClass } from '$stylist/theme/interface/slot/class';
 import type { SlotThemeSettings } from '$stylist/theme/interface/slot/theme-settings';
-import type { TokenSize } from '$stylist/theme/type/alias/size';
+import type { TokenSize } from '$stylist/design-token/type/alias/size';
 export interface RecipeThemeModeToggle extends ComputeIntersectAll<
 	[
 		BehaviorThemeMode,

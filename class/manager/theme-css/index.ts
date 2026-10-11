@@ -1,10 +1,16 @@
 import { INTERACTION_MOTION } from '$stylist/theme/const/record/interaction-motion';
-import { TOKEN_SIZE_REM } from '$stylist/theme/const/array/size-rem';
+import { TOKEN_SIZE_REM } from '$stylist/design-token/const/array/size-rem';
 import { LAYOUT_GRADIENTS } from '$stylist/theme/const/record/layout-gradients';
 import { LAYOUT_ELEVATION_SEMANTIC } from '$stylist/theme/const/record/layout-elevation-semantic';
 import { THEME_LAYOUT } from '$stylist/theme/const/record/theme-layout';
-import { TOKEN_OPACITY } from '$stylist/theme/const/object/opacity';
+import { TOKEN_OPACITY } from '$stylist/design-token/const/object/opacity';
 import type { Theme } from '$stylist/theme/type/object/theme';
+import { TOKEN_FONT_FAMILY } from '$stylist/design-token/const/object/font-family';
+import { TOKEN_BORDER_WIDTH } from '$stylist/design-token/const/object/border-width';
+import { DESIGN_TOKEN_FOCUS } from '$stylist/design-token/const/preset/focus';
+import { DESIGN_TOKEN_DENSITY } from '$stylist/design-token/const/preset/density';
+import { DESIGN_TOKEN_CONTENT_SIZE } from '$stylist/design-token/const/preset/content-size';
+import { TOKEN_FONT_SIZE_RELATIVE } from '$stylist/design-token/const/object/font-size-relative';
 
 export class ManagerThemeCSS {
 	static applyVars(theme: Theme, element: HTMLElement = document.documentElement): void {
@@ -36,6 +42,12 @@ export class ManagerThemeCSS {
 	static convertToCSSVars(theme: Theme): Record<string, string> {
 		const vars: Record<string, string> = {};
 		const systemTheme = {
+			font: TOKEN_FONT_FAMILY,
+			fontRelative: TOKEN_FONT_SIZE_RELATIVE,
+			border: { width: TOKEN_BORDER_WIDTH },
+			focus: DESIGN_TOKEN_FOCUS,
+			density: DESIGN_TOKEN_DENSITY.comfortable,
+			content: DESIGN_TOKEN_CONTENT_SIZE,
 			motion: INTERACTION_MOTION,
 			size: TOKEN_SIZE_REM,
 			gradients: LAYOUT_GRADIENTS,
@@ -118,49 +130,7 @@ export class ManagerThemeCSS {
 	}
 
 	private static getThemeCSSVarKeys(theme: Theme): string[] {
-		const keys: string[] = [];
-		const systemTheme = {
-			motion: INTERACTION_MOTION,
-			size: TOKEN_SIZE_REM,
-			gradients: LAYOUT_GRADIENTS,
-			elevation: LAYOUT_ELEVATION_SEMANTIC,
-			layout: THEME_LAYOUT,
-			opacity: TOKEN_OPACITY
-		};
-		const collectKeys = (obj: Record<string, unknown>, prefix: string): void => {
-			for (const [key, value] of Object.entries(obj)) {
-				const segment = `${prefix}-${key}`;
-				if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
-					collectKeys(value as Record<string, unknown>, segment);
-					continue;
-				}
-
-				if (typeof value === 'string' || typeof value === 'number') {
-					keys.push(this.toCSSCustomPropertySegment(segment));
-				}
-			}
-		};
-
-		for (const [category, values] of Object.entries(systemTheme)) {
-			if (values === null || typeof values !== 'object') continue;
-			collectKeys(values as Record<string, unknown>, category);
-		}
-
-		for (const [category, values] of Object.entries(theme)) {
-			if (values === null || typeof values !== 'object') continue;
-			if (category === 'domain') {
-				for (const [domainCategory, domainValues] of Object.entries(values)) {
-					if (domainValues === null || typeof domainValues !== 'object') continue;
-					collectKeys(domainValues as Record<string, unknown>, `color-${domainCategory}`);
-				}
-				continue;
-			}
-
-			const prefix = category === 'colors' ? 'color' : category;
-			collectKeys(values as Record<string, unknown>, prefix);
-		}
-
-		return keys;
+		return Object.keys(this.convertToCSSVars(theme));
 	}
 
 	private static getDeclarations(vars: Record<string, string>): string {

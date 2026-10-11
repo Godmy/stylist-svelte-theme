@@ -2,11 +2,7 @@ import type { RecipeColorPicker } from '$stylist/theme/interface/recipe/color-pi
 
 export const createColorPickerState = (getProps: () => RecipeColorPicker) => {
 	const props = $derived(getProps());
-	let selectedColor = $state(props.value ?? 'var(--color-text-primary)');
-
-	$effect(() => {
-		selectedColor = props.value ?? 'var(--color-text-primary)';
-	});
+	let selectedColor = $derived(props.value ?? 'var(--color-text-primary)');
 
 	function handleInput(event: Event) {
 		const target = event.target as HTMLInputElement;

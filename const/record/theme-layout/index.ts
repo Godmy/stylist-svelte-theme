@@ -1,8 +1,8 @@
-import { TOKEN_BORDER_RADIUS } from '$stylist/theme/const/object/border-radius';
-import { RECORD_ELEVATION } from '$stylist/theme/const/record/elevation';
-import { TOKEN_OPACITY } from '$stylist/theme/const/object/opacity';
-import { RECORD_SPACING } from '$stylist/theme/const/record/spacing';
-import { TOKEN_Z_INDEX } from '$stylist/theme/const/object/z-index';
+import { TOKEN_BORDER_RADIUS } from '$stylist/design-token/const/object/border-radius';
+import { RECORD_ELEVATION } from '$stylist/design-token/const/record/elevation';
+import { TOKEN_OPACITY } from '$stylist/design-token/const/object/opacity';
+import { RECORD_SPACING } from '$stylist/design-token/const/record/spacing';
+import { TOKEN_Z_INDEX } from '$stylist/design-token/const/object/z-index';
 export const THEME_LAYOUT: {
 	zIndex: typeof TOKEN_Z_INDEX;
 	opacity: typeof TOKEN_OPACITY;
