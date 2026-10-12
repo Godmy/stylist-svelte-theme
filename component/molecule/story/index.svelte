@@ -151,6 +151,7 @@
 		display: grid;
 		gap: 1.5rem;
 		min-width: 0;
+		background: var(--color-background-primary);
 	}
 
 	.c-story--isolated .component-preview {
