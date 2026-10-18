@@ -1,62 +1,33 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import ThemeProvider from './index.svelte';
 	import ThemeConsumer from '../theme-consumer/index.svelte';
+	import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 
-	const controls: SlotStory[] = [
-		{
-			name: 'themeMode',
-			type: 'select',
-			defaultValue: 'light',
-			options: ['default', 'light', 'dark']
-		},
-		{
-			name: 'themeScheme',
-			type: 'select',
-			defaultValue: 'minimal',
-			options: ['minimal', 'ocean', 'forest', 'sunset']
-		}
-	];
+	// Render of index.story.ts: a nested ThemeConsumer snippet shows the context the provider exposes.
+	let args: RecipeThemeProvider = $props();
 </script>
 
-<Story
-	{controls}
-	component={ThemeProvider}
-	title="ThemeProvider"
-	description="Provides theme mode and scheme to nested consumers."
->
-	{#snippet children(values: any)}
-		{#key `${values.themeMode}-${values.themeScheme}`}
-			<ThemeProvider
-				themeMode={values.themeMode as any}
-				themeScheme={values.themeScheme as any}
-				class="_c1"
-			>
-				{#snippet children()}
-					<div class="_c2">
-						<div class="_c3">
-							<p class="_c4">Provider shell</p>
-							<h3 class="_c5">Nested components inherit the active theme context.</h3>
-						</div>
-						<ThemeConsumer>
-							{#snippet children(themeContext)}
-								<div class="_c6">
-									Resolved mode: <strong class="_c7">{themeContext?.themeMode}</strong>, scheme:
-									<strong class="_c7">{themeContext?.themeScheme}</strong>
-								</div>
-							{/snippet}
-						</ThemeConsumer>
+{#key `${args.themeMode}-${args.themeScheme}`}
+	<ThemeProvider {...args}>
+		<div class="_c1 _c2">
+			<div class="_c3">
+				<p class="_c4">Provider shell</p>
+				<h3 class="_c5">Nested components inherit the active theme context.</h3>
+			</div>
+			<ThemeConsumer>
+				{#snippet children(themeContext)}
+					<div class="_c6">
+						Resolved mode: <strong class="_c7">{themeContext?.themeMode}</strong>, scheme:
+						<strong class="_c7">{themeContext?.themeScheme}</strong>
 					</div>
 				{/snippet}
-			</ThemeProvider>
-		{/key}
-	{/snippet}
-</Story>
+			</ThemeConsumer>
+		</div>
+	</ThemeProvider>
+{/key}
 
 <style>
 	._c1 {
-		display: block;
 		border-radius: 1.5rem;
 		border-width: 1px;
 		border-style: solid;
