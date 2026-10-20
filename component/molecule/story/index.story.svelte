@@ -1,22 +1,12 @@
 <script lang="ts">
 	import Story from './index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
+	import type { RecipeStory } from '$stylist/theme/interface/recipe/story';
 
-	const controls: SlotStory[] = [
-		{ name: 'titleText', type: 'text', defaultValue: 'Live preview title' },
-		{ name: 'showAccent', type: 'boolean', defaultValue: true },
-		{ name: 'size', type: 'range', defaultValue: 16, min: 12, max: 32, step: 1 },
-		{ name: 'tone', type: 'select', defaultValue: 'primary', options: ['primary', 'success'] }
-	];
+	// Render of index.story.ts: the wrapper shows its preview and variants only through snippet props.
+	let args: RecipeStory = $props();
 </script>
 
-<Story
-	{controls}
-	title="Story"
-	category="Theme / Molecule"
-	description="Playground wrapper: header, live preview, optional variants slot and a controls panel."
-	tags={['sandbox', 'controls']}
->
+<Story {...args}>
 	{#snippet children(values)}
 		<div class="_preview" style:--accent="var(--color-{values.tone}-500)">
 			<span class="_dot" class:_dot--hidden={!values.showAccent}></span>

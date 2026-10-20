@@ -1,59 +1,31 @@
 <script lang="ts">
-	import Story from '$stylist/theme/component/molecule/story/index.svelte';
-	import type { SlotStory } from '$stylist/theme/interface/slot/story';
 	import ThemeConsumer from './index.svelte';
 	import ThemeProvider from '../theme-provider/index.svelte';
+	import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 
-	const controls: SlotStory[] = [
-		{
-			name: 'themeMode',
-			type: 'select',
-			defaultValue: 'dark',
-			options: ['default', 'light', 'dark']
-		},
-		{
-			name: 'themeScheme',
-			type: 'select',
-			defaultValue: 'minimal',
-			options: ['minimal', 'ocean', 'forest', 'sunset']
-		}
-	];
+	// Render of index.story.ts: the consumer needs a ThemeProvider parent and a children snippet that receives the context.
+	let { themeMode, themeScheme }: Pick<RecipeThemeProvider, 'themeMode' | 'themeScheme'> = $props();
 </script>
 
-<Story
-	{controls}
-	component={ThemeConsumer}
-	title="ThemeConsumer"
-	description="Reads the current theme context exposed by the provider."
->
-	{#snippet children(values: any)}
-		{#key `${values.themeMode}-${values.themeScheme}`}
-			<ThemeProvider
-				themeMode={values.themeMode as any}
-				themeScheme={values.themeScheme as any}
-				class="_c1"
-			>
-				{#snippet children()}
-					<ThemeConsumer>
-						{#snippet children(themeContext)}
-							<div class="_c2">
-								<p class="_c3 tracking-[0.16em]">Theme context</p>
-								<div class="_c4">
-									<p class="_c5">mode</p>
-									<strong class="_c6">{themeContext?.themeMode ?? 'missing'}</strong>
-								</div>
-								<div class="_c4">
-									<p class="_c5">scheme</p>
-									<strong class="_c6">{themeContext?.themeScheme ?? 'missing'}</strong>
-								</div>
-							</div>
-						{/snippet}
-					</ThemeConsumer>
-				{/snippet}
-			</ThemeProvider>
-		{/key}
-	{/snippet}
-</Story>
+{#key `${themeMode}-${themeScheme}`}
+	<ThemeProvider {themeMode} {themeScheme}>
+		<ThemeConsumer>
+			{#snippet children(themeContext)}
+				<div class="_c1 _c2">
+					<p class="_c3">Theme context</p>
+					<div class="_c4">
+						<p class="_c5">mode</p>
+						<strong class="_c6">{themeContext?.themeMode ?? 'missing'}</strong>
+					</div>
+					<div class="_c4">
+						<p class="_c5">scheme</p>
+						<strong class="_c6">{themeContext?.themeScheme ?? 'missing'}</strong>
+					</div>
+				</div>
+			{/snippet}
+		</ThemeConsumer>
+	</ThemeProvider>
+{/key}
 
 <style>
 	._c1 {
@@ -72,6 +44,7 @@
 	._c3 {
 		font-size: 0.875rem;
 		line-height: 1.25rem;
+		letter-spacing: 0.16em;
 		color: #64748b;
 		text-transform: uppercase;
 	}
