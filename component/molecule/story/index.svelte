@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeStory } from '$stylist/theme/interface/recipe/story';
-	import { createStoryState } from './state.svelte';
+	import { createStoryState } from '$stylist/theme/component/molecule/story/state.svelte';
 
 	let props: RecipeStory = $props();
 	const state = createStoryState(() => props);

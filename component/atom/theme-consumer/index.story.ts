@@ -1,4 +1,4 @@
-import ThemeConsumer from './index.svelte';
+import ThemeConsumer from '$stylist/theme/component/atom/theme-consumer/index.svelte';
 import type { RecipeThemeConsumer } from '$stylist/theme/interface/recipe/theme-consumer';
 import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 import type { ContractStory } from '$stylist/html/interface/contract/story';

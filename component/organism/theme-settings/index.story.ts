@@ -1,4 +1,4 @@
-import ThemeSettings from './index.svelte';
+import ThemeSettings from '$stylist/theme/component/organism/theme-settings/index.svelte';
 import type { RecipeThemeSettings } from '$stylist/theme/interface/recipe/theme-settings';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_THEME_MODE } from '$stylist/theme/const/array/theme-mode';

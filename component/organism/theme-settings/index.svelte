@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ManagerThemeSettings } from '$stylist/theme/class/manager/theme-settings';
 	import type { RecipeThemeSettings } from '$stylist/theme/interface/recipe/theme-settings';
-	import createThemeSettingsState from './state.svelte';
+	import createThemeSettingsState from '$stylist/theme/component/organism/theme-settings/state.svelte';
 	import { formatLabel } from '$stylist/theme/function/script/format-label';
 	import { resolveThemeMode } from '$stylist/theme/function/script/css/resolve-theme-mode';
 	import ThemeModeToggle from '$stylist/theme/component/atom/theme-mode-toggle/index.svelte';

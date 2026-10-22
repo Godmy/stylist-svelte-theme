@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ThemeProvider from './index.svelte';
-	import ThemeConsumer from '../theme-consumer/index.svelte';
+	import ThemeProvider from '$stylist/theme/component/atom/theme-provider/index.svelte';
+	import ThemeConsumer from '$stylist/theme/component/atom/theme-consumer/index.svelte';
 	import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 
 	// Render of index.story.ts: a nested ThemeConsumer snippet shows the context the provider exposes.

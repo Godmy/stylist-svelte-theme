@@ -1,4 +1,4 @@
-import ColorSwatch from './index.svelte';
+import ColorSwatch from '$stylist/theme/component/atom/color-swatch/index.svelte';
 import type { RecipeColorSwatch } from '$stylist/theme/interface/recipe/color-swatch';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_SIZE_REM } from '$stylist/design-token/const/array/size-rem';

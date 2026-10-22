@@ -1,4 +1,4 @@
-import ThemeSwitcher from './index.svelte';
+import ThemeSwitcher from '$stylist/theme/component/molecule/theme-switcher/index.svelte';
 import type { RecipeThemeSwitcher } from '$stylist/theme/interface/recipe/theme-switcher';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_THEME_SCHEME } from '$stylist/theme/const/array/theme-scheme';

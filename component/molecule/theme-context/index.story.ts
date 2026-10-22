@@ -1,4 +1,4 @@
-import ThemeContext from './index.svelte';
+import ThemeContext from '$stylist/theme/component/molecule/theme-context/index.svelte';
 import type { RecipeThemeContext } from '$stylist/theme/interface/recipe/theme-context';
 import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 import type { ContractStory } from '$stylist/html/interface/contract/story';

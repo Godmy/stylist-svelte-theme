@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ThemeConsumer from '$stylist/theme/component/atom/theme-consumer/index.svelte';
 	import type { RecipeThemeContext } from '$stylist/theme/interface/recipe/theme-context';
-	import createThemeContextState from './state.svelte';
+	import createThemeContextState from '$stylist/theme/component/molecule/theme-context/state.svelte';
 
 	let props: RecipeThemeContext = $props();
 	const state = createThemeContextState(() => props);

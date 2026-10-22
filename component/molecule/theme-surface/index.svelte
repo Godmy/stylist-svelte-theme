@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ThemeConsumer from '$stylist/theme/component/atom/theme-consumer/index.svelte';
 	import type { RecipeThemeSurface } from '$stylist/theme/interface/recipe/theme-surface';
-	import createThemeSurfaceState from './state.svelte';
+	import createThemeSurfaceState from '$stylist/theme/component/molecule/theme-surface/state.svelte';
 
 	let props: RecipeThemeSurface = $props();
 	const state = createThemeSurfaceState(() => props);

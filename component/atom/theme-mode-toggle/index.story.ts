@@ -1,4 +1,4 @@
-import ThemeModeToggle from './index.svelte';
+import ThemeModeToggle from '$stylist/theme/component/atom/theme-mode-toggle/index.svelte';
 import type { RecipeThemeModeToggle } from '$stylist/theme/interface/recipe/theme-mode-toggle';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_THEME_MODE } from '$stylist/theme/const/array/theme-mode';

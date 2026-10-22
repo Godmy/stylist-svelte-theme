@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ThemeSurface from './index.svelte';
+	import ThemeSurface from '$stylist/theme/component/molecule/theme-surface/index.svelte';
 	import ThemeProvider from '$stylist/theme/component/atom/theme-provider/index.svelte';
 	import type { RecipeThemeSurface } from '$stylist/theme/interface/recipe/theme-surface';
 	import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';

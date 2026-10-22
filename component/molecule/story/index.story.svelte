@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Story from './index.svelte';
+	import Story from '$stylist/theme/component/molecule/story/index.svelte';
 	import type { RecipeStory } from '$stylist/theme/interface/recipe/story';
 
 	// Render of index.story.ts: the wrapper shows its preview and variants only through snippet props.

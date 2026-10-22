@@ -1,4 +1,4 @@
-import ColorPicker from './index.svelte';
+import ColorPicker from '$stylist/theme/component/molecule/color-picker/index.svelte';
 import type { RecipeColorPicker } from '$stylist/theme/interface/recipe/color-picker';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

@@ -1,4 +1,4 @@
-import ThemePalette from './index.svelte';
+import ThemePalette from '$stylist/theme/component/organism/theme-palette/index.svelte';
 import type { RecipeThemePalette } from '$stylist/theme/interface/recipe/theme-palette';
 import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';
 import type { TokenThemeScheme } from '$stylist/theme/type/alias/theme-scheme';

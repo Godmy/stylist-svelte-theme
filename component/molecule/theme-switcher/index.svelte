@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { RecipeThemeSwitcher } from '$stylist/theme/interface/recipe/theme-switcher';
 	import { ManagerThemeContext } from '$stylist/theme/class/manager/theme-context';
-	import createThemeSwitcherState from './state.svelte';
+	import createThemeSwitcherState from '$stylist/theme/component/molecule/theme-switcher/state.svelte';
 	import { getPreviewTheme } from '$stylist/theme/function/script/theme-switcher';
 	import { getSurfaceStyle } from '$stylist/theme/function/script/get-surface-style';
 	import { getSwatchStyle } from '$stylist/theme/function/script/get-swatch-style';

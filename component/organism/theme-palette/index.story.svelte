@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ThemePalette from './index.svelte';
+	import ThemePalette from '$stylist/theme/component/organism/theme-palette/index.svelte';
 	import type { RecipeThemePalette } from '$stylist/theme/interface/recipe/theme-palette';
 	import type { SlotThemePaletteColor } from '$stylist/theme/interface/slot/theme-palette-color';
 	import type { TokenThemeMode } from '$stylist/theme/type/alias/theme-mode';

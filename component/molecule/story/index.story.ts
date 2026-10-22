@@ -1,4 +1,4 @@
-import Story from './index.svelte';
+import Story from '$stylist/theme/component/molecule/story/index.svelte';
 import type { RecipeStory } from '$stylist/theme/interface/recipe/story';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 

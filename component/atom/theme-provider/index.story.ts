@@ -1,4 +1,4 @@
-import ThemeProvider from './index.svelte';
+import ThemeProvider from '$stylist/theme/component/atom/theme-provider/index.svelte';
 import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
 import { TOKEN_THEME_MODE } from '$stylist/theme/const/array/theme-mode';

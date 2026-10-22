@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
-	import createThemeProviderState from './state.svelte';
+	import createThemeProviderState from '$stylist/theme/component/atom/theme-provider/state.svelte';
 
 	let props: RecipeThemeProvider = $props();
 	const state = createThemeProviderState(() => props);

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ThemeConsumer from './index.svelte';
-	import ThemeProvider from '../theme-provider/index.svelte';
+	import ThemeConsumer from '$stylist/theme/component/atom/theme-consumer/index.svelte';
+	import ThemeProvider from '$stylist/theme/component/atom/theme-provider/index.svelte';
 	import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 
 	// Render of index.story.ts: the consumer needs a ThemeProvider parent and a children snippet that receives the context.

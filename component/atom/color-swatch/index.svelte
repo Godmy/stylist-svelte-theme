@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { RecipeColorSwatch } from '$stylist/theme/interface/recipe/color-swatch';
-	import createColorSwatchState from './state.svelte';
+	import createColorSwatchState from '$stylist/theme/component/atom/color-swatch/state.svelte';
 
 	let props: RecipeColorSwatch = $props();
 	const state = createColorSwatchState(() => props);

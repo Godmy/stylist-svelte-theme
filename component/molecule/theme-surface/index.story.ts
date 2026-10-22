@@ -1,4 +1,4 @@
-import ThemeSurface from './index.svelte';
+import ThemeSurface from '$stylist/theme/component/molecule/theme-surface/index.svelte';
 import type { RecipeThemeSurface } from '$stylist/theme/interface/recipe/theme-surface';
 import type { RecipeThemeProvider } from '$stylist/theme/interface/recipe/theme-provider';
 import type { ContractStory } from '$stylist/html/interface/contract/story';
