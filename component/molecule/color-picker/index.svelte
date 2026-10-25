@@ -56,7 +56,7 @@
 
 	.color-picker__label {
 		display: block;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		font-weight: 500;
 		color: var(--color-text-primary);
 	}
@@ -70,7 +70,7 @@
 	.color-picker__swatch {
 		width: 2rem;
 		height: 2rem;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		overflow: hidden;
 		position: relative;
@@ -87,10 +87,10 @@
 
 	.color-picker__text {
 		width: 6rem;
-		border-radius: var(--border-radius-base, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-primary);
 		padding: 0.25rem 0.75rem;
-		font-size: var(--text-size-sm, 0.875rem);
+		font-size: var(--font-size-3-5, 0.875rem);
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 	}
 
@@ -102,13 +102,13 @@
 
 	.color-picker__helper {
 		margin-block-start: 0.25rem;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-text-secondary);
 	}
 
 	.color-picker__error {
 		margin-block-start: 0.25rem;
-		font-size: var(--text-size-xs, 0.75rem);
+		font-size: var(--font-size-3, 0.75rem);
 		color: var(--color-danger-600);
 	}
 </style>

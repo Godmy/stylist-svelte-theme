@@ -1,4 +1,3 @@
-import { INTERACTION_MOTION } from '$stylist/theme/const/record/interaction-motion';
 import { TOKEN_SIZE_REM } from '$stylist/design-token/const/array/size-rem';
 import { LAYOUT_GRADIENTS } from '$stylist/theme/const/record/layout-gradients';
 import { LAYOUT_ELEVATION_SEMANTIC } from '$stylist/theme/const/record/layout-elevation-semantic';
@@ -11,6 +10,16 @@ import { DESIGN_TOKEN_FOCUS } from '$stylist/design-token/const/preset/focus';
 import { DESIGN_TOKEN_DENSITY } from '$stylist/design-token/const/preset/density';
 import { DESIGN_TOKEN_CONTENT_SIZE } from '$stylist/design-token/const/preset/content-size';
 import { TOKEN_FONT_SIZE_RELATIVE } from '$stylist/design-token/const/object/font-size-relative';
+import { TOKEN_SPACE } from '$stylist/design-token/const/object/space';
+import { TOKEN_RADIUS } from '$stylist/design-token/const/object/radius';
+import { TOKEN_FONT_SIZE } from '$stylist/design-token/const/object/font-size';
+import { TOKEN_LINE_HEIGHT } from '$stylist/design-token/const/object/line-height';
+import { TOKEN_FONT_WEIGHT } from '$stylist/design-token/const/object/font-weight';
+import { TOKEN_LETTER_SPACING } from '$stylist/design-token/const/object/letter-spacing';
+import { TOKEN_DURATION } from '$stylist/design-token/const/object/duration';
+import { TOKEN_EASING } from '$stylist/design-token/const/object/easing';
+import { TOKEN_Z_INDEX } from '$stylist/design-token/const/object/z-index';
+import { RECORD_TOKEN_ALIAS } from '$stylist/design-token/const/record/token-alias';
 
 export class ManagerThemeCSS {
 	static applyVars(theme: Theme, element: HTMLElement = document.documentElement): void {
@@ -48,12 +57,21 @@ export class ManagerThemeCSS {
 			focus: DESIGN_TOKEN_FOCUS,
 			density: DESIGN_TOKEN_DENSITY.comfortable,
 			content: DESIGN_TOKEN_CONTENT_SIZE,
-			motion: INTERACTION_MOTION,
 			size: TOKEN_SIZE_REM,
 			gradients: LAYOUT_GRADIENTS,
 			elevation: LAYOUT_ELEVATION_SEMANTIC,
 			layout: THEME_LAYOUT,
-			opacity: TOKEN_OPACITY
+			opacity: TOKEN_OPACITY,
+			// Global scales without a domain prefix: --space-4, --font-size-3-5, --duration-120.
+			space: TOKEN_SPACE,
+			radius: TOKEN_RADIUS,
+			fontSize: TOKEN_FONT_SIZE,
+			lineHeight: TOKEN_LINE_HEIGHT,
+			fontWeight: TOKEN_FONT_WEIGHT,
+			letterSpacing: TOKEN_LETTER_SPACING,
+			duration: TOKEN_DURATION,
+			easing: TOKEN_EASING,
+			zIndex: TOKEN_Z_INDEX
 		};
 		const flatten = (obj: Record<string, unknown>, prefix: string): void => {
 			for (const [key, value] of Object.entries(obj)) {
@@ -86,6 +104,11 @@ export class ManagerThemeCSS {
 
 			const prefix = category === 'colors' ? 'color' : category;
 			flatten(values as Record<string, unknown>, prefix);
+		}
+
+		// Legacy names still read by components resolve to the scale until the codemod lands.
+		for (const [legacy, token] of Object.entries(RECORD_TOKEN_ALIAS)) {
+			if (!(legacy in vars) && token in vars) vars[legacy] = `var(${token})`;
 		}
 
 		return vars;

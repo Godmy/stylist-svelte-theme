@@ -21,7 +21,7 @@
 <style>
 	.c-color-swatch {
 		display: inline-block;
-		border-radius: var(--radius-md, 0.375rem);
+		border-radius: var(--radius-1-5, 0.375rem);
 		border: 1px solid var(--color-border-secondary);
 		overflow: hidden;
 	}

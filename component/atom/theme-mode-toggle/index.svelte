@@ -61,7 +61,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		gap: var(--spacing-2, 0.5rem);
+		gap: var(--space-2, 0.5rem);
 		min-width: 2.75rem;
 		min-height: 2.75rem;
 		padding: 0.65rem 0.9rem;
@@ -83,10 +83,10 @@
 			0 8px 20px rgba(15, 23, 42, 0.06),
 			inset 0 1px 0 rgba(255, 255, 255, 0.55);
 		transition:
-			background-color var(--duration-120, 120ms) var(--animation-ease, ease),
-			border-color var(--duration-120, 120ms) var(--animation-ease, ease),
-			color var(--duration-120, 120ms) var(--animation-ease, ease),
-			transform var(--duration-120, 120ms) var(--animation-ease, ease);
+			background-color var(--duration-120, 120ms) var(--easing-ease, ease),
+			border-color var(--duration-120, 120ms) var(--easing-ease, ease),
+			color var(--duration-120, 120ms) var(--easing-ease, ease),
+			transform var(--duration-120, 120ms) var(--easing-ease, ease);
 	}
 
 	.c-theme-mode-toggle__icon {

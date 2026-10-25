@@ -59,9 +59,9 @@
 	.c-theme-palette {
 		display: grid;
 		gap: clamp(1rem, 1.8vw, 1.25rem);
-		padding: var(--spacing-4, 1rem);
+		padding: var(--space-4, 1rem);
 		border: 1px solid var(--line, var(--color-border-primary));
-		border-radius: var(--border-radius-2xl, 1.25rem);
+		border-radius: var(--radius-5, 1.25rem);
 		border-color: color-mix(in srgb, var(--line, var(--color-border-primary)) 78%, transparent);
 		background: linear-gradient(
 			180deg,

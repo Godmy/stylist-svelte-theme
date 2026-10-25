@@ -41,10 +41,10 @@
 <style>
 	.layout-theme-surface {
 		display: grid;
-		gap: var(--spacing-3, 0.75rem);
-		padding: var(--spacing-4, 1rem);
+		gap: var(--space-3, 0.75rem);
+		padding: var(--space-4, 1rem);
 		border: 1px solid var(--line, var(--color-border-primary));
-		border-radius: var(--border-radius-2xl, 1.25rem);
+		border-radius: var(--radius-5, 1.25rem);
 		background: linear-gradient(
 			180deg,
 			color-mix(
@@ -61,11 +61,11 @@
 	.layout-theme-surface__header,
 	.layout-theme-surface__footer {
 		display: grid;
-		gap: var(--spacing-2, 0.5rem);
+		gap: var(--space-2, 0.5rem);
 	}
 
 	.layout-theme-surface__content {
 		display: grid;
-		gap: var(--spacing-3, 0.75rem);
+		gap: var(--space-3, 0.75rem);
 	}
 </style>

@@ -182,7 +182,7 @@
 
 	.c-theme-settings__surface-title,
 	.c-theme-settings__title {
-		font-size: var(--font-size-3, 1.125rem);
+		font-size: var(--font-size-4-5, 1.125rem);
 		font-weight: var(--font-weight-semibold, 600);
 		color: var(--text, var(--color-text-primary));
 		letter-spacing: -0.01em;

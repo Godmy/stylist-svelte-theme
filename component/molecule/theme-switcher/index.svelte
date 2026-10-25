@@ -164,10 +164,10 @@
 			0 1px 3px rgba(15, 23, 42, 0.08),
 			0 8px 24px rgba(15, 23, 42, 0.04);
 		transition:
-			border-color var(--duration-120, 120ms) var(--animation-ease, ease),
-			background-color var(--duration-120, 120ms) var(--animation-ease, ease),
-			transform var(--duration-120, 120ms) var(--animation-ease, ease),
-			box-shadow var(--duration-120, 120ms) var(--animation-ease, ease);
+			border-color var(--duration-120, 120ms) var(--easing-ease, ease),
+			background-color var(--duration-120, 120ms) var(--easing-ease, ease),
+			transform var(--duration-120, 120ms) var(--easing-ease, ease),
+			box-shadow var(--duration-120, 120ms) var(--easing-ease, ease);
 	}
 
 	.c-theme-switcher__list--compact .c-theme-switcher__item {
