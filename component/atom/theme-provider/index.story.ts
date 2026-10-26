@@ -11,7 +11,17 @@ export default {
 	description: 'Provides theme mode and scheme to nested consumers.',
 	args: { themeMode: 'light', themeScheme: 'minimal' },
 	controls: {
-		themeMode: { type: 'select', options: TOKEN_THEME_MODE },
-		themeScheme: { type: 'select', options: TOKEN_THEME_SCHEME }
+		themeMode: {
+			type: 'select',
+			label: 'Theme Mode',
+			description: 'Theme mode: the scheme default, light or dark.',
+			options: TOKEN_THEME_MODE
+		},
+		themeScheme: {
+			type: 'select',
+			label: 'Theme Scheme',
+			description: 'Color scheme of the theme.',
+			options: TOKEN_THEME_SCHEME
+		}
 	}
 } satisfies ContractStory<RecipeThemeProvider>;

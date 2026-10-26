@@ -9,12 +9,14 @@ import { untrack } from 'svelte';
 function createThemeModeToggleState(getProps: () => RecipeThemeModeToggle) {
 	const props = $derived(getProps());
 	const themeContext = ManagerThemeContext.getOptional();
+	// checked is the switch-style alias of darkMode.
+	const darkMode = $derived(props.darkMode ?? props.checked);
 	const requestedTheme = $derived(
 		ManagerThemeModeToggle.resolveTheme(
 			props.themeMode,
-			props.darkMode,
+			darkMode,
 			// Do not subscribe to context when an explicit mode controls this toggle.
-			props.themeMode || typeof props.darkMode === 'boolean'
+			props.themeMode || typeof darkMode === 'boolean'
 				? undefined
 				: (themeContext?.themeMode ?? ManagerThemeStorage.getStoredMode())
 		)
@@ -33,6 +35,8 @@ function createThemeModeToggleState(getProps: () => RecipeThemeModeToggle) {
 	);
 	const restProps = $derived(ManagerThemeModeToggle.getButtonRestProps(props));
 	const disabled = $derived(props.disabled);
+	const size = $derived(props.size ?? 'md');
+	const showLabels = $derived(props.showLabels ?? false);
 
 	function applyTheme(newTheme: typeof theme) {
 		if (typeof document !== 'undefined') {
@@ -93,6 +97,12 @@ function createThemeModeToggleState(getProps: () => RecipeThemeModeToggle) {
 		},
 		get disabled() {
 			return disabled;
+		},
+		get size() {
+			return size;
+		},
+		get showLabels() {
+			return showLabels;
 		},
 		get restProps() {
 			return restProps;

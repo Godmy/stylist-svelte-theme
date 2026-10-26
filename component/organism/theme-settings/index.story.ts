@@ -12,7 +12,46 @@ export default {
 		'A theme settings component for managing theme mode, scheme, and display preferences.',
 	args: { themeMode: 'default', themeScheme: 'minimal' },
 	controls: {
-		themeMode: { type: 'select', options: TOKEN_THEME_MODE },
-		themeScheme: { type: 'select', options: TOKEN_THEME_SCHEME }
+		themeMode: {
+			type: 'select',
+			label: 'Theme Mode',
+			description: 'Theme mode: the scheme default, light or dark.',
+			options: TOKEN_THEME_MODE
+		},
+		themeScheme: {
+			type: 'select',
+			label: 'Theme Scheme',
+			description: 'Color scheme of the theme.',
+			options: TOKEN_THEME_SCHEME
+		},
+		modeSection: {
+			type: 'json',
+			label: 'Mode Section',
+			example: { show: true, title: 'Mode', description: 'Light, dark or the scheme default' }
+		},
+		schemeSection: {
+			type: 'json',
+			label: 'Scheme Section',
+			example: { show: true, title: 'UI palette', description: 'Minimal, Ocean, Forest, Sunset' }
+		},
+		modeToggleProps: {
+			type: 'json',
+			label: 'Mode Toggle Props',
+			description: 'Props passed to the inner ThemeModeToggle.',
+			example: { showLabels: true, size: 'lg' }
+		},
+		switcherProps: {
+			type: 'json',
+			label: 'Switcher Props',
+			description: 'Props passed to the inner ThemeSwitcher.',
+			example: { compact: true, showLabels: false }
+		},
+		class: { type: 'text', label: 'Class', description: 'Extra class on the root element.' }
+		// themes: full light/dark Theme objects per scheme; the manager supplies the built-in ones.
+	},
+	presets: {
+		Dark: { themeMode: 'dark' },
+		'Mode only': { schemeSection: { show: false, title: 'UI palette', description: '' } },
+		'Compact palette': { switcherProps: { compact: true, showLabels: false } }
 	}
 } satisfies ContractStory<RecipeThemeSettings>;

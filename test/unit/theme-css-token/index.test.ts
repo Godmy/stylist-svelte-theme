@@ -12,6 +12,7 @@ import { TOKEN_DURATION } from '$stylist/design-token/const/object/duration';
 import { TOKEN_EASING } from '$stylist/design-token/const/object/easing';
 import { TOKEN_Z_INDEX } from '$stylist/design-token/const/object/z-index';
 import { RECORD_TOKEN_ALIAS } from '$stylist/design-token/const/record/token-alias';
+import { TOKEN_FONT_FAMILY_MATH } from '$stylist/design-token/const/value/font-family-math';
 
 const SCALES = [
 	['space', TOKEN_SPACE],
@@ -51,6 +52,12 @@ describe('theme CSS global token scales', () => {
 				expect(variables[legacy]).toBe(`var(${token})`);
 			}
 		}
+	});
+
+	it.each(THEMES)('%s theme emits the math font beside the text families', (_, theme) => {
+		const variables = ManagerThemeCSS.convertToCSSVars(theme);
+		expect(variables['--font-math']).toBe(TOKEN_FONT_FAMILY_MATH);
+		expect(variables['--font-sans']).toBeDefined();
 	});
 
 	it('keeps already emitted legacy names on their own values until the last reader moves', () => {

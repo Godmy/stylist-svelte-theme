@@ -21,22 +21,46 @@ export default {
 		columns: 4
 	},
 	controls: {
-		scheme: { type: 'select', options: TOKEN_THEME_SCHEME, description: 'Theme scheme' },
+		scheme: {
+			type: 'select',
+			label: 'Scheme',
+			options: TOKEN_THEME_SCHEME,
+			description: 'Theme scheme'
+		},
 		// light and dark: a scheme defines one theme per resolved mode.
-		mode: { type: 'select', options: TOKEN_THEME_MODE.slice(1), description: 'Theme mode' },
+		mode: {
+			type: 'select',
+			label: 'Mode',
+			options: TOKEN_THEME_MODE.slice(1),
+			description: 'Theme mode'
+		},
 		colorSource: {
 			type: 'select',
+			label: 'Color Source',
 			options: ['semantic', 'background', 'text', 'border', 'primary', 'secondary', 'neutral'],
 			description: 'Theme color source'
 		},
-		title: { type: 'text', description: 'Title for the color palette' },
-		showLabels: { type: 'boolean', description: 'Whether to show color labels' },
-		showValues: { type: 'boolean', description: 'Whether to show color values' },
+		title: { type: 'text', label: 'Title', description: 'Title for the color palette' },
+		showLabels: {
+			type: 'boolean',
+			label: 'Show Labels',
+			description: 'Whether to show color labels'
+		},
+		showValues: {
+			type: 'boolean',
+			label: 'Show Values',
+			description: 'Whether to show color values'
+		},
 		columns: {
 			type: 'select',
+			label: 'Columns',
 			options: [2, 3, 4, 5, 6],
 			description: 'Number of columns to display'
-		}
+		},
+		class: { type: 'text', label: 'Class', description: 'Class of the palette root' },
+		itemClass: { type: 'text', label: 'Item Class', description: 'Class of every color item' },
+		headerClass: { type: 'text', label: 'Header Class', description: 'Class of the palette header' }
+		// colors: built from scheme, mode and colorSource by index.story.svelte.
 	},
 	presets: {
 		Dark: { mode: 'dark', showValues: true },

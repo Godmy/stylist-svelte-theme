@@ -12,8 +12,18 @@ export default {
 	description: 'Composable molecule for reading theme context via snippets.',
 	args: { themeMode: 'dark', themeScheme: 'ocean' },
 	controls: {
-		themeMode: { type: 'select', options: TOKEN_THEME_MODE },
-		themeScheme: { type: 'select', options: TOKEN_THEME_SCHEME }
+		themeMode: {
+			type: 'select',
+			label: 'Theme Mode',
+			description: 'Theme mode: the scheme default, light or dark.',
+			options: TOKEN_THEME_MODE
+		},
+		themeScheme: {
+			type: 'select',
+			label: 'Theme Scheme',
+			description: 'Color scheme of the theme.',
+			options: TOKEN_THEME_SCHEME
+		}
 	}
 	// themeMode/themeScheme drive the wrapping ThemeProvider of the render.
 } satisfies ContractStory<

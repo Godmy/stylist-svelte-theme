@@ -1,4 +1,8 @@
 <script lang="ts">
+	import HtmlForm from '$stylist/html/component/organism/form/index.svelte';
+	import HtmlDiv from '$stylist/html/component/organism/div/index.svelte';
+	import HtmlSpan from '$stylist/html/component/atom/span/index.svelte';
+	import HtmlStrong from '$stylist/html/component/atom/strong/index.svelte';
 	import { ManagerThemeSettings } from '$stylist/theme/class/manager/theme-settings';
 	import type { RecipeThemeSettings } from '$stylist/theme/interface/recipe/theme-settings';
 	import createThemeSettingsState from '$stylist/theme/component/organism/theme-settings/state.svelte';
@@ -84,54 +88,54 @@
 	);
 </script>
 
-<form class={formClass} {...restProps}>
+<HtmlForm class={formClass} {...restProps}>
 	<ThemeSurface class={surfaceClass}>
 		{#snippet header(themeContext)}
-			<div class={surfaceHeadingClass}>
-				<div class={surfaceEyebrowClass}>Appearance Settings</div>
-				<div class={surfaceSummaryClass}>
-					<div class={surfaceBadgeClass}>
-						<span>Mode</span>
-						<strong>{currentModeLabel}</strong>
-					</div>
-					<div class={surfaceBadgeClass}>
-						<span>Scheme</span>
-						<strong>{currentSchemeLabel}</strong>
-					</div>
-				</div>
-			</div>
+			<HtmlDiv class={surfaceHeadingClass}>
+				<HtmlDiv class={surfaceEyebrowClass}>Appearance Settings</HtmlDiv>
+				<HtmlDiv class={surfaceSummaryClass}>
+					<HtmlDiv class={surfaceBadgeClass}>
+						<HtmlSpan>Mode</HtmlSpan>
+						<HtmlStrong>{currentModeLabel}</HtmlStrong>
+					</HtmlDiv>
+					<HtmlDiv class={surfaceBadgeClass}>
+						<HtmlSpan>Scheme</HtmlSpan>
+						<HtmlStrong>{currentSchemeLabel}</HtmlStrong>
+					</HtmlDiv>
+				</HtmlDiv>
+			</HtmlDiv>
 		{/snippet}
 
 		{#snippet content(themeContext)}
 			{#if resolvedSettings.modeSection.show}
-				<div class={itemClass}>
-					<div class={metaClass}>
-						<div class={metaEyebrowClass}>Display Mode</div>
-						<div class={titleClass}>{resolvedSettings.modeSection.title}</div>
-						<div class={helpClass}>
+				<HtmlDiv class={itemClass}>
+					<HtmlDiv class={metaClass}>
+						<HtmlDiv class={metaEyebrowClass}>Display Mode</HtmlDiv>
+						<HtmlDiv class={titleClass}>{resolvedSettings.modeSection.title}</HtmlDiv>
+						<HtmlDiv class={helpClass}>
 							{resolvedSettings.modeSection.description ||
 								themeContext?.themeMode ||
 								modeDescription}
-						</div>
-					</div>
-					<div class={controlClass}>
+						</HtmlDiv>
+					</HtmlDiv>
+					<HtmlDiv class={controlClass}>
 						<ThemeModeToggle
 							{...modeToggleProps}
 							themeMode={state.localThemeMode}
 							onThemeModeChange={handleModeChange}
 						/>
-					</div>
-				</div>
+					</HtmlDiv>
+				</HtmlDiv>
 			{/if}
 
 			{#if resolvedSettings.schemeSection.show}
-				<div class={itemColumnClass}>
-					<div class={metaClass}>
-						<div class={metaEyebrowClass}>Palette</div>
-						<div class={titleClass}>{resolvedSettings.schemeSection.title}</div>
-						<div class={helpClass}>{resolvedSettings.schemeSection.description}</div>
-					</div>
-					<div class={controlClass}>
+				<HtmlDiv class={itemColumnClass}>
+					<HtmlDiv class={metaClass}>
+						<HtmlDiv class={metaEyebrowClass}>Palette</HtmlDiv>
+						<HtmlDiv class={titleClass}>{resolvedSettings.schemeSection.title}</HtmlDiv>
+						<HtmlDiv class={helpClass}>{resolvedSettings.schemeSection.description}</HtmlDiv>
+					</HtmlDiv>
+					<HtmlDiv class={controlClass}>
 						<ThemeSwitcher
 							class={switcherProps.class}
 							compact={switcherProps.compact}
@@ -142,150 +146,139 @@
 							themeMode={effectiveThemeMode}
 							onThemeSchemeChange={handleSchemeChange}
 						/>
-					</div>
-				</div>
+					</HtmlDiv>
+				</HtmlDiv>
 			{/if}
 		{/snippet}
 	</ThemeSurface>
-</form>
+</HtmlForm>
 
 <style>
-	.c-theme-settings {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.c-theme-settings__surface {
-		display: grid;
-		gap: clamp(1rem, 1.8vw, 1.25rem);
-		border-color: color-mix(in srgb, var(--line, var(--color-border-primary)) 78%, transparent);
-		background: var(--surface, var(--color-background-primary));
-		box-shadow:
-			0 1px 3px rgba(15, 23, 42, 0.08),
-			0 12px 32px rgba(15, 23, 42, 0.05);
-	}
-
-	.c-theme-settings__surface-heading {
-		display: grid;
-		gap: 0.55rem;
-		padding-bottom: 0.35rem;
-	}
-
-	.c-theme-settings__surface-eyebrow,
-	.c-theme-settings__meta-eyebrow {
-		font-size: 0.72rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.16em;
-		color: color-mix(in srgb, var(--muted, var(--color-text-secondary)) 92%, transparent);
-	}
-
-	.c-theme-settings__surface-title,
-	.c-theme-settings__title {
-		font-size: var(--font-size-4-5, 1.125rem);
-		font-weight: var(--font-weight-semibold, 600);
-		color: var(--text, var(--color-text-primary));
-		letter-spacing: -0.01em;
-	}
-
-	.c-theme-settings__surface-title {
-		font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-		line-height: 1.1;
-	}
-
-	.c-theme-settings__surface-help,
-	.c-theme-settings__help {
-		font-size: 0.92rem;
-		color: var(--muted, var(--color-text-secondary));
-		line-height: 1.5;
-	}
-
-	.c-theme-settings__surface-summary {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.55rem;
-	}
-
-	.c-theme-settings__surface-badge {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45rem;
-		padding: 0.45rem 0.72rem;
-		border-radius: 999px;
-		border: 1px solid color-mix(in srgb, var(--line, var(--color-border-primary)) 76%, transparent);
-		background: color-mix(in srgb, var(--surface, var(--color-background-primary)) 88%, white 12%);
-		font-size: 0.8rem;
-		line-height: 1;
-		color: var(--text, var(--color-text-primary));
-		box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
-	}
-
-	.c-theme-settings__surface-badge strong {
-		font-size: 0.82rem;
-	}
-
-	.c-theme-settings__item {
-		display: grid;
-		gap: 1rem;
-		grid-template-columns: minmax(180px, 0.8fr) minmax(220px, 1fr);
-		align-items: center;
-		padding: 1.1rem 1.15rem;
-		border: 1px solid color-mix(in srgb, var(--line, var(--color-border-primary)) 74%, transparent);
-		border-radius: 1rem;
-		background: color-mix(
-			in srgb,
-			var(--surface, var(--color-background-primary)) 96%,
-			var(--bg, var(--color-background-secondary)) 4%
-		);
-		box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-	}
-
-	.c-theme-settings__item--column {
-		grid-template-columns: 1fr;
-		align-items: start;
-	}
-
-	.c-theme-settings__meta {
-		display: grid;
-		gap: 0.45rem;
-		align-content: start;
-	}
-
-	.c-theme-settings__control {
-		display: grid;
-		gap: 0.75rem;
-		align-items: stretch;
-		justify-content: stretch;
-		justify-self: stretch;
-		min-width: 0;
-	}
-
-	.c-theme-settings__item .c-theme-mode-toggle {
-		min-width: 3.6rem;
-		min-height: 3.6rem;
-		justify-content: center;
-	}
-
-	:global(.c-theme-settings__item--column .c-theme-switcher) {
-		width: 100%;
-	}
-
-	:global(.c-theme-settings__item--column .c-theme-switcher__list) {
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	}
-
-	:global(.c-theme-settings__item--column .c-theme-switcher__item) {
-		min-height: 11.75rem;
-	}
-
-	@media (max-width: 640px) {
-		.c-theme-settings__item {
-			grid-template-columns: 1fr;
-			padding: 0.95rem;
-		}
-
-		.c-theme-settings__control {
-			justify-content: flex-start;
+	@layer html, typography, svg, mathml, layout, theme, localization;
+	@layer theme {
+		:global {
+			:where(.c-theme-settings) {
+				display: grid;
+				gap: calc(var(--space-4, 1rem) * var(--density-scale, 1));
+			}
+			/* One class of specificity: overrides the ThemeSurface it styles, whatever the stylesheet order. */
+			:where(.c-theme-settings) .c-theme-settings__surface {
+				display: grid;
+				gap: calc(var(--space-5, 1.25rem) * var(--density-scale, 1));
+				border-color: color-mix(in srgb, var(--line, var(--color-border-primary)) 78%, transparent);
+				background: var(--surface, var(--color-background-primary));
+				box-shadow: var(--elevation-card);
+			}
+			:where(.c-theme-settings__surface-heading) {
+				display: grid;
+				gap: calc(var(--space-2, 0.5rem) * var(--density-scale, 1));
+				padding-bottom: calc(var(--space-1-5, 0.375rem) * var(--density-scale, 1));
+			}
+			:where(.c-theme-settings__surface-eyebrow, .c-theme-settings__meta-eyebrow) {
+				font-size: var(--font-size-3, 0.75rem);
+				font-weight: var(--font-weight-bold, 700);
+				text-transform: uppercase;
+				letter-spacing: var(--letter-spacing-expanded, 0.12em);
+				color: color-mix(in srgb, var(--muted, var(--color-text-secondary)) 92%, transparent);
+			}
+			:where(.c-theme-settings__surface-title, .c-theme-settings__title) {
+				font-size: var(--font-size-4-5, 1.125rem);
+				font-weight: var(--font-weight-semibold, 600);
+				color: var(--text, var(--color-text-primary));
+				letter-spacing: var(--letter-spacing-narrow, -0.01em);
+			}
+			:where(.c-theme-settings__surface-title) {
+				font-size: var(--font-size-5, 1.25rem);
+				line-height: var(--line-height-tight, 1.25);
+			}
+			:where(.c-theme-settings__surface-help, .c-theme-settings__help) {
+				font-size: var(--font-size-3-5, 0.875rem);
+				color: var(--muted, var(--color-text-secondary));
+			}
+			:where(.c-theme-settings__surface-summary) {
+				display: flex;
+				flex-wrap: wrap;
+				gap: calc(var(--space-2, 0.5rem) * var(--density-scale, 1));
+			}
+			:where(.c-theme-settings__surface-badge) {
+				display: inline-flex;
+				align-items: center;
+				gap: calc(var(--space-2, 0.5rem) * var(--density-scale, 1));
+				padding: calc(var(--space-2, 0.5rem) * var(--density-scale, 1))
+					calc(var(--space-3, 0.75rem) * var(--density-scale, 1));
+				border-radius: var(--radius-full, 9999px);
+				border: var(--border-width-thin, 1px) solid
+					color-mix(in srgb, var(--line, var(--color-border-primary)) 76%, transparent);
+				background: color-mix(
+					in srgb,
+					var(--surface, var(--color-background-primary)) 88%,
+					white 12%
+				);
+				font-size: var(--font-size-3, 0.75rem);
+				line-height: var(--line-height-none, 1);
+				color: var(--text, var(--color-text-primary));
+				box-shadow: var(--elevation-level1);
+			}
+			:where(.c-theme-settings__surface-badge strong) {
+				font-size: var(--font-size-3-5, 0.875rem);
+			}
+			:where(.c-theme-settings__item) {
+				display: grid;
+				gap: calc(var(--space-4, 1rem) * var(--density-scale, 1));
+				grid-template-columns: minmax(180px, 0.8fr) minmax(220px, 1fr);
+				align-items: center;
+				padding: calc(var(--space-4, 1rem) * var(--density-scale, 1))
+					calc(var(--space-5, 1.25rem) * var(--density-scale, 1));
+				border: var(--border-width-thin, 1px) solid
+					color-mix(in srgb, var(--line, var(--color-border-primary)) 74%, transparent);
+				border-radius: var(--radius-4, 1rem);
+				background: color-mix(
+					in srgb,
+					var(--surface, var(--color-background-primary)) 96%,
+					var(--bg, var(--color-background-secondary)) 4%
+				);
+				box-shadow: var(--elevation-level1);
+			}
+			:where(.c-theme-settings__item--column) {
+				grid-template-columns: 1fr;
+				align-items: start;
+			}
+			:where(.c-theme-settings__meta) {
+				display: grid;
+				gap: calc(var(--space-2, 0.5rem) * var(--density-scale, 1));
+				align-content: start;
+			}
+			:where(.c-theme-settings__control) {
+				display: grid;
+				gap: calc(var(--space-3, 0.75rem) * var(--density-scale, 1));
+				align-items: stretch;
+				justify-content: stretch;
+				justify-self: stretch;
+				min-width: 0;
+			}
+			:where(.c-theme-settings__item) .c-theme-mode-toggle {
+				min-width: 3.6rem;
+				min-height: 3.6rem;
+				justify-content: center;
+			}
+			:where(.c-theme-settings__item--column) .c-theme-switcher {
+				width: 100%;
+			}
+			:where(.c-theme-settings__item--column) .c-theme-switcher__list {
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+			}
+			:where(.c-theme-settings__item--column) .c-theme-switcher__item {
+				min-height: 11.75rem;
+			}
+			@media (max-width: 640px) {
+				:where(.c-theme-settings__item) {
+					grid-template-columns: 1fr;
+					padding: calc(var(--space-4, 1rem) * var(--density-scale, 1));
+				}
+				:where(.c-theme-settings__control) {
+					justify-content: flex-start;
+				}
+			}
 		}
 	}
 </style>

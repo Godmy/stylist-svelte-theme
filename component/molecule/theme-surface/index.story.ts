@@ -12,8 +12,30 @@ export default {
 	description: 'Content-oriented molecule that renders themed header, content and footer snippets.',
 	args: { themeMode: 'light', themeScheme: 'minimal' },
 	controls: {
-		themeMode: { type: 'select', options: TOKEN_THEME_MODE },
-		themeScheme: { type: 'select', options: TOKEN_THEME_SCHEME }
+		themeMode: {
+			type: 'select',
+			label: 'Theme Mode',
+			description: 'Theme mode: the scheme default, light or dark.',
+			options: TOKEN_THEME_MODE
+		},
+		themeScheme: {
+			type: 'select',
+			label: 'Theme Scheme',
+			description: 'Color scheme of the theme.',
+			options: TOKEN_THEME_SCHEME
+		},
+		class: { type: 'text', label: 'Class', description: 'Extra class on the root element.' },
+		headerClass: { type: 'text', label: 'Header Class', description: 'Extra class on the header.' },
+		contentClass: {
+			type: 'text',
+			label: 'Content Class',
+			description: 'Extra class on the content area.'
+		},
+		footerClass: { type: 'text', label: 'Footer Class', description: 'Extra class on the footer.' }
+	},
+	presets: {
+		Dark: { themeMode: 'dark' },
+		Ocean: { themeScheme: 'ocean' }
 	}
 	// themeMode/themeScheme drive the wrapping ThemeProvider of the render.
 } satisfies ContractStory<

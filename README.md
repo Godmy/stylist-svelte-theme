@@ -67,3 +67,11 @@ Core files in the current layout:
 - `mode` and `scheme` are separate concepts and should not be collapsed into one prop.
 - Theme application is DOM-aware and uses CSS variables plus data attributes.
 - Theme-related tests currently live mainly under `src/test/theme`.
+
+## Styles
+
+- Component styles start with `HTML_LAYER_ORDER` and sit in `@layer theme` with `:where()` selectors, so consumer classes win without extra specificity. Overrides of a child component (ThemeSettings over ThemeSurface, ThemeModeToggle, ThemeSwitcher) keep one class of specificity.
+- Sizes come from the global scales (`--space-*` times `--density-scale`, `--radius-*`, `--font-size-*`, `--elevation-*`); `test/unit/style-layer` checks the layer order, the selectors and the font stacks. The sandbox story chrome (`molecule/story`) is tooling and stays outside this rule.
+- `ThemeSurface` classes are `theme-surface`, `theme-surface__header`, `__content`, `__footer` (formerly `layout-theme-surface*`).
+- `ThemeModeToggle`: `size` (xs … 2xl) sets the font size and the button follows it in em; `showLabels` shows the mode name; `checked` is an alias of `darkMode`.
+- The emitter also writes `--font-math` from `TOKEN_FONT_FAMILY_MATH` (`design-token/const/value/font-family-math`), kept out of `TOKEN_FONT_FAMILY` so it does not appear among the text families.

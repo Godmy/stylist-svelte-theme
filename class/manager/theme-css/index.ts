@@ -5,6 +5,7 @@ import { THEME_LAYOUT } from '$stylist/theme/const/record/theme-layout';
 import { TOKEN_OPACITY } from '$stylist/design-token/const/object/opacity';
 import type { Theme } from '$stylist/theme/type/object/theme';
 import { TOKEN_FONT_FAMILY } from '$stylist/design-token/const/object/font-family';
+import { TOKEN_FONT_FAMILY_MATH } from '$stylist/design-token/const/value/font-family-math';
 import { TOKEN_BORDER_WIDTH } from '$stylist/design-token/const/object/border-width';
 import { DESIGN_TOKEN_FOCUS } from '$stylist/design-token/const/preset/focus';
 import { DESIGN_TOKEN_DENSITY } from '$stylist/design-token/const/preset/density';
@@ -51,7 +52,8 @@ export class ManagerThemeCSS {
 	static convertToCSSVars(theme: Theme): Record<string, string> {
 		const vars: Record<string, string> = {};
 		const systemTheme = {
-			font: TOKEN_FONT_FAMILY,
+			// --font-math sits beside the text families but outside TOKEN_FONT_FAMILY and its selects.
+			font: { ...TOKEN_FONT_FAMILY, math: TOKEN_FONT_FAMILY_MATH },
 			fontRelative: TOKEN_FONT_SIZE_RELATIVE,
 			border: { width: TOKEN_BORDER_WIDTH },
 			focus: DESIGN_TOKEN_FOCUS,
