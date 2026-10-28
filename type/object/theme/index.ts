@@ -4,6 +4,8 @@ import type { ObjectThemeTypography } from '$stylist/theme/type/object/typograph
 export type Theme = {
 	mode: TokenThemeMode;
 	colors: {
+		/** Palette colors for monochrome glyphs and multicolor details. */
+		icon?: { primary: string; secondary: string; tertiary: string };
 		primary: Record<number, string>;
 		secondary: Record<number, string>;
 		tertiary?: Record<number, string>;

@@ -12,7 +12,24 @@ export class ManagerThemeResolver {
 	 * Р Р°Р·СЂРµС€Р°РµС‚ С‚РµРјСѓ РїРѕ СЃС…РµРјРµ Рё СЂРµР¶РёРјСѓ
 	 */
 	static resolve(scheme: TokenThemeScheme, mode: 'light' | 'dark'): Theme {
-		return RECORD_THEME_SCHEME[scheme][mode];
+		const definition = RECORD_THEME_SCHEME[scheme];
+		const theme = definition[mode];
+		// Schemes may share dark surfaces; keep their own icon hues in both modes.
+		const palette = definition.light.colors;
+		const shade = mode === 'dark' ? 400 : 600;
+		return {
+			...theme,
+			colors: {
+				...theme.colors,
+				icon: {
+					primary: (scheme === 'minimal' ? palette.neutral : palette.primary)[shade],
+					secondary: (scheme === 'minimal'
+						? palette.neutral
+						: (palette.tertiary ?? palette.secondary))[mode === 'dark' ? 300 : 500],
+					tertiary: palette.secondary[mode === 'dark' ? 200 : 700]
+				}
+			}
+		};
 	}
 
 	/**

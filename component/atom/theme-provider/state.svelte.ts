@@ -19,7 +19,7 @@ export default function createThemeProviderState(getProps: () => RecipeThemeProv
 	);
 
 	$effect(() => {
-		const cleanup = ManagerTheme.initSystemThemeListener((isDark) => {
+		const cleanup = ManagerTheme.initSystemThemeListener(() => {
 			if (currentMode === 'default') {
 				applyThemeModeAndScheme(currentMode, currentScheme);
 			}

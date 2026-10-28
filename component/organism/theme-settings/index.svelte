@@ -55,8 +55,6 @@
 	const surfaceClass = 'c-theme-settings__surface';
 	const surfaceHeadingClass = 'c-theme-settings__surface-heading';
 	const surfaceEyebrowClass = 'c-theme-settings__surface-eyebrow';
-	const surfaceTitleClass = 'c-theme-settings__surface-title';
-	const surfaceHelpClass = 'c-theme-settings__surface-help';
 	const surfaceSummaryClass = 'c-theme-settings__surface-summary';
 	const surfaceBadgeClass = 'c-theme-settings__surface-badge';
 	const itemClass = 'c-theme-settings__item';
@@ -90,7 +88,7 @@
 
 <HtmlForm class={formClass} {...restProps}>
 	<ThemeSurface class={surfaceClass}>
-		{#snippet header(themeContext)}
+		{#snippet header()}
 			<HtmlDiv class={surfaceHeadingClass}>
 				<HtmlDiv class={surfaceEyebrowClass}>Appearance Settings</HtmlDiv>
 				<HtmlDiv class={surfaceSummaryClass}>
