@@ -63,6 +63,7 @@ export default {
 		// colors: built from scheme, mode and colorSource by index.story.svelte.
 	},
 	presets: {
+		'????????? ???????': { scheme: 'spanish', mode: 'light', title: '????????? ???????', showValues: true },
 		Dark: { mode: 'dark', showValues: true },
 		'Background Tokens': {
 			colorSource: 'background',

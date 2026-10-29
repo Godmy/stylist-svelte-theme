@@ -1,3 +1,4 @@
+import { SCHEME_SPANISH } from '$stylist/theme/const/record/scheme-spanish';
 import { SCHEME_FOREST } from '$stylist/theme/const/record/scheme-forest';
 import { SCHEME_MINIMAL } from '$stylist/theme/const/record/scheme-minimal';
 import { SCHEME_OCEAN } from '$stylist/theme/const/record/scheme-ocean';
@@ -10,5 +11,6 @@ export const THEME_SCHEMES: ThemeSchemeDefinition[] = [
 	SCHEME_OCEAN,
 	SCHEME_FOREST,
 	SCHEME_SUNSET,
-	SCHEME_WEORACLE
+	SCHEME_WEORACLE,
+	SCHEME_SPANISH
 ];
