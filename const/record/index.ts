@@ -5,6 +5,7 @@ export { LAYOUT_GRADIENTS } from './layout-gradients';
 export { SCHEME_FOREST } from './scheme-forest';
 export { SCHEME_MINIMAL } from './scheme-minimal';
 export { SCHEME_OCEAN } from './scheme-ocean';
+export { SCHEME_SPANISH } from './scheme-spanish';
 export { SCHEME_SUNSET } from './scheme-sunset';
 export { SCHEME_WEORACLE } from './scheme-weoracle';
 export { THEME_LAYOUT } from './theme-layout';
