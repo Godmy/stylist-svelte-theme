@@ -1,3 +1,4 @@
+import { SCHEME_PAVARENKIN } from '$stylist/theme/const/record/scheme-pavarenkin';
 import { SCHEME_SPANISH } from '$stylist/theme/const/record/scheme-spanish';
 import { SCHEME_FOREST } from '$stylist/theme/const/record/scheme-forest';
 import { SCHEME_MINIMAL } from '$stylist/theme/const/record/scheme-minimal';
@@ -12,5 +13,6 @@ export const THEME_SCHEMES: ThemeSchemeDefinition[] = [
 	SCHEME_FOREST,
 	SCHEME_SUNSET,
 	SCHEME_WEORACLE,
-	SCHEME_SPANISH
+	SCHEME_SPANISH,
+	SCHEME_PAVARENKIN
 ];

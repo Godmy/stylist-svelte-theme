@@ -63,6 +63,18 @@ export default {
 		// colors: built from scheme, mode and colorSource by index.story.svelte.
 	},
 	presets: {
+		'Паваренкин — ночь': {
+			scheme: 'pavarenkin',
+			mode: 'dark',
+			title: 'Паваренкин — синий и золото',
+			showValues: true
+		},
+		'Паваренкин — день': {
+			scheme: 'pavarenkin',
+			mode: 'light',
+			title: 'Паваренкин — синий и золото',
+			showValues: true
+		},
 		'????????? ???????': {
 			scheme: 'spanish',
 			mode: 'light',

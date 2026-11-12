@@ -4,5 +4,6 @@ export const TOKEN_THEME_SCHEME = [
 	'forest',
 	'sunset',
 	'weoracle',
-	'spanish'
+	'spanish',
+	'pavarenkin'
 ] as const;
