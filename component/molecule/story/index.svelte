@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Component } from 'svelte';
 	import type { RecipeStory } from '$stylist/theme/interface/recipe/story';
 	import { createStoryState } from '$stylist/theme/component/molecule/story/state.svelte';
 
@@ -45,7 +46,8 @@
 			{#if props.children}
 				{@render props.children(state.controlValues)}
 			{:else if props.component}
-				<props.component {...state.controlValues} />
+				{@const StoryComponent = props.component as Component<Record<string, unknown>>}
+				<StoryComponent {...state.controlValues} />
 			{/if}
 		</div>
 	</div>

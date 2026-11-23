@@ -2,7 +2,7 @@ import type { Snippet } from 'svelte';
 import type { SlotStory } from '$stylist/theme/interface/slot/story';
 export interface RecipeStory {
 	controls?: SlotStory[];
-	component?: any;
+	component?: unknown;
 	id?: string;
 	title?: string;
 	category?: string;
