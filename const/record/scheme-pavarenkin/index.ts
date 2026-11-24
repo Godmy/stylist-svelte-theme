@@ -6,8 +6,8 @@ import type { ThemeSchemeDefinition } from '$stylist/theme/type/object/theme-sch
 /** Hero banner: deep sea blue, daylight blue and warm sunrise gold. */
 export const SCHEME_PAVARENKIN: ThemeSchemeDefinition = {
 	id: 'pavarenkin',
-	label: 'Паваренкин — синий и золото',
-	description: 'Глубокий синий моря и костюма, свет неба и золото рассвета из hero.webp',
+	label: 'Golden sky',
+	description: 'Deep sea blue, daylight blue and warm sunrise gold.',
 	light: {
 		...THEME_MODE_LIGHT,
 		colors: {
