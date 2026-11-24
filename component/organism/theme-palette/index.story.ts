@@ -63,22 +63,22 @@ export default {
 		// colors: built from scheme, mode and colorSource by index.story.svelte.
 	},
 	presets: {
-		'Паваренкин — ночь': {
+		'Golden sky — dark': {
 			scheme: 'pavarenkin',
 			mode: 'dark',
-			title: 'Паваренкин — синий и золото',
+			title: 'Golden sky',
 			showValues: true
 		},
-		'Паваренкин — день': {
+		'Golden sky — light': {
 			scheme: 'pavarenkin',
 			mode: 'light',
-			title: 'Паваренкин — синий и золото',
+			title: 'Golden sky',
 			showValues: true
 		},
-		'????????? ???????': {
+		Spanish: {
 			scheme: 'spanish',
 			mode: 'light',
-			title: '????????? ???????',
+			title: 'Spanish',
 			showValues: true
 		},
 		Dark: { mode: 'dark', showValues: true },
