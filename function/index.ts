@@ -8,9 +8,16 @@ export {
 	getPreviewTheme,
 	getSurfaceStyle,
 	getSwatchStyle,
+	groupBy,
+	indexBy,
 	resolveTargetElement,
 	resolveThemeMode,
 	resolveThemeScheme,
 	supportsThemeMode,
-	toggleThemeMode
+	toMap,
+	toSet,
+	toggleInSet,
+	toggleThemeMode,
+	unique,
+	withMapEntry
 } from './script';

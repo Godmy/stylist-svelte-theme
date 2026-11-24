@@ -60,12 +60,19 @@ export {
 	getPreviewTheme,
 	getSurfaceStyle,
 	getSwatchStyle,
+	groupBy,
+	indexBy,
 	resolveAriaLabel,
 	resolveTargetElement,
 	resolveThemeMode,
 	resolveThemeScheme,
 	supportsThemeMode,
-	toggleThemeMode
+	toMap,
+	toSet,
+	toggleInSet,
+	toggleThemeMode,
+	unique,
+	withMapEntry
 } from './function';
 export type {
 	ComputeIntersectAll,

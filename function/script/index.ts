@@ -1,5 +1,14 @@
 /** AREA: STYLIST CODER MODEL -> AUTO-GENERATED */
 export {
+	groupBy,
+	indexBy,
+	toMap,
+	toSet,
+	toggleInSet,
+	unique,
+	withMapEntry
+} from './collection';
+export {
 	applyThemeToDOM,
 	resolveThemeMode,
 	supportsThemeMode
