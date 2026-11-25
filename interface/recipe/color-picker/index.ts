@@ -1,7 +1,7 @@
+import type { ComputeIntersectAll } from '$stylist/theme/type/compute/intersect-all';
 import type { HTMLAttributes } from 'svelte/elements';
-export interface RecipeColorPicker extends Omit<
-	HTMLAttributes<HTMLInputElement>,
-	'class' | 'value' | 'on:input' | 'on:change'
+export interface RecipeColorPicker extends ComputeIntersectAll<
+	[Omit<HTMLAttributes<HTMLInputElement>, 'class' | 'value' | 'on:input' | 'on:change'>]
 > {
 	value?: string;
 	class?: string;
