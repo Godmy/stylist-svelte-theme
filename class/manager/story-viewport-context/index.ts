@@ -1,6 +1,6 @@
 import { setContext, getContext, hasContext } from 'svelte';
 import { TOKEN_STORY_VIEWPORT_CONTEXT } from '$stylist/theme/const/value/story-viewport-context';
-import type { RecipeStoryViewport } from '$stylist/theme/interface/recipe/story-viewport';
+import type { SlotStoryViewport } from '$stylist/theme/interface/slot/story-viewport';
 import type { TokenStoryViewport } from '$stylist/theme/type/alias/story-viewport';
 
 export class ManagerStoryViewportContext {
@@ -14,8 +14,8 @@ export class ManagerStoryViewportContext {
 		getViewport: () => TokenStoryViewport,
 		getFullscreen: () => boolean = () => false,
 		isolated: boolean | (() => boolean) = false
-	): RecipeStoryViewport {
-		const context: RecipeStoryViewport = {
+	): SlotStoryViewport {
+		const context: SlotStoryViewport = {
 			get viewport() {
 				return getViewport();
 			},
@@ -36,9 +36,9 @@ export class ManagerStoryViewportContext {
 	 * Возвращает undefined, если контекст не установлен — Story тогда
 	 * рендерит превью без ограничения ширины (как раньше).
 	 */
-	static getOptional(): RecipeStoryViewport | undefined {
+	static getOptional(): SlotStoryViewport | undefined {
 		return hasContext(TOKEN_STORY_VIEWPORT_CONTEXT)
-			? getContext<RecipeStoryViewport>(TOKEN_STORY_VIEWPORT_CONTEXT)
+			? getContext<SlotStoryViewport>(TOKEN_STORY_VIEWPORT_CONTEXT)
 			: undefined;
 	}
 }

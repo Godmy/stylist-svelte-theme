@@ -4,6 +4,7 @@ export type { SlotClass } from './class';
 export type { SlotContent } from './content';
 export type { ContentList } from './content-list';
 export type { SlotStory } from './story';
+export type { SlotStoryViewport } from './story-viewport';
 export type { SlotTheme } from './theme';
 export type { SlotThemeBorder } from './theme-border';
 export type { SlotThemeChildren } from './theme-children';
